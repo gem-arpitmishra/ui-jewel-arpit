@@ -398,69 +398,69 @@ public class StepDefination extends GemEcoUpload {
         }
     }
 
-    @Then("^delete company admin$")
-    public void deleteCompanyAdmin() throws Exception {
-        try {
-            Actions action2 = new Actions(DriverManager.getWebDriver());
-            action2.moveToElement(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
-            action2.click(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
-            DriverAction.waitSec(4);
-            GemTestReporter.addTestStep("Click on Action Edit", "Successfully : Clicked on Action Edit", STATUS.PASS, DriverAction.takeSnapShot());
-            String name = DriverAction.getElementText(nameBlock);
-            List<String> xpath = DriverAction.getElementsText(unlink);
-            String xPathWithVariable = "(//*[local-name()='svg' and @data-icon=\"ban\"]/*[local-name()='path'])" + "[" + xpath.size() + "]";
-            Actions action3 = new Actions(DriverManager.getWebDriver());
-            action3.moveToElement(DriverManager.getWebDriver().findElement(By.xpath(xPathWithVariable))).build().perform();
-            action3.click(DriverManager.getWebDriver().findElement(By.xpath(xPathWithVariable))).build().perform();
-            DriverAction.waitSec(4);
-            GemTestReporter.addTestStep("Click on Action Edit", "Successfully : Clicked on Action Edit", STATUS.PASS, DriverAction.takeSnapShot());
-            GemTestReporter.addTestStep("Click on Unlink", "Successfully : Clicked on Unlink", STATUS.PASS, DriverAction.takeSnapShot());
-            GemTestReporter.addTestStep("Admin removed", "Admin removed is: " + name, STATUS.INFO);
-            List<String> list = DriverAction.getElementsText(listBlock);
-            boolean flag = false;
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).equalsIgnoreCase(name)) {
-                    flag = true;
-                    break;
-                }
-            }
-            if (!flag) {
-                GemTestReporter.addTestStep("Admin removed validation", "Admin is NOT present in the list", STATUS.PASS, DriverAction.takeSnapShot());
-            } else {
-                GemTestReporter.addTestStep("Admin removed validation", "Admin is present in the list", STATUS.FAIL, DriverAction.takeSnapShot());
-            }
-            DriverAction.click(close_btn_super, "Close Button");
-            DriverAction.waitSec(4);
-            Actions action4 = new Actions(DriverManager.getWebDriver());
-            action4.moveToElement(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
-            action4.click(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
-            DriverAction.waitSec(4);
-            DriverAction.click(addAdmins);
-            DriverAction.waitSec(2);
-            DriverAction.click(selectUsersToAdd);
-            DriverAction.waitSec(2);
-            DriverAction.click(textAddName);
-            DriverAction.waitSec(2);
-            DriverAction.typeText(textAddName, "Ana Nya");
-            DriverAction.waitSec(2);
-            DriverAction.click(userToBeAdded);
-            DriverAction.waitSec(2);
-            DriverAction.click(addAdmins);
-            DriverAction.waitSec(2);
-            DriverAction.click(addAdmin_btn);
-            DriverAction.waitSec(5);
-        } catch (Exception e) {
-            logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
-        }
-    }
+//    @Then("^delete company admin$")
+//    public void deleteCompanyAdmin() throws Exception {
+//        try {
+//            Actions action2 = new Actions(DriverManager.getWebDriver());
+//            action2.moveToElement(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
+//            action2.click(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
+//            DriverAction.waitSec(4);
+//            GemTestReporter.addTestStep("Click on Action Edit", "Successfully : Clicked on Action Edit", STATUS.PASS, DriverAction.takeSnapShot());
+//            String name = DriverAction.getElementText(nameBlock);
+//            List<String> xpath = DriverAction.getElementsText(unlink);
+//            String xPathWithVariable = "(//*[local-name()='svg' and @data-icon=\"ban\"]/*[local-name()='path'])" + "[" + xpath.size() + "]";
+//            Actions action3 = new Actions(DriverManager.getWebDriver());
+//            action3.moveToElement(DriverManager.getWebDriver().findElement(By.xpath(xPathWithVariable))).build().perform();
+//            action3.click(DriverManager.getWebDriver().findElement(By.xpath(xPathWithVariable))).build().perform();
+//            DriverAction.waitSec(4);
+//            GemTestReporter.addTestStep("Click on Action Edit", "Successfully : Clicked on Action Edit", STATUS.PASS, DriverAction.takeSnapShot());
+//            GemTestReporter.addTestStep("Click on Unlink", "Successfully : Clicked on Unlink", STATUS.PASS, DriverAction.takeSnapShot());
+//            GemTestReporter.addTestStep("Admin removed", "Admin removed is: " + name, STATUS.INFO);
+//            List<String> list = DriverAction.getElementsText(listBlock);
+//            boolean flag = false;
+//            for (int i = 0; i < list.size(); i++) {
+//                if (list.get(i).equalsIgnoreCase(name)) {
+//                    flag = true;
+//                    break;
+//                }
+//            }
+//            if (!flag) {
+//                GemTestReporter.addTestStep("Admin removed validation", "Admin is NOT present in the list", STATUS.PASS, DriverAction.takeSnapShot());
+//            } else {
+//                GemTestReporter.addTestStep("Admin removed validation", "Admin is present in the list", STATUS.FAIL, DriverAction.takeSnapShot());
+//            }
+//            DriverAction.click(close_btn_super, "Close Button");
+//            DriverAction.waitSec(4);
+//            Actions action4 = new Actions(DriverManager.getWebDriver());
+//            action4.moveToElement(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
+//            action4.click(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
+//            DriverAction.waitSec(4);
+//            DriverAction.click(addAdmins);
+//            DriverAction.waitSec(2);
+//            DriverAction.click(selectUsersToAdd);
+//            DriverAction.waitSec(2);
+//            DriverAction.click(textAddName);
+//            DriverAction.waitSec(2);
+//            DriverAction.typeText(textAddName, "Ana Nya");
+//            DriverAction.waitSec(2);
+//            DriverAction.click(userToBeAdded);
+//            DriverAction.waitSec(2);
+//            DriverAction.click(addAdmins);
+//            DriverAction.waitSec(2);
+//            DriverAction.click(addAdmin_btn);
+//            DriverAction.waitSec(5);
+//        } catch (Exception e) {
+//            logger.info("An exception occurred!", e);
+//            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
+//        }
+//    }
 
     @Then("^add company admin$")
-    public void addcompAdmin() throws Exception {
+    public void addcompAdmin(){
         try {
             Actions action2 = new Actions(DriverManager.getWebDriver());
-            action2.moveToElement(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
-            action2.click(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
+            action2.moveToElement(DriverManager.getWebDriver().findElement(By.xpath(edit_pencil.replace("@pname","apple")))).build().perform();
+            action2.click(DriverManager.getWebDriver().findElement(By.xpath(edit_pencil.replace("@pname","apple")))).build().perform();
             DriverAction.waitSec(4);
             GemTestReporter.addTestStep("Click on Action Edit", "Successfully : Clicked on Action Edit", STATUS.PASS, DriverAction.takeSnapShot());
             String name = DriverAction.getElementText(nameBlock);
@@ -489,8 +489,8 @@ public class StepDefination extends GemEcoUpload {
             DriverAction.click(close_btn_super, "Close Button");
             DriverAction.waitSec(4);
             Actions action4 = new Actions(DriverManager.getWebDriver());
-            action4.moveToElement(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
-            action4.click(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
+            action4.moveToElement(DriverManager.getWebDriver().findElement(By.xpath(edit_pencil.replace("@pname","apple")))).build().perform();
+            action4.click(DriverManager.getWebDriver().findElement(By.xpath(edit_pencil.replace("@pname","apple")))).build().perform();
             DriverAction.waitSec(4);
             DriverAction.click(addAdmins);
             DriverAction.waitSec(2);
@@ -512,40 +512,40 @@ public class StepDefination extends GemEcoUpload {
         }
     }
 
-    @Then("^unverify company (.+)$")
-    public void unverifyCompanySuperAdmin(String alert) throws Exception {
-        try {
-            Actions action2 = new Actions(DriverManager.getWebDriver());
-            action2.moveToElement(DriverManager.getWebDriver().findElement(unlink_Main)).build().perform();
-            action2.click(DriverManager.getWebDriver().findElement(unlink_Main)).build().perform();
-            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 10);
-            wait.until(ExpectedConditions.visibilityOfElementLocated(Alert_admin1));
-            String s = DriverAction.getElementText(Alert_admin1);
-            System.out.println("Alert: " + s);
-            if (s.equalsIgnoreCase(alert)) {
-                GemTestReporter.addTestStep("apple is now unverified! Alert Validation", "Successful<br>Expected Text: " + s + "<br>Actual Text: " + alert, STATUS.PASS, DriverAction.takeSnapShot());
-            } else {
-                GemTestReporter.addTestStep("apple is now unverified! Alert Validation", "Unsuccessful<br>Expected Text: " + s + "<br>Actual Text: " + alert, STATUS.FAIL, DriverAction.takeSnapShot());
-            }
-            Actions action3 = new Actions(DriverManager.getWebDriver());
-            action3.moveToElement(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
-            action3.click(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
-            DriverAction.waitSec(4);
-            List<String> list = DriverAction.getElementsText(statusSuperAdmin);
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).equalsIgnoreCase("UNVERIFIED")) {
-                    GemTestReporter.addTestStep("Users blocked", "Status has been marked as UNVERIFIED", STATUS.PASS, DriverAction.takeSnapShot());
-                } else {
-                    GemTestReporter.addTestStep("Users blocked", "Status has been marked as VERIFIED", STATUS.FAIL, DriverAction.takeSnapShot());
-                }
-            }
-            DriverAction.click(close_btn_super, "Close");
-            DriverAction.waitSec(3);
-        } catch (Exception e) {
-            logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
-        }
-    }
+//    @Then("^unverify company (.+)$")
+//    public void unverifyCompanySuperAdmin(String alert) throws Exception {
+//        try {
+//            Actions action2 = new Actions(DriverManager.getWebDriver());
+//            action2.moveToElement(DriverManager.getWebDriver().findElement(unlink_Main)).build().perform();
+//            action2.click(DriverManager.getWebDriver().findElement(unlink_Main)).build().perform();
+//            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 10);
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(Alert_admin1));
+//            String s = DriverAction.getElementText(Alert_admin1);
+//            System.out.println("Alert: " + s);
+//            if (s.equalsIgnoreCase(alert)) {
+//                GemTestReporter.addTestStep("apple is now unverified! Alert Validation", "Successful<br>Expected Text: " + s + "<br>Actual Text: " + alert, STATUS.PASS, DriverAction.takeSnapShot());
+//            } else {
+//                GemTestReporter.addTestStep("apple is now unverified! Alert Validation", "Unsuccessful<br>Expected Text: " + s + "<br>Actual Text: " + alert, STATUS.FAIL, DriverAction.takeSnapShot());
+//            }
+//            Actions action3 = new Actions(DriverManager.getWebDriver());
+//            action3.moveToElement(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
+//            action3.click(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
+//            DriverAction.waitSec(4);
+//            List<String> list = DriverAction.getElementsText(statusSuperAdmin);
+//            for (int i = 0; i < list.size(); i++) {
+//                if (list.get(i).equalsIgnoreCase("UNVERIFIED")) {
+//                    GemTestReporter.addTestStep("Users blocked", "Status has been marked as UNVERIFIED", STATUS.PASS, DriverAction.takeSnapShot());
+//                } else {
+//                    GemTestReporter.addTestStep("Users blocked", "Status has been marked as VERIFIED", STATUS.FAIL, DriverAction.takeSnapShot());
+//                }
+//            }
+//            DriverAction.click(close_btn_super, "Close");
+//            DriverAction.waitSec(3);
+//        } catch (Exception e) {
+//            logger.info("An exception occurred!", e);
+//            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
+//        }
+//    }
 
     @Then("^verify company again (.+)$")
     public void verifyCompanySuper(String alert) throws Exception {
@@ -568,72 +568,72 @@ public class StepDefination extends GemEcoUpload {
         }
     }
 
-    @Then("^unblock a user (.+)$")
-    public void unblockUser(String alert) throws Exception {
-        try {
-            Actions action2 = new Actions(DriverManager.getWebDriver());
-            action2.moveToElement(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
-            action2.click(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
-            DriverAction.waitSec(4);
-            GemTestReporter.addTestStep("Click on Action Edit", "Successfully : Clicked on Action Edit", STATUS.PASS, DriverAction.takeSnapShot());
-            WebElement element = DriverManager.getWebDriver().findElement(blocked_User);
-            ((JavascriptExecutor) DriverManager.getWebDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
-            DriverAction.waitSec(2);
-            String name = DriverAction.getElementText(blockedUser_Name);
-            GemTestReporter.addTestStep("Blocked user", "Blocked user name is: " + name, STATUS.INFO);
-            Actions action3 = new Actions(DriverManager.getWebDriver());
-            action3.moveToElement(DriverManager.getWebDriver().findElement(blocked_User)).build().perform();
-            action3.click(DriverManager.getWebDriver().findElement(blocked_User)).build().perform();
+//    @Then("^unblock a user (.+)$")
+//    public void unblockUser(String alert) throws Exception {
+//        try {
+//            Actions action2 = new Actions(DriverManager.getWebDriver());
+//            action2.moveToElement(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
+//            action2.click(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
 //            DriverAction.waitSec(4);
-            GemTestReporter.addTestStep("Click on Unblock user", "Successfully : Clicked on Unblock user", STATUS.PASS, DriverAction.takeSnapShot());
-            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 10);
-            wait.until(ExpectedConditions.visibilityOfElementLocated(Alert_admin1));
-            String s = DriverAction.getElementText(Alert_admin1);
-            System.out.println("Alert: " + s);
-            if (s.equalsIgnoreCase(alert)) {
-                GemTestReporter.addTestStep("Users Unblocked Successfully Alert Validation", "Successful<br>Expected Text: " + s + "<br>Actual Text: " + alert, STATUS.PASS, DriverAction.takeSnapShot());
-            } else {
-                GemTestReporter.addTestStep("Users Unblocked Successfully Alert Validation", "Unsuccessful<br>Expected Text: " + s + "<br>Actual Text: " + alert, STATUS.FAIL, DriverAction.takeSnapShot());
-            }
-            ((JavascriptExecutor) DriverManager.getWebDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
-            DriverAction.waitSec(2);
-            List<String> list = DriverAction.getElementsText(blockedUserList);
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).equalsIgnoreCase(name)) {
-                    GemTestReporter.addTestStep("Added user", "Added user is there in blocked list", STATUS.FAIL, DriverAction.takeSnapShot());
-                } else {
-                    GemTestReporter.addTestStep("Added user", "Added user is not there in blocked list", STATUS.PASS, DriverAction.takeSnapShot());
-                }
-            }
-            DriverAction.click(close_btn_super);
-            DriverAction.waitSec(2);
-            Actions action4 = new Actions(DriverManager.getWebDriver());
-            action4.moveToElement(DriverManager.getWebDriver().findElement(profile)).build().perform();
-            action4.click(DriverManager.getWebDriver().findElement(profile)).build().perform();
-            DriverAction.waitSec(4);
-            DriverAction.click(Locators.username);
-            DriverAction.waitSec(1);
-            DriverAction.typeText(Locators.username, "apple_com");
-            DriverAction.waitSec(1);
-            DriverAction.click(Locators.passwordm);
-            DriverAction.waitSec(1);
-            DriverAction.typeText(Locators.passwordm, "Avani0001");
-            DriverAction.waitSec(1);
-            DriverAction.click(Locators.LoginButton, "Login Button");
-            DriverAction.waitSec(4);
-            DriverAction.click(admin);
-            DriverAction.waitSec(5);
-            DriverAction.click(myCompanyAdmin);
-            DriverAction.waitSec(3);
-            Actions action5 = new Actions(DriverManager.getWebDriver());
-            action5.moveToElement(DriverManager.getWebDriver().findElement(unlink_Main)).build().perform();
-            action5.click(DriverManager.getWebDriver().findElement(unlink_Main)).build().perform();
-            DriverAction.waitSec(4);
-        } catch (Exception e) {
-            logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
-        }
-    }
+//            GemTestReporter.addTestStep("Click on Action Edit", "Successfully : Clicked on Action Edit", STATUS.PASS, DriverAction.takeSnapShot());
+//            WebElement element = DriverManager.getWebDriver().findElement(blocked_User);
+//            ((JavascriptExecutor) DriverManager.getWebDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+//            DriverAction.waitSec(2);
+//            String name = DriverAction.getElementText(blockedUser_Name);
+//            GemTestReporter.addTestStep("Blocked user", "Blocked user name is: " + name, STATUS.INFO);
+//            Actions action3 = new Actions(DriverManager.getWebDriver());
+//            action3.moveToElement(DriverManager.getWebDriver().findElement(blocked_User)).build().perform();
+//            action3.click(DriverManager.getWebDriver().findElement(blocked_User)).build().perform();
+////            DriverAction.waitSec(4);
+//            GemTestReporter.addTestStep("Click on Unblock user", "Successfully : Clicked on Unblock user", STATUS.PASS, DriverAction.takeSnapShot());
+//            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 10);
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(Alert_admin1));
+//            String s = DriverAction.getElementText(Alert_admin1);
+//            System.out.println("Alert: " + s);
+//            if (s.equalsIgnoreCase(alert)) {
+//                GemTestReporter.addTestStep("Users Unblocked Successfully Alert Validation", "Successful<br>Expected Text: " + s + "<br>Actual Text: " + alert, STATUS.PASS, DriverAction.takeSnapShot());
+//            } else {
+//                GemTestReporter.addTestStep("Users Unblocked Successfully Alert Validation", "Unsuccessful<br>Expected Text: " + s + "<br>Actual Text: " + alert, STATUS.FAIL, DriverAction.takeSnapShot());
+//            }
+//            ((JavascriptExecutor) DriverManager.getWebDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+//            DriverAction.waitSec(2);
+//            List<String> list = DriverAction.getElementsText(blockedUserList);
+//            for (int i = 0; i < list.size(); i++) {
+//                if (list.get(i).equalsIgnoreCase(name)) {
+//                    GemTestReporter.addTestStep("Added user", "Added user is there in blocked list", STATUS.FAIL, DriverAction.takeSnapShot());
+//                } else {
+//                    GemTestReporter.addTestStep("Added user", "Added user is not there in blocked list", STATUS.PASS, DriverAction.takeSnapShot());
+//                }
+//            }
+//            DriverAction.click(close_btn_super);
+//            DriverAction.waitSec(2);
+//            Actions action4 = new Actions(DriverManager.getWebDriver());
+//            action4.moveToElement(DriverManager.getWebDriver().findElement(profile)).build().perform();
+//            action4.click(DriverManager.getWebDriver().findElement(profile)).build().perform();
+//            DriverAction.waitSec(4);
+//            DriverAction.click(Locators.username);
+//            DriverAction.waitSec(1);
+//            DriverAction.typeText(Locators.username, "apple_com");
+//            DriverAction.waitSec(1);
+//            DriverAction.click(Locators.passwordm);
+//            DriverAction.waitSec(1);
+//            DriverAction.typeText(Locators.passwordm, "Avani0001");
+//            DriverAction.waitSec(1);
+//            DriverAction.click(Locators.LoginButton, "Login Button");
+//            DriverAction.waitSec(4);
+//            DriverAction.click(admin);
+//            DriverAction.waitSec(5);
+//            DriverAction.click(myCompanyAdmin);
+//            DriverAction.waitSec(3);
+//            Actions action5 = new Actions(DriverManager.getWebDriver());
+//            action5.moveToElement(DriverManager.getWebDriver().findElement(unlink_Main)).build().perform();
+//            action5.click(DriverManager.getWebDriver().findElement(unlink_Main)).build().perform();
+//            DriverAction.waitSec(4);
+//        } catch (Exception e) {
+//            logger.info("An exception occurred!", e);
+//            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
+//        }
+//    }
 
     @Then("^check visibility of projects on admin screen$")
     public void checkVisibilityAdmin() throws Exception {
@@ -4116,27 +4116,27 @@ public class StepDefination extends GemEcoUpload {
         }
     }
 
-    @Then("^verify admins are present$")
-    public void verifyAdminsOf() throws Exception {
-        try {
-            Actions action2 = new Actions(DriverManager.getWebDriver());
-            action2.moveToElement(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
-            action2.click(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
-            DriverAction.waitSec(4);
-            GemTestReporter.addTestStep("Click on Action Edit", "Successfully : Clicked on Action Edit", STATUS.PASS, DriverAction.takeSnapShot());
-            List<String> admins = DriverAction.getElementsText(adminsList);
-            for (int i = 0; i < admins.size(); i++) {
-                if (admins.get(i).isEmpty()) {
-                    GemTestReporter.addTestStep("Company admins visibility", "Company admins are not visible", STATUS.FAIL, DriverAction.takeSnapShot());
-                } else {
-                    GemTestReporter.addTestStep("Company admins visibility", "Company admins are visible", STATUS.PASS, DriverAction.takeSnapShot());
-                }
-            }
-        } catch (Exception e) {
-            logger.info("Exception occurred", e);
-            GemTestReporter.addTestStep("Error!!", "Something Wrong happened", STATUS.FAIL);
-        }
-    }
+//    @Then("^verify admins are present$")
+//    public void verifyAdminsOf() throws Exception {
+//        try {
+//            Actions action2 = new Actions(DriverManager.getWebDriver());
+//            action2.moveToElement(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
+//            action2.click(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
+//            DriverAction.waitSec(4);
+//            GemTestReporter.addTestStep("Click on Action Edit", "Successfully : Clicked on Action Edit", STATUS.PASS, DriverAction.takeSnapShot());
+//            List<String> admins = DriverAction.getElementsText(adminsList);
+//            for (int i = 0; i < admins.size(); i++) {
+//                if (admins.get(i).isEmpty()) {
+//                    GemTestReporter.addTestStep("Company admins visibility", "Company admins are not visible", STATUS.FAIL, DriverAction.takeSnapShot());
+//                } else {
+//                    GemTestReporter.addTestStep("Company admins visibility", "Company admins are visible", STATUS.PASS, DriverAction.takeSnapShot());
+//                }
+//            }
+//        } catch (Exception e) {
+//            logger.info("Exception occurred", e);
+//            GemTestReporter.addTestStep("Error!!", "Something Wrong happened", STATUS.FAIL);
+//        }
+//    }
 
 
     @Then("^validate the project has been not created on grid$")

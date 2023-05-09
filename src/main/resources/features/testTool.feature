@@ -29,15 +29,15 @@ Feature: Test Tool
       | count |
       | 50    |
 
-#  Scenario Outline: Jewel-TestTool : Suite sorting validation
-#    When Verify user is navigated to TestTool Suite Page
-#    And Click on header "<headerName>" to sort in sorting order "<order>"
-#    Then Verify suite column should be in "<order>" order
-#
-#    Examples:
-#      | headerName     | order      |
-#      | Suite Name     | ascending  |
-#      | Testcase Count | descending |
+  Scenario Outline: Jewel-TestTool : Suite sorting validation
+    When Verify user is navigated to TestTool Suite Page
+    And Click on header "<headerName>" to sort in sorting order "<order>"
+    Then Verify suite column should be in "<order>" order
+
+    Examples:
+      | headerName     | order      |
+      | Suite Name     | ascending  |
+      | Testcase Count | descending |
 
   Scenario Outline: Jewel-TestTool : Suite sorting column shift check
     When Verify user is navigated to TestTool Suite Page
@@ -88,6 +88,7 @@ Feature: Test Tool
     And Click on filter for header "Project Name"
     Then Verify the total available project
 
+    @smoke
   Scenario Outline: Jewel-TestTool : Create new suite and verify created suite
     When Verify user is navigated to TestTool Suite Page
     And Click on create suite button for creating new suite
@@ -104,7 +105,7 @@ Feature: Test Tool
       | suiteName | projectName  |
       | random    | TEST-PROJECT |
 
-  Scenario Outline: Jewel-TestTool : Create suite with duplicate validation
+  Scenario Outline: Jewel-TestTool : Create suite with duplicate name validation
     When Verify user is navigated to TestTool Suite Page
     And Click on create suite button for creating new suite
     Then Select project name "<projectName>" options for creating suite
@@ -180,6 +181,7 @@ Feature: Test Tool
       | suiteName      | message                                  |
       | DELETE_TESTING | Are you Sure you want to delete Testcase |
 
+#    @smoke
   Scenario Outline: Jewel-TestTool : Delete testcase - validation after clicking YES button
     When Verify user is navigated to TestTool Suite Page
     And Click on filter for header "Suite Name"
@@ -256,6 +258,7 @@ Feature: Test Tool
 #      | suiteName      | projectName  | testcaseName | testcaseType | testcaseSteps        | category | runFlag | toast_message                  |
 #      | DELETE_TESTING | TEST-PROJECT | sample       | Scenario     | Given Launch browser | launch   | Y       | Test Case created Successfully |
 
+  @smoke
   Scenario Outline: Jewel-TestTool : Create testcase and select base project as GemPYP
     When Verify user is navigated to TestTool Suite Page
     And Click on filter for header "Suite Name"

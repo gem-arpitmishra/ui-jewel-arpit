@@ -197,7 +197,7 @@ public class Locators {
     public static By alert_functionality = By.xpath("//a[text()=\"Widgets\"]");
     public static By see_more = By.xpath("(//span[text()=\"See More\"])[1]");
     public static By click_here = By.xpath("//a[text()=\"Click here\"]");
-    public static By company_new_name = By.xpath("(//tr/td/div/span/span[@class=\" \"])[2]");
+    public static By company_new_name = By.xpath("//tr/td[2]/div/span//span");
     public static By companyCountSuper = By.xpath("(//tr/td/div/span/span[@class=\" \"])[1]");
     public static By nextPageSuperAdmin = By.xpath("//button[@aria-label=\"Next Page\"]");
     public static By nextPageSuperAdmin2 = By.xpath("//button[@aria-label=\"Previous Page\"]");
@@ -290,7 +290,7 @@ public class Locators {
     public static By addAdmin_btn = By.xpath("//button[text()=\"Add Admin\"]");
     public static By textAddName = By.xpath("//input[@role=\"textbox\"]");
 
-    public static By edit_pencil = By.xpath("(//*[local-name()='svg' and @data-icon=\"pencil\"]/*[local-name()='path'])[10]");
+    public static String edit_pencil = "//tr/td[2]//span[text()='@pname']//ancestor::tr/td[5]//*[local-name()='svg' and @data-icon=\"pencil\"]/*[local-name()='path']";
     public static By unlink = By.xpath("(//*[local-name()='svg' and @data-icon=\"ban\"]/*[local-name()='path'])");
     public static By pencil_opt = By.xpath("(//*[local-name()='svg' and @data-icon=\"pen-to-square\"]/*[local-name()='path'])[9]");
     public static By desciption = By.xpath("//textarea");

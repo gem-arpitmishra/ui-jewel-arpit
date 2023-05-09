@@ -1,5 +1,6 @@
 Feature: Super Admin
 
+  @smoke
   Scenario: Create unverified company
     Given click on signup
     Then enter credentials of new user
@@ -9,6 +10,7 @@ Feature: Super Admin
   Scenario: Super-Admin tab visibility when user is not Super Admin
     Given validate super-admin is not present
 
+  @smoke
   Scenario: Verifying an Unverified company
     Given click on signup
     Then enter credentials of new user
@@ -41,6 +43,7 @@ Feature: Super Admin
     Given login as super-admin
     Then Check select all option from dropdown
 
+  @smoke
   Scenario: Register Company
     Given login as super-admin
     Then register a company
@@ -93,10 +96,10 @@ Feature: Super Admin
     Given login as admin
     Then edit field in admin
 
-#  Scenario: Delete Project (Admin screen)
-#    Given click on admin
-#    Then validate the project has been created on grid
-#    Then delete the same project
+  Scenario: Delete Project (Admin screen)
+    Given click on admin
+    Then validate the project has been created on grid
+    Then delete the same project
 
   Scenario: Verify a unverified company (Domain already exists with a verified company)
     Given login as super-admin
@@ -107,6 +110,7 @@ Feature: Super Admin
     Given login as super-admin
     Then verify admins are present
 
+  @smoke
   Scenario: Add Company Admins
     Given login as super-admin
     Then add company admin
@@ -117,7 +121,6 @@ Feature: Super Admin
     Examples:
       | alert                        |
       | Users Unblocked Successfully |
-
 
 
   Scenario Outline: Company domain change (Already taken by another verified company)

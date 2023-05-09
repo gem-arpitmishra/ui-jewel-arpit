@@ -23,16 +23,16 @@ public class Functions_ForgotPassword_SuperAdmin extends GemEcoUpload {
         DriverManager.getWebDriver().switchTo().window(tabs.get(1));
         DriverAction.launchUrl("https://outlook.live.com/owa/");
         DriverAction.click(ObjForgotPassword.outlook_login_formBtn, "Sign in");
-        DriverAction.waitSec(2);
+        DriverAction.waitSec(3);
         DriverAction.typeText(ObjForgotPassword.outlook_username, "dummy_test54@outlook.com", "Email");
         DriverAction.click(ObjForgotPassword.outlook_nextBtn, "Next Button");
-        DriverAction.waitSec(1);
+        DriverAction.waitSec(5);
         DriverAction.typeText(ObjForgotPassword.outlook_password, "dummy_test", "Password");
         DriverAction.click(ObjForgotPassword.outlook_signIn, "Sign-In Button");
-        DriverAction.waitSec(3);
+        DriverAction.waitSec(4);
         DriverAction.click(ObjForgotPassword.outlook_NoBtn, "No Button");
        // if(DriverAction.isExist(ObjForgotPassword.outlook_email_notification,130)) {
-            DriverAction.waitSec(200);
+            DriverAction.waitSec(150);
             DriverAction.click(ObjForgotPassword.outlook_search, "Search");
             DriverAction.typeText(ObjForgotPassword.outlook_search, "OTP" + Keys.ENTER, "Search");
             boolean flag = false;

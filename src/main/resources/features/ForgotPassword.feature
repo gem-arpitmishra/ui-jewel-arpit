@@ -1,6 +1,6 @@
 Feature: ForgotPassword
 
-   Scenario: Back to Login Button validation
+  Scenario: Back to Login Button validation
     Given You are on the login screen and move to forgot password
     Then Click Back to Login button and validate navigation to login screen
 
@@ -25,6 +25,7 @@ Feature: ForgotPassword
     Then Verify reset password selection success
     Then Validate OTP recognition
 
+  @smoke
   Scenario: OTP Validation
     Given You are on the login screen and move to forgot password
     When User fills a "jewelautomation"
