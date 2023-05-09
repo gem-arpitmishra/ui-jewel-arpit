@@ -4,8 +4,8 @@ Feature: Sign Up
     Given click on signup
     Then enter "<name>" "<last>" "<user>" "<email>" "<pass>" "<cpass>" "<company>"
     Examples:
-      | name  | last   | user         | email                            | pass      | cpass     | company |
-      | arpit | mishra | arpit.mishra | arpit.mishra@geminisolutions.com | arpit1234 | arpit1234 | Gemini  |
+      | name  | last            | user            | email                    | pass           | cpass          | company  |
+      | jewel | Automation user | jewelautomation | dummy_test54@outlook.com | dummy_test@123 | dummy_test@123 | Jewel123 |
 
   Scenario: Signup screen
     Given You are on the Sign up screen
@@ -36,13 +36,13 @@ Feature: Sign Up
 
   Scenario: Username Availability Validation (negative)
     Given click on signup
-    When Fill fields "arpit","mishra","","arpit.mishra@gemperf.com","arpit1234","arpit1234","N"
+    When Fill fields "jewel","Automation user","","dummy_test54@outlook.com","dummy_test@123","dummy_test@123","N"
     Then check username availability for user already registered
     Then Click register and validate if signUp is unsuccessful
 
   Scenario: Username Availability Validation (positive)
     Given click on signup
-    When Fill fields "arpit","mishra","","arpit.mishra@gemperf.com","arpit1234","arpit1234","Y"
+    When Fill fields "jewel","Automation user","","dummy_test54@outlook.com","dummy_test@123","dummy_test@123","Y"
     Then check username availability for user not already registered
     Then Click register and validate if signUp is successful
 
@@ -57,13 +57,19 @@ Feature: Sign Up
 
   Scenario: confirmation password equality check
     Given click on signup
-    When Fill fields "arpit","mishra","","arpit.mishra@gemperf.com","arpit1234","arpit1234","Y"
+    When Fill fields "jewel","Automation user","","dummy_test54@outlook.com","dummy_test@123","dummy_test@123","Y"
     When User enters "different" passwords in password and confirmation-password
     Then Click register and validate if signUp is unsuccessful
-    When User enters "arpit1234" passwords in password and confirmation-password
+    When User enters "dummy_test@123" passwords in password and confirmation-password
     Then Click register and validate if signUp is successful
 
   Scenario: Username Case sensitivity check
     Given click on signup
     Then check username availability for user already registered
     Then Change username case and check username availability
+
+  @smoke
+  Scenario: SignUp (positive)
+    Given click on signup
+    When Fill fields "Test","user","","@gemperf.com","dummy_test@123","dummy_test@123","Y"
+    Then Click register and validate if signUp is successful

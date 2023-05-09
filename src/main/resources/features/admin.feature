@@ -12,20 +12,20 @@ Feature: Admin Screen
     Given click on admin
     Then verify action button
 
-#  Scenario:Validate sorting in table
-#    Given click on admin
-#    Then validate sorting of admin screen
+  Scenario:Validate sorting in table
+    Given click on admin
+    Then validate sorting of admin screen
 
   Scenario: Validate request access when you don't have access of the project
     Given click on admin
     Then validate the alert when user don't have access
 
-#  Scenario Outline: Validate request access when you have already have access
-#    Given click on admin
-#    Then Validate the alert user already have access for "<projectName>"
-#    Examples:
-#      | projectName   |
-#      | GEMECO-API-JV |
+  Scenario Outline: Validate request access when you have already have access
+    Given click on admin
+    Then Validate the alert user already have access for "<projectName>"
+    Examples:
+      | projectName   |
+      | GEMECO-API-JV |
 
   Scenario: Validate create project functionality (when project is new)
     Given click on admin
@@ -52,17 +52,17 @@ Feature: Admin Screen
     Then validate when user clicks on no
     Then validate when user clicks on yes
 
-#  Scenario Outline: Validate Add user functionality
-#    Given click on admin
-#    Then User <username> is added to project
-#    Then Validate user <username> is added
-#    Examples:
-#      | username    |
-#      | geco-maulik |
-#
-#  Scenario Outline: Validate delete option in project user access
-#    Given click on admin
-#    Then Validate delete user <username> function
-#    Examples:
-#      | username    |
-#      | geco-maulik |
+  Scenario Outline: Validate Add user functionality
+    Given click on admin
+    Then User <username> is added to project
+    Then Validate user <username> is added
+    Examples:
+      | username    |
+      | geco-maulik |
+
+  Scenario Outline: Validate delete option in project user access
+    Given click on admin
+    Then Validate delete user <username> function
+    Examples:
+      | username    |
+      | geco-maulik |

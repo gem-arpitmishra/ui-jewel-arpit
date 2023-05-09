@@ -797,6 +797,17 @@ public class StepDefination extends GemEcoUpload {
         }
     }
 
+    @Then("^Enter Password as '(.*)'$")
+    public void password(String pass) {
+        try {
+            DriverAction.typeText(Locators.password, pass);
+            DriverAction.click(Locators.login_button, "Login Button");
+        } catch (Exception e) {
+            logger.info("An exception occurred!", e);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
+        }
+    }
+
     @Then("Verify Logout button is visible or not")
     public void verify_logout_button_is_visible_or_not() {
         try {
@@ -1293,7 +1304,11 @@ public class StepDefination extends GemEcoUpload {
     @Given("You are on the Sign up screen")
     public void you_are_on_the_sign_up_screen() {
         try {
-            DriverAction.navigateToUrl("https://jewel-beta.gemecosystem.com/#/");
+            if (GemJarGlobalVar.environment.equals("beta")) {
+                DriverAction.navigateToUrl("https://jewel-beta.gemecosystem.com/#/");
+            } else {
+                DriverAction.navigateToUrl("https://jewel.gemecosystem.com/#/");
+            }
         } catch (Exception e) {
             logger.info("An exception occurred!", e);
             GemTestReporter.addTestStep("Error!!", "Something Wrong happened", STATUS.FAIL);
@@ -1562,58 +1577,6 @@ public class StepDefination extends GemEcoUpload {
                 }
             } else {
                 GemTestReporter.addTestStep("Current Url", url, STATUS.FAIL);
-            }
-        } catch (Exception e) {
-            logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("Error!!", "Something Wrong happened", STATUS.FAIL);
-        }
-    }
-
-/////////////////////////////////////////////
-
-    @Then("Logout the Account")
-    public void logout_the_account() {
-        try {
-            String url = ProjectConfigData.getProperty("launchUrl");
-            if (url.contains("beta")) {
-                addnewtabs();
-                DriverAction.click(Locators.copy_report_link);
-                DriverAction.waitSec(4);
-                String h = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
-                DriverAction.waitSec(5);
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--remote-allow-origins=*");
-                options.addArguments("--incognito");
-                DriverManager.initializeChrome(options);
-                DriverAction.maximizeBrowser();
-                DriverAction.launchUrl(h);
-                DriverAction.waitSec(3);
-                String s = DriverManager.getWebDriver().getCurrentUrl();
-                STATUS status;
-                if (s.equals("https://jewel-beta.gemecosystem.com/#/login")) {
-                    status = STATUS.PASS;
-                } else {
-                    status = STATUS.FAIL;
-                }
-                GemTestReporter.addTestStep("Validatinng the Url", "Expected : Login screen should be visible", status);
-            } else {
-                addnewtabs();
-                DriverAction.click(Locators.copy_report_link);
-                DriverAction.waitSec(4);
-                String h = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
-                DriverAction.waitSec(5);
-                ChromeOptions o = new ChromeOptions();
-                o.addArguments("--incognito");
-                WebDriver driver = new ChromeDriver(o);
-                driver.get(h);
-                String s = driver.getCurrentUrl();
-                STATUS status;
-                if (s.equals("https://jewel.gemecosystem.com/#/login")) {
-                    status = STATUS.PASS;
-                } else {
-                    status = STATUS.FAIL;
-                }
-                GemTestReporter.addTestStep("Validatinng the Url", "Expected : Login screen should be visible", status);
             }
         } catch (Exception e) {
             logger.info("An exception occurred!", e);
@@ -2117,6 +2080,7 @@ public class StepDefination extends GemEcoUpload {
             GemTestReporter.addTestStep("Error!!", "Something Wrong happened", STATUS.FAIL);
         }
     }
+
     @Given("^click on gemJAR and validate url (.+)$")
     public void gemjar(String jar) {
         try {
@@ -6312,6 +6276,7 @@ public class StepDefination extends GemEcoUpload {
             }
         } else if (GemJarGlobalVar.environment.equals("beta")) {
             if (DriverAction.getCurrentURL().equals("https://jewel-beta.gemecosystem.com/#/login")) {
+
                 GemTestReporter.addTestStep("Validate login url", "Redirected to login page", STATUS.PASS, DriverAction.takeSnapShot());
             } else {
                 GemTestReporter.addTestStep("Validate login url", "Failed to redirect to login page", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -6325,21 +6290,19 @@ public class StepDefination extends GemEcoUpload {
     @Then("user clicks signup button and validates the url")
     public void signup_url() {
         DriverAction.click(Locators.signup, "SignUp button");
-        if(GemJarGlobalVar.environment.equals("prod")) {
+        if (GemJarGlobalVar.environment.equals("prod")) {
             if (DriverAction.getCurrentURL().equals("https://jewel.gemecosystem.com/#/signup")) {
                 GemTestReporter.addTestStep("Validate login url", "Redirected to login page", STATUS.PASS, DriverAction.takeSnapShot());
             } else {
                 GemTestReporter.addTestStep("Validate login url", "Failed to redirect to login page", STATUS.FAIL, DriverAction.takeSnapShot());
             }
-        }
-        else if(GemJarGlobalVar.environment.equals("beta")){
+        } else if (GemJarGlobalVar.environment.equals("beta")) {
             if (DriverAction.getCurrentURL().equals("https://jewel-beta.gemecosystem.com/#/signup")) {
                 GemTestReporter.addTestStep("Validate login url", "Redirected to login page", STATUS.PASS, DriverAction.takeSnapShot());
             } else {
                 GemTestReporter.addTestStep("Validate login url", "Failed to redirect to login page", STATUS.FAIL, DriverAction.takeSnapShot());
             }
-        }
-        else{
+        } else {
             GemTestReporter.addTestStep("Validate login url", "Unknown Environment", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
@@ -6380,7 +6343,7 @@ public class StepDefination extends GemEcoUpload {
             DriverAction.typeText(Locators.confirmpass, confirmpassword);
         } catch (Exception e) {
             logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 
@@ -6421,8 +6384,8 @@ public class StepDefination extends GemEcoUpload {
     public void register_success() throws InterruptedException {
         try {
             DriverAction.click(Locators.register_button, "Register button");
-            Thread.sleep(3000);
-            if (DriverAction.getCurrentURL().contains("login")) {
+            DriverAction.waitUntilElementAppear(Alert_admin1, 10);
+            if (DriverAction.getElementText(Alert_admin1).equals("User Registered.") && DriverAction.getCurrentURL().contains("login")) {
                 GemTestReporter.addTestStep("Validate signUp", "SignUp success", STATUS.PASS, DriverAction.takeSnapShot());
             } else {
                 GemTestReporter.addTestStep("Validate signUp", "SignUp fail", STATUS.FAIL, DriverAction.takeSnapShot());
