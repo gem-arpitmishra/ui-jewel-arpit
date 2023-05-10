@@ -88,7 +88,7 @@ Feature: Test Tool
     And Click on filter for header "Project Name"
     Then Verify the total available project
 
-    @smoke
+  @smoke
   Scenario Outline: Jewel-TestTool : Create new suite and verify created suite
     When Verify user is navigated to TestTool Suite Page
     And Click on create suite button for creating new suite
@@ -181,13 +181,21 @@ Feature: Test Tool
       | suiteName      | message                                  |
       | DELETE_TESTING | Are you Sure you want to delete Testcase |
 
-#    @smoke
+    @smoke
   Scenario Outline: Jewel-TestTool : Delete testcase - validation after clicking YES button
     When Verify user is navigated to TestTool Suite Page
     And Click on filter for header "Suite Name"
     And Select "<suiteName>" options from the filter list
     Then Click on test case plus button for "<suiteName>"
     And Verify the suite name "<suiteName>" on test case tab
+    And Click on create test case button
+    And Select GemJAR as a base project
+    And Enter testcase name "sample" to create test
+    And Select testcase type "Scenario" to create test
+    And Enter testcase steps "Given Launch browser" to create test
+    And Enter category "launch" to create test
+    And Select run flag "Y" to create test
+    And Click on create test case button for creating new test case
     And Click on delete button to delete the test case
     And Verify the alert box with message "<message>"
     And Click on "YES" Button for deleting test case
@@ -236,29 +244,30 @@ Feature: Test Tool
 #      | suiteName | projectName  | testcaseName | testcaseType | testcaseSteps        | category | runFlag |
 #      | SK_TEST   | TEST-PROJECT | sample       | Scenario     | Given Launch browser | launch   | Y       |
 
-#  Scenario Outline: Jewel-TestTool : Create testcase and select base project as GemJAR
-#    When Verify user is navigated to TestTool Suite Page
-#    And Click on filter for header "Suite Name"
-#    And Select "<suiteName>" options from the filter list
-#    And Click on filter for header "Project Name"
-#    And Select "<projectName>" options from the filter list
-#    Then Click on test case plus button for "<suiteName>"
-#    And Verify the suite name "<suiteName>" on test case tab
-#    And Click on create test case button
-#    And Select GemJAR as a base project
-#    And Enter testcase name "<testcaseName>" to create test
-#    And Select testcase type "<testcaseType>" to create test
-#    And Enter testcase steps "<testcaseSteps>" to create test
-#    And Enter category "<category>" to create test
-#    And Select run flag "<runFlag>" to create test
-#    And Click on create test case button for creating new test case
-#    And Verify create test case alert with message "<toast_message>"
-#
-#    Examples:
-#      | suiteName      | projectName  | testcaseName | testcaseType | testcaseSteps        | category | runFlag | toast_message                  |
-#      | DELETE_TESTING | TEST-PROJECT | sample       | Scenario     | Given Launch browser | launch   | Y       | Test Case created Successfully |
+  @smoke
+  Scenario Outline: Jewel-TestTool : Create testcase and select base project as GemJAR
+    When Verify user is navigated to TestTool Suite Page
+    And Click on filter for header "Suite Name"
+    And Select "<suiteName>" options from the filter list
+    And Click on filter for header "Project Name"
+    And Select "<projectName>" options from the filter list
+    Then Click on test case plus button for "<suiteName>"
+    And Verify the suite name "<suiteName>" on test case tab
+    And Click on create test case button
+    And Select GemJAR as a base project
+    And Enter testcase name "<testcaseName>" to create test
+    And Select testcase type "<testcaseType>" to create test
+    And Enter testcase steps "<testcaseSteps>" to create test
+    And Enter category "<category>" to create test
+    And Select run flag "<runFlag>" to create test
+    And Click on create test case button for creating new test case
+    And Verify create test case alert with message "<toast_message>"
 
- # @smoke
+    Examples:
+      | suiteName      | projectName  | testcaseName | testcaseType | testcaseSteps        | category | runFlag | toast_message                  |
+      | DELETE_TESTING | TEST-PROJECT | sample       | Scenario     | Given Launch browser | launch   | Y       | Test Case created Successfully |
+
+  @smoke
   Scenario Outline: Jewel-TestTool : Create testcase and select base project as GemPYP
     When Verify user is navigated to TestTool Suite Page
     And Click on filter for header "Suite Name"

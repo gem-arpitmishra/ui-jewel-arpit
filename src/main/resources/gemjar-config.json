@@ -2,7 +2,9 @@
   "environment": "prod",
   "project_name": "JEWEL",
   "report_name": "test",
-  "jewel_user": "dipanshu.kapoor",
+  "jewel_user": "geco-dipanshu",
+  "jewel_bridge_token": "4ed4b9a6-4c1e-4d3d-b5e7-3ff458474e4d1683279488934",
+  "enter_point": "https://apis.gemecosystem.com/enter-point",
   "feature": "src/main/resources/features",
   "tagName": "@smoke",
   "scenario": "",
@@ -20,8 +22,6 @@
     "shubham.kumar@geminisolutions.com",
     "tushar.chauhan@geminisolutions.com"
   ],
-  "jewel_bridge_token": "0ca9d2e5-0699-4702-842f-05463c978a581683115616603",
-  "enter_point": "https://apis-beta.gemecosystem.com/enter-point",
   "gemjarSubID": "test_id",
   "glueCode": "StepDefination",
   "prod": {
