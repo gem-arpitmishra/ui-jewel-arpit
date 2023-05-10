@@ -1,6 +1,6 @@
 {
   "environment": "prod",
-  "project_name": "JEWEL-UI-JV",
+  "project_name": "JEWEL",
   "report_name": "test",
   "jewel_user": "dipanshu.kapoor",
   "feature": "src/main/resources/features",
