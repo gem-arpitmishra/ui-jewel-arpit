@@ -28,7 +28,7 @@ Feature: Admin Screen
       | projectName   |
       | GEMECO-API-JV |
 
-    @smoke
+  @smoke
   Scenario: Validate create project functionality (when project is new)
     Given click on admin
     Then validate the project has been created on grid
@@ -49,7 +49,7 @@ Feature: Admin Screen
     Given click on admin
     Then validate the description is getting modified
 
-    @smoke
+  @smoke
   Scenario: Validate Delete Option under Action for project
     Given click on admin
     Then validate when user clicks on no

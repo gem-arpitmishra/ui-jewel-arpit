@@ -181,7 +181,7 @@ Feature: Test Tool
       | suiteName      | message                                  |
       | DELETE_TESTING | Are you Sure you want to delete Testcase |
 
-    @smoke
+  @smoke
   Scenario Outline: Jewel-TestTool : Delete testcase - validation after clicking YES button
     When Verify user is navigated to TestTool Suite Page
     And Click on filter for header "Suite Name"
@@ -244,6 +244,7 @@ Feature: Test Tool
 #      | suiteName | projectName  | testcaseName | testcaseType | testcaseSteps        | category | runFlag |
 #      | SK_TEST   | TEST-PROJECT | sample       | Scenario     | Given Launch browser | launch   | Y       |
 
+
   @smoke
   Scenario Outline: Jewel-TestTool : Create testcase and select base project as GemJAR
     When Verify user is navigated to TestTool Suite Page
@@ -266,6 +267,7 @@ Feature: Test Tool
     Examples:
       | suiteName      | projectName  | testcaseName | testcaseType | testcaseSteps        | category | runFlag | toast_message                  |
       | DELETE_TESTING | TEST-PROJECT | sample       | Scenario     | Given Launch browser | launch   | Y       | Test Case created Successfully |
+
 
   @smoke
   Scenario Outline: Jewel-TestTool : Create testcase and select base project as GemPYP

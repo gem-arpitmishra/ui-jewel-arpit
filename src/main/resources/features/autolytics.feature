@@ -1,8 +1,9 @@
 Feature: Autolytics
 
+  @smoke
   Scenario:Click on the Autolytics button
     Given You are on the login screen
-    Then Enter username as "arpit.mishra"
+    Then Enter username as "jewelautomation"
     And Enter Password
     Then Click on the Autolytics screen
 
@@ -66,16 +67,17 @@ Feature: Autolytics
     Then click on copy button and check if report opens in new tab and click on new tab button and validate of shared report
     Then click on filter status and select pass
     Examples:
-      | usernames    | passwords |
-      | arpit.mishra | arpit1234 |
+      | usernames       | passwords      |
+      | jewelautomation | dummy_test@123 |
 #
+  @smoke
   Scenario Outline:Validate new filers of suite summary report
     Given click er clickon loginnn and entersss <usernamess> and <passwordss>
     Then validate enviroment filter
 #    Then validate pie chart filter
     Examples:
-      | usernamess   | passwordss |
-      | arpit.mishra | arpit1234  |
+      | usernamess      | passwordss     |
+      | jewelautomation | dummy_test@123 |
 #
   Scenario Outline:Validate the edit report button
     Given uss on loginnnn
