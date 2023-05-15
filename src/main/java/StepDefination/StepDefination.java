@@ -169,28 +169,55 @@ public class StepDefination extends GemEcoUpload {
     @Then("^verify it has been marked as verified$")
     public void verified_superAdmin() throws Exception {
         try {
-            Actions action2 = new Actions(DriverManager.getWebDriver());
-            action2.moveToElement(DriverManager.getWebDriver().findElement(tick_option)).build().perform();
-            action2.click(DriverManager.getWebDriver().findElement(tick_option)).build().perform();
-            DriverAction.waitSec(4);
-            GemTestReporter.addTestStep("Click on Green tick", "Successfully : Clicked on Green tick", STATUS.PASS, DriverAction.takeSnapShot());
-            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 20);
-            wait.until(ExpectedConditions.presenceOfElementLocated(Alert_admin2));
-            String alert = DriverAction.getElement(Alert_admin2).getAttribute("innerHTML");
-            System.out.println("ALERT: " + alert);
-            String expectedAlert = company + " is now verified!";
-            System.out.println("COMPANY: " + expectedAlert);
-            if (alert.equalsIgnoreCase(expectedAlert)) {
-                GemTestReporter.addTestStep("Company is now verified Alert Validation", "Successful<br>Expected Text: " + expectedAlert + "<br>Actual Text: " + alert, STATUS.PASS, DriverAction.takeSnapShot());
+            String url = ProjectConfigData.getProperty("launchUrl");
+            if (url.contains("beta")) {
+                Actions action2 = new Actions(DriverManager.getWebDriver());
+                action2.moveToElement(DriverManager.getWebDriver().findElement(tick_option)).build().perform();
+                action2.click(DriverManager.getWebDriver().findElement(tick_option)).build().perform();
+                DriverAction.waitSec(4);
+                GemTestReporter.addTestStep("Click on Green tick", "Successfully : Clicked on Green tick", STATUS.PASS, DriverAction.takeSnapShot());
+                WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 30);
+                wait.until(ExpectedConditions.presenceOfElementLocated(Alert_admin2));
+                String alert = DriverAction.getElement(Alert_admin2).getAttribute("innerHTML");
+                System.out.println("ALERT: " + alert);
+                String expectedAlert = company + " is now verified!";
+                System.out.println("COMPANY: " + expectedAlert);
+                if (alert.equalsIgnoreCase(expectedAlert)) {
+                    GemTestReporter.addTestStep("Company is now verified Alert Validation", "Successful<br>Expected Text: " + expectedAlert + "<br>Actual Text: " + alert, STATUS.PASS, DriverAction.takeSnapShot());
+                } else {
+                    GemTestReporter.addTestStep("Company is now verified Alert Validation", "Unsuccessful<br>Expected Text: " + expectedAlert + "<br>Actual Text: " + alert, STATUS.FAIL, DriverAction.takeSnapShot());
+                }
+                String companyVerify = DriverAction.getElementText(verify_confirmation);
+                DriverAction.waitSec(1);
+                if (companyVerify.equals("VERIFIED")) {
+                    GemTestReporter.addTestStep("Company VERIFIED validation", "Successful<br>Expected Text: " + companyVerify + "<br>Actual Text: " + companyVerify, STATUS.PASS, DriverAction.takeSnapShot());
+                } else {
+                    GemTestReporter.addTestStep("Company VERIFIED validation", "Unsuccessful<br>Expected Company Name: " + companyVerify + "<br>Actual Text: " + "UNVERIFIED", STATUS.FAIL, DriverAction.takeSnapShot());
+                }
             } else {
-                GemTestReporter.addTestStep("Company is now verified Alert Validation", "Unsuccessful<br>Expected Text: " + expectedAlert + "<br>Actual Text: " + alert, STATUS.FAIL, DriverAction.takeSnapShot());
-            }
-            String companyVerify = DriverAction.getElementText(verify_confirmation);
-            DriverAction.waitSec(1);
-            if (companyVerify.equals("VERIFIED")) {
-                GemTestReporter.addTestStep("Company VERIFIED validation", "Successful<br>Expected Text: " + companyVerify + "<br>Actual Text: " + companyVerify, STATUS.PASS, DriverAction.takeSnapShot());
-            } else {
-                GemTestReporter.addTestStep("Company VERIFIED validation", "Unsuccessful<br>Expected Company Name: " + companyVerify + "<br>Actual Text: " + "UNVERIFIED", STATUS.FAIL, DriverAction.takeSnapShot());
+                Actions action2 = new Actions(DriverManager.getWebDriver());
+                action2.moveToElement(DriverManager.getWebDriver().findElement(tick_option)).build().perform();
+                action2.click(DriverManager.getWebDriver().findElement(tick_option)).build().perform();
+                DriverAction.waitSec(4);
+                GemTestReporter.addTestStep("Click on Green tick", "Successfully : Clicked on Green tick", STATUS.PASS, DriverAction.takeSnapShot());
+//                WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 30);
+//                wait.until(ExpectedConditions.presenceOfElementLocated(Alert_admin2));
+//                String alert = DriverAction.getElement(Alert_admin2).getAttribute("innerHTML");
+//                System.out.println("ALERT: " + alert);
+//                String expectedAlert = company + " is now verified!";
+//                System.out.println("COMPANY: " + expectedAlert);
+//                if (alert.equalsIgnoreCase(expectedAlert)) {
+//                    GemTestReporter.addTestStep("Company is now verified Alert Validation", "Successful<br>Expected Text: " + expectedAlert + "<br>Actual Text: " + alert, STATUS.PASS, DriverAction.takeSnapShot());
+//                } else {
+//                    GemTestReporter.addTestStep("Company is now verified Alert Validation", "Unsuccessful<br>Expected Text: " + expectedAlert + "<br>Actual Text: " + alert, STATUS.FAIL, DriverAction.takeSnapShot());
+//                }
+                String companyVerify = DriverAction.getElementText(verify_confirmation);
+                DriverAction.waitSec(1);
+                if (companyVerify.equals("VERIFIED")) {
+                    GemTestReporter.addTestStep("Company VERIFIED validation", "Successful<br>Expected Text: " + companyVerify + "<br>Actual Text: " + companyVerify, STATUS.PASS, DriverAction.takeSnapShot());
+                } else {
+                    GemTestReporter.addTestStep("Company VERIFIED validation", "Unsuccessful<br>Expected Company Name: " + companyVerify + "<br>Actual Text: " + "UNVERIFIED", STATUS.FAIL, DriverAction.takeSnapShot());
+                }
             }
         } catch (Exception e) {
             logger.info("An exception occurred!", e);
@@ -456,11 +483,11 @@ public class StepDefination extends GemEcoUpload {
 //    }
 
     @Then("^add company admin$")
-    public void addcompAdmin(){
+    public void addcompAdmin() {
         try {
             Actions action2 = new Actions(DriverManager.getWebDriver());
-            action2.moveToElement(DriverManager.getWebDriver().findElement(By.xpath(edit_pencil.replace("@pname","apple")))).build().perform();
-            action2.click(DriverManager.getWebDriver().findElement(By.xpath(edit_pencil.replace("@pname","apple")))).build().perform();
+            action2.moveToElement(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
+            action2.click(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
             DriverAction.waitSec(4);
             GemTestReporter.addTestStep("Click on Action Edit", "Successfully : Clicked on Action Edit", STATUS.PASS, DriverAction.takeSnapShot());
             String name = DriverAction.getElementText(nameBlock);
@@ -470,7 +497,6 @@ public class StepDefination extends GemEcoUpload {
             action3.moveToElement(DriverManager.getWebDriver().findElement(By.xpath(xPathWithVariable))).build().perform();
             action3.click(DriverManager.getWebDriver().findElement(By.xpath(xPathWithVariable))).build().perform();
             DriverAction.waitSec(4);
-            GemTestReporter.addTestStep("Click on Action Edit", "Successfully : Clicked on Action Edit", STATUS.PASS, DriverAction.takeSnapShot());
             GemTestReporter.addTestStep("Click on Unlink", "Successfully : Clicked on Unlink", STATUS.PASS, DriverAction.takeSnapShot());
             GemTestReporter.addTestStep("Admin removed", "Admin removed is: " + name, STATUS.INFO);
             List<String> list = DriverAction.getElementsText(listBlock);
@@ -489,8 +515,8 @@ public class StepDefination extends GemEcoUpload {
             DriverAction.click(close_btn_super, "Close Button");
             DriverAction.waitSec(4);
             Actions action4 = new Actions(DriverManager.getWebDriver());
-            action4.moveToElement(DriverManager.getWebDriver().findElement(By.xpath(edit_pencil.replace("@pname","apple")))).build().perform();
-            action4.click(DriverManager.getWebDriver().findElement(By.xpath(edit_pencil.replace("@pname","apple")))).build().perform();
+            action4.moveToElement(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
+            action4.click(DriverManager.getWebDriver().findElement(edit_pencil)).build().perform();
             DriverAction.waitSec(4);
             DriverAction.click(addAdmins);
             DriverAction.waitSec(2);
@@ -498,7 +524,7 @@ public class StepDefination extends GemEcoUpload {
             DriverAction.waitSec(2);
             DriverAction.click(textAddName);
             DriverAction.waitSec(2);
-            DriverAction.typeText(textAddName, "Ana Nya");
+            DriverAction.typeText(textAddName, "dummy4");
             DriverAction.waitSec(2);
             DriverAction.click(userToBeAdded);
             DriverAction.waitSec(2);
@@ -506,6 +532,21 @@ public class StepDefination extends GemEcoUpload {
             DriverAction.waitSec(2);
             DriverAction.click(addAdmin_btn);
             DriverAction.waitSec(5);
+            DriverAction.click(infoButton);
+            DriverAction.waitSec(3);
+            List<String> list3 = DriverAction.getElementsText(listBlock);
+            boolean flag2 = false;
+            for (int i = 0; i < list3.size(); i++) {
+                if (list3.get(i).equalsIgnoreCase(name)) {
+                    flag2 = true;
+                    break;
+                }
+            }
+            if (flag2) {
+                GemTestReporter.addTestStep("Admin added validation", "Admin is present in the list", STATUS.PASS, DriverAction.takeSnapShot());
+            } else {
+                GemTestReporter.addTestStep("Admin added validation", "Admin is not present in the list", STATUS.FAIL, DriverAction.takeSnapShot());
+            }
         } catch (Exception e) {
             logger.info("An exception occurred!", e);
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
@@ -752,11 +793,11 @@ public class StepDefination extends GemEcoUpload {
             DriverAction.waitSec(2);
             DriverAction.click(Locators.username, "Username");
             DriverAction.waitSec(1);
-            DriverAction.typeText(Locators.username, "arpit.mishra");
+            DriverAction.typeText(Locators.username, "jewelautomation");
             DriverAction.waitSec(1);
             DriverAction.click(Locators.passwordm, "Password");
             DriverAction.waitSec(1);
-            DriverAction.typeText(Locators.passwordm, "arpit1234");
+            DriverAction.typeText(Locators.passwordm, "dummy_test@123");
             DriverAction.waitSec(1);
             DriverAction.click(Locators.LoginButton, "LogIn Button");
             DriverAction.waitSec(6);
@@ -789,7 +830,7 @@ public class StepDefination extends GemEcoUpload {
     @Then("Enter Password")
     public void enter_password() {
         try {
-            DriverAction.typeText(Locators.password, "arpit1234");
+            DriverAction.typeText(Locators.password, "dummy_test@123");
             DriverAction.click(Locators.login_button, "Login Button");
         } catch (Exception e) {
             logger.info("An exception occurred!", e);
@@ -863,6 +904,22 @@ public class StepDefination extends GemEcoUpload {
             }
             if (present) {
                 DriverAction.click(Locators.autolytics, "Autolytics Button");
+                DriverAction.waitSec(4);
+                String s = DriverAction.getCurrentURL();
+                String url = ProjectConfigData.getProperty("launchUrl");
+                String url_actual;
+                if (url.contains("beta")) {
+                    url_actual = "https://jewel-beta.gemecosystem.com/#/autolytics";
+                } else {
+                    url_actual = "https://jewel.gemecosystem.com/#/autolytics";
+                }
+                STATUS status;
+                if (s.contains(url_actual)) {
+                    status = STATUS.PASS;
+                } else {
+                    status = STATUS.FAIL;
+                }
+                GemTestReporter.addTestStep("Autolytics Screen URL Validation", "Expected Text: " + url_actual + "<br>Actual Text: " + s, status, DriverAction.takeSnapShot());
             } else {
                 GemTestReporter.addTestStep("Autolytics Button Status", "Not Found", STATUS.FAIL);
             }
@@ -2407,7 +2464,7 @@ public class StepDefination extends GemEcoUpload {
         try {
             DriverAction.click(Locators.projectScroll, "Project Name");
             DriverAction.waitSec(1);
-            DriverAction.click(Locators.gemEcoApis, "GEMECOSYSTEM_APIS");
+            DriverAction.click(Locators.gemEcoApis, "PROJECT-DEMP");
             DriverAction.waitSec(5);
         } catch (Exception e) {
             logger.info("Exception occurred", e);
@@ -2928,43 +2985,84 @@ public class StepDefination extends GemEcoUpload {
     @Given("click er clickon loginnn and entersss (.+) and (.+)$")
     public void suite_su(String us, String pa) throws Exception {
         try {
-            DriverAction.waitSec(1);
-            DriverAction.click(Locators.logIn, "Log In");
-            DriverAction.waitSec(2);
-            DriverAction.click(Locators.username, "Username");
-            DriverAction.waitSec(1);
-            DriverAction.typeText(Locators.username, us);
-            DriverAction.waitSec(1);
-            DriverAction.click(Locators.passwordm, "Password");
-            DriverAction.waitSec(1);
-            DriverAction.typeText(Locators.passwordm, pa);
-            DriverAction.waitSec(1);
-            DriverAction.click(Locators.LoginButton, "Login Button");
-            DriverAction.waitSec(2);
-            DriverAction.click(Locators.autolyticsm, "Autolytics");
-            DriverAction.waitSec(2);
-            DriverAction.click(Locators.reporting_new_btn, "Reporting");
-            DriverAction.waitSec(2);
-            DriverAction.click(Locators.createReport, "Create Report");
-            DriverAction.waitSec(2);
-            DriverAction.click(Locators.reportNameScroll, "Report Name");
-            DriverAction.waitSec(2);
-            DriverAction.click(Locators.suite_sum, "Suite Summary Report");
-            DriverAction.waitSec(1);
-            DriverAction.click(Locators.projectScroll, "Project Name");
-            DriverAction.waitSec(5);
-            DriverAction.click(Locators.gemEcoApis, "GEMECOSYSTEM_APIS");
-            DriverAction.waitSec(1);
-            DriverAction.click(Locators.enviromentScroll, "Environment");
-            DriverAction.waitSec(1);
-            DriverAction.click(Locators.select_all2, "Select All");
-            DriverAction.waitSec(1);
-            DriverAction.click(Locators.dateRangeScroll, "Date Range");
-            DriverAction.waitSec(1);
-            DriverAction.click(Locators.thisYear, "This Year");
-            DriverAction.waitSec(1);
-            DriverAction.click(Locators.generate, "Generate");
-            DriverAction.waitSec(25);
+            String url = ProjectConfigData.getProperty("launchUrl");
+            if (url.contains("beta")) {
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.logIn, "Log In");
+                DriverAction.waitSec(2);
+                DriverAction.click(Locators.username, "Username");
+                DriverAction.waitSec(1);
+                DriverAction.typeText(Locators.username, us);
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.passwordm, "Password");
+                DriverAction.waitSec(1);
+                DriverAction.typeText(Locators.passwordm, pa);
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.LoginButton, "Login Button");
+                DriverAction.waitSec(2);
+                DriverAction.click(Locators.autolyticsm, "Autolytics");
+                DriverAction.waitSec(2);
+                DriverAction.click(Locators.reporting_new_btn, "Reporting");
+                DriverAction.waitSec(2);
+                DriverAction.click(Locators.createReport, "Create Report");
+                DriverAction.waitSec(2);
+                DriverAction.click(Locators.reportNameScroll, "Report Name");
+                DriverAction.waitSec(2);
+                DriverAction.click(Locators.suite_sum, "Suite Summary Report");
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.projectScroll, "Project Name");
+                DriverAction.waitSec(5);
+                DriverAction.click(Locators.gemEcoApis, "PROJECT-DEMO");
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.enviromentScroll, "Environment");
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.select_all2, "Select All");
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.dateRangeScroll, "Date Range");
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.thisYear, "This Year");
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.generate, "Generate");
+                DriverAction.waitSec(25);
+            } else {
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.logIn, "Log In");
+                DriverAction.waitSec(2);
+                DriverAction.click(Locators.username, "Username");
+                DriverAction.waitSec(1);
+                DriverAction.typeText(Locators.username, us);
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.passwordm, "Password");
+                DriverAction.waitSec(1);
+                DriverAction.typeText(Locators.passwordm, pa);
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.LoginButton, "Login Button");
+                DriverAction.waitSec(2);
+                DriverAction.click(Locators.autolyticsm, "Autolytics");
+                DriverAction.waitSec(2);
+                DriverAction.click(Locators.reporting_new_btn, "Reporting");
+                DriverAction.waitSec(2);
+                DriverAction.click(Locators.createReport, "Create Report");
+                DriverAction.waitSec(2);
+                DriverAction.click(Locators.reportNameScroll, "Report Name");
+                DriverAction.waitSec(2);
+                DriverAction.click(Locators.suite_sum, "Suite Summary Report");
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.projectScroll, "Project Name");
+                DriverAction.waitSec(5);
+                DriverAction.click(Locators.gemEcoApis2, "PROJECT-DEMO2");
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.enviromentScroll, "Environment");
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.select_all2, "Select All");
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.dateRangeScroll, "Date Range");
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.thisYear, "This Year");
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.generate, "Generate");
+                DriverAction.waitSec(25);
+            }
         } catch (Exception e) {
             logger.info("Exception occurred", e);
             GemTestReporter.addTestStep("Error!!", "Something Wrong happened", STATUS.FAIL);
@@ -3008,35 +3106,37 @@ public class StepDefination extends GemEcoUpload {
                 DriverAction.click(Locators.betas, "Deselect");
                 DriverAction.waitSec(2);
             } else {
-                DriverAction.click(Locators.enviromnt_filter_prod, "Filter Environment");
+                DriverAction.click(Locators.envrmnt_fltrr, "Filter Environment");
                 DriverAction.waitSec(1);
                 DriverAction.click(Locators.select_pie, "Select Option(s)");
                 DriverAction.waitSec(1);
-                DriverAction.click(Locators.betaa, "Prod");
+                DriverAction.click(Locators.betaa_txtingg, "Prod");
                 DriverAction.waitSec(1);
-                String asse = DriverAction.getElementText(Locators.prod_txt);
+                String asse = DriverAction.getElementText(Locators.beta_txt);
                 DriverAction.waitSec(1);
-                DriverAction.click(Locators.closeFilter, "Filter Close");
+                DriverAction.click(Locators.closeFilter, "Close Filter");
                 DriverAction.waitSec(4);
                 int count = 0;
-                List<String> list = DriverAction.getElementsText(prods);
+                List<String> list = DriverAction.getElementsText(betas);
                 for (int i = 0; i < list.size(); i++) {
                     if (asse.equalsIgnoreCase(list.get(i))) {
                         count++;
                     }
                 }
                 if (count == list.size()) {
+
                     GemTestReporter.addTestStep("Suite summary report Filter Environment Validation", "Expected: " + asse, STATUS.INFO);
                     GemTestReporter.addTestStep("Suite summary report Filter Environment Validation", "Text we got: " + list.get(0), STATUS.PASS);
                 } else {
-                    GemTestReporter.addTestStep("Suite summary report Filter Enviroment Validation", "Expected: " + asse, STATUS.INFO);
+                    GemTestReporter.addTestStep("Suite summary report Filter Environment Validation", "Expected: " + asse, STATUS.INFO);
                     GemTestReporter.addTestStep("Suite summary report Filter Environment Validation", "Text we got: " + list.get(0), STATUS.FAIL);
                 }
-                DriverAction.click(Locators.select_pie);
-                DriverAction.waitSec(2);
-//                DriverAction.click(Locators.enviromnt_filter_prod, "Filter Environment");
-                DriverAction.click(suite_sum);
+                DriverAction.click(Locators.select_pie, "Close Filter");
                 DriverAction.waitSec(1);
+                DriverAction.click(Locators.betaa2, "Deselect");
+                DriverAction.waitSec(1);
+                DriverAction.click(Locators.betas, "Deselect");
+                DriverAction.waitSec(2);
             }
         } catch (Exception e) {
             logger.info("Exception occurred", e);

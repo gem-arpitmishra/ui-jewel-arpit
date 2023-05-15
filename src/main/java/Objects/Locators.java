@@ -109,7 +109,8 @@ public class Locators {
     public static By reportNameScroll = By.xpath("//*[span='Select Report Name']");
     public static By suiteRunReport = By.xpath("//*[text()='Suite Run Report']");
     public static By projectScroll = By.xpath("//*[@class='p-multiselect-label p-placeholder']");
-    public static By gemEcoApis = By.xpath("//*[span='GEMECOSYSTEM_APIS']");
+    public static By gemEcoApis = By.xpath("//span[text()=\"PROJECT-DEMO\"]");
+    public static By gemEcoApis2 = By.xpath("//span[text()=\"PROJECT-DEMO2\"]");
     public static By enviromentScroll = By.xpath("//*[text()='Select Environment(s)']");
     public static By prod = By.xpath("//*[span='Prod']");
     public static By dateRangeScroll = By.xpath("//*[span='Select Date Range']");
@@ -243,6 +244,7 @@ public class Locators {
     public static By envrmnt_fltrr = By.xpath("(//*[@class=\"p-column-filter-menu-button p-link\"])[3]");
     public static By enviromnt_filter_prod = By.xpath("(//*[@class=\"p-column-filter-menu-button p-link\"])[3]");
     public static By betaa = By.xpath("(//*[@class=\"p-checkbox-box\"])[3]");
+    public static By betaa_txtingg = By.xpath("(//*[@class=\"p-checkbox-box\"])[2]");
     public static By beta_txt = By.xpath("//span[@class=\"image-text\"]/span[text()=\"Prod\"]");
     public static By prod_txt = By.xpath("//span[@class=\"image-text\"]/span[text()=\"Prod\"]");
     public static By betas = By.xpath("(//*[text()=\"Prod\"])");
@@ -279,24 +281,25 @@ public class Locators {
     public static By test_case_run_rpt_txt = By.xpath("//div[text()=\"Testcase Run Report \"]");
     public static By testTool = By.xpath("//div[text()=\"Test Tool\"]");
     public static By suite = By.xpath("//div[text()=\"Suite\"]");
-    public static By listBlock = By.xpath("//div[text()='Admins']//parent::div//following-sibling::div//tr/td[2]/div/span/span");
+    public static By infoButton=By.xpath("//div[text()=\"Info\"]");
+    public static By listBlock = By.xpath("(//div[text()='Admins']//parent::div//following-sibling::div//tr/td[2]//span//span)");
     public static By statusSuperAdmin = By.xpath("//div[text()='Admins']//parent::div//following-sibling::div//tr/td[6]/div/span/span");
     public static By adminsList = By.xpath("//div[text()='Admins']//parent::div//following-sibling::div//tr/td[2]/div/span/span");
 
-    public static By nameBlock = By.xpath("(//div[text()='Admins']//parent::div//following-sibling::div//tr/td[2]/div/span/span)[4]");
+    public static By nameBlock = By.xpath("(//div[text()='Admins']//parent::div//following-sibling::div//tr/td[2]//span//span)[4]");
     public static By addAdmins = By.xpath("//div[text()=\"Add Admins\"]");
     public static By selectUsersToAdd = By.xpath("//div[text()=\"Select User(s) to Add\"]");
     public static By userToBeAdded = By.xpath("(//div[@class=\"p-checkbox-box\"])[2]");
     public static By addAdmin_btn = By.xpath("//button[text()=\"Add Admin\"]");
     public static By textAddName = By.xpath("//input[@role=\"textbox\"]");
 
-    public static String edit_pencil = "//tr/td[2]//span[text()='@pname']//ancestor::tr/td[5]//*[local-name()='svg' and @data-icon=\"pencil\"]/*[local-name()='path']";
+    public static By edit_pencil = By.xpath("(//*[local-name()='svg' and @data-icon=\"pencil\"]/*[local-name()='path'])[5]");
     public static By unlink = By.xpath("(//*[local-name()='svg' and @data-icon=\"ban\"]/*[local-name()='path'])");
     public static By pencil_opt = By.xpath("(//*[local-name()='svg' and @data-icon=\"pen-to-square\"]/*[local-name()='path'])[9]");
     public static By desciption = By.xpath("//textarea");
     public static By unlink_Main = By.xpath("(//*[local-name()='svg' and @data-icon=\"ban\"]/*[local-name()='path'])[5]");
     public static By blocked_User = By.xpath("(//*[local-name()='svg' and @data-icon=\"user-plus\"]/*[local-name()='path'])[1]");
-    public static By myCompanyAdmin=By.xpath("//div[text()=\"My Company\"]");
+    public static By myCompanyAdmin = By.xpath("//div[text()=\"My Company\"]");
     public static By blockedUser_Name = By.xpath("(//div[text()='Blocked Users']//parent::div//following-sibling::div//tr/td[2]/div/span/span)[1]");
     public static By blockedUserList = By.xpath("(//div[text()='Blocked Users']//parent::div//following-sibling::div//tr/td[2]/div/span/span)");
     public static By link_Main = By.xpath("(//*[local-name()='svg' and @data-icon=\"circle-check\"]/*[local-name()='path'])[6]");
@@ -349,7 +352,7 @@ public class Locators {
     public static By testcaseIDList = By.xpath("//span[text()='Testcase ID']//ancestor::table//tr/td[2]//span/span");
     public static By binOption = By.xpath("(//*[local-name()='svg' and @data-icon=\"trash\"]/*[local-name()='path'])[1]");
     public static By trashCan = By.xpath("(//*[local-name()='svg' and @data-icon=\"trash-can\"]/*[local-name()='path'])[1]");
-    public static By unverifyButton=By.xpath("(//*[local-name()='svg' and @data-icon=\"ban\"]/*[local-name()='path'])[1]");
+    public static By unverifyButton = By.xpath("(//*[local-name()='svg' and @data-icon=\"ban\"]/*[local-name()='path'])[1]");
     public static By tickmarkVerify = By.xpath("(//*[local-name()='svg' and @data-icon=\"circle-check\"]/*[local-name()='path'])[1]");
     public static By unverifyComp = By.xpath("(//*[local-name()='svg' and @data-icon=\"ban\"]/*[local-name()='path'])[1]");
     public static By yes = By.xpath("(//*[local-name()='svg' and @data-icon=\"check\"]/*[local-name()='path'])");

@@ -18,7 +18,7 @@
         <dependency>
             <groupId>com.gemecosystem.gemjar</groupId>
             <artifactId>gemjar-core</artifactId>
-            <version>LATEST</version>
+            <version>1.2.2</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.gemecosystem.gemjar/gemjar-core -->
