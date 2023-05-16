@@ -6,7 +6,7 @@ Feature: Log In
     Then user again clicks on logIn button and enters <Username> and <Password>
     Then user navigates back after loggin in
     Examples:
-      | Username        | Password       |
+      | Username     | Password  |
       | jewelautomation | dummy_test@123 |
 
 
@@ -20,7 +20,7 @@ Feature: Log In
     Given You are on the login screen
     Then Click not a user button and validate navigation to signup screen
 
-  @smoke
+    @smoke
   Scenario: Login to Jewel (Negative)
     Given You are on the login screen
     Then Enter username as "abcd"
