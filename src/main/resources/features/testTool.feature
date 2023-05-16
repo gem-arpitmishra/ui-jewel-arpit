@@ -2,8 +2,8 @@ Feature: Test Tool
 
   Background: Jewel Login
     Given User login into Jewel Portal with valid credentials
-      | username     | password     |
-      | maulick_test | QXZhbmkwMDAx |
+      | username        | password             |
+      | jewelautomation | ZHVtbXlfdGVzdEAxMjM= |
     When Navigate to "TestTool" Section
 
   Scenario: Jewel-TestTool : Page Loading validation
@@ -102,8 +102,8 @@ Feature: Test Tool
     And Verify selected options "<suiteName>" and "<projectName>" are visible for header "Suite Name" and"Project Name" inside suite table
 
     Examples:
-      | suiteName | projectName  |
-      | random    | TEST-PROJECT |
+      | suiteName | projectName   |
+      | random    | PROJECT-DEMO2 |
 
   Scenario Outline: Jewel-TestTool : Create suite with duplicate name validation
     When Verify user is navigated to TestTool Suite Page
@@ -184,6 +184,10 @@ Feature: Test Tool
   @smoke
   Scenario Outline: Jewel-TestTool : Delete testcase - validation after clicking YES button
     When Verify user is navigated to TestTool Suite Page
+    And Click on create suite button for creating new suite
+    Then Select project name "<projectName>" options for creating suite
+    And Enter suite name "<suiteName>" for creating suite
+    And Click on create suite button
     And Click on filter for header "Suite Name"
     And Select "<suiteName>" options from the filter list
     Then Click on test case plus button for "<suiteName>"
@@ -202,8 +206,8 @@ Feature: Test Tool
     And Verify deleted toast alert with message "<toast_message>"
 
     Examples:
-      | suiteName      | message                                  | toast_message                  |
-      | DELETE_TESTING | Are you Sure you want to delete Testcase | Test Case deleted Successfully |
+      | projectName   | suiteName       | message                                  | toast_message                  |
+      | PROJECT-DEMO2 | DELETE_TESTING2 | Are you Sure you want to delete Testcase | Test Case deleted Successfully |
 
   Scenario Outline: Jewel-TestTool : Create Suite and validate Suite Creation time
     When Verify user is navigated to TestTool Suite Page
@@ -244,10 +248,13 @@ Feature: Test Tool
 #      | suiteName | projectName  | testcaseName | testcaseType | testcaseSteps        | category | runFlag |
 #      | SK_TEST   | TEST-PROJECT | sample       | Scenario     | Given Launch browser | launch   | Y       |
 
-
   @smoke
   Scenario Outline: Jewel-TestTool : Create testcase and select base project as GemJAR
     When Verify user is navigated to TestTool Suite Page
+    And Click on create suite button for creating new suite
+    Then Select project name "<projectName>" options for creating suite
+    And Enter suite name "<suiteName>" for creating suite
+    And Click on create suite button
     And Click on filter for header "Suite Name"
     And Select "<suiteName>" options from the filter list
     And Click on filter for header "Project Name"
@@ -266,12 +273,15 @@ Feature: Test Tool
 
     Examples:
       | suiteName      | projectName  | testcaseName | testcaseType | testcaseSteps        | category | runFlag | toast_message                  |
-      | DELETE_TESTING | TEST-PROJECT | sample       | Scenario     | Given Launch browser | launch   | Y       | Test Case created Successfully |
-
+      | DELETE_TESTING | PROJECT-DEMO2 | sample       | Scenario     | Given Launch browser | launch   | Y       | Test Case created Successfully |
 
   @smoke
   Scenario Outline: Jewel-TestTool : Create testcase and select base project as GemPYP
     When Verify user is navigated to TestTool Suite Page
+    And Click on create suite button for creating new suite
+    Then Select project name "<projectName>" options for creating suite
+    And Enter suite name "<suiteName>" for creating suite
+    And Click on create suite button
     And Click on filter for header "Suite Name"
     And Select "<suiteName>" options from the filter list
     And Click on filter for header "Project Name"
@@ -289,7 +299,7 @@ Feature: Test Tool
 
     Examples:
       | suiteName      | projectName  | testcaseName | testcaseType | category | runFlag | toast_message                  |
-      | DELETE_TESTING | TEST-PROJECT | sample       | GEMPYP       | launch   | Y       | Test Case created Successfully |
+      | DELETE_TESTING | PROJECT-DEMO2 | sample       | GEMPYP       | launch   | Y       | Test Case created Successfully |
 
   Scenario Outline: Jewel-TestTool : Create testcase with base project GemJAR and validate Test Type search dropdown
     When Verify user is navigated to TestTool Suite Page
