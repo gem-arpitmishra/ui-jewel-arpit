@@ -2,10 +2,10 @@ Feature: Sign Up
 
   Scenario Outline: Validate sign up of already registered user
     Given click on signup
-    Then enter "<name>" "<last>" "<user>" "<email>" "<pass>" "<cpass>" "<company>"
+    Then enter "<name>" "<last>" "<user>" "<email>" "<pass>" "<cpass>"
     Examples:
-      | name  | last            | user            | email                    | pass           | cpass          | company  |
-      | jewel | Automation user | jewelautomation | dummy_test54@outlook.com | dummy_test@123 | dummy_test@123 | Jewel123 |
+      | name  | last            | user            | email                    | pass           | cpass          |
+      | jewel | Automation user | jewelautomation | dummy_test54@gemperf.com | dummy_test@123 | dummy_test@123 |
 
   Scenario: Signup screen
     Given You are on the Sign up screen
@@ -36,13 +36,13 @@ Feature: Sign Up
 
   Scenario: Username Availability Validation (negative)
     Given click on signup
-    When Fill fields "jewel","Automation user","","dummy_test54@outlook.com","dummy_test@123","dummy_test@123","N"
+    When Fill fields "jewel","Automation user","","dummy_test54@gemperf.com","dummy_test@123","dummy_test@123","N"
     Then check username availability for user already registered
     Then Click register and validate if signUp is unsuccessful
 
   Scenario: Username Availability Validation (positive)
     Given click on signup
-    When Fill fields "jewel","Automation user","","dummy_test54@outlook.com","dummy_test@123","dummy_test@123","Y"
+    When Fill fields "jewel","Automation user","","dummy_test54@gemperf.com","dummy_test@123","dummy_test@123","Y"
     Then check username availability for user not already registered
     Then Click register and validate if signUp is successful
 
@@ -57,7 +57,7 @@ Feature: Sign Up
 
   Scenario: confirmation password equality check
     Given click on signup
-    When Fill fields "jewel","Automation user","","dummy_test54@outlook.com","dummy_test@123","dummy_test@123","Y"
+    When Fill fields "jewel","Automation user","","dummy_test54@gemperf.com","dummy_test@123","dummy_test@123","Y"
     When User enters "different" passwords in password and confirmation-password
     Then Click register and validate if signUp is unsuccessful
     When User enters "dummy_test@123" passwords in password and confirmation-password
