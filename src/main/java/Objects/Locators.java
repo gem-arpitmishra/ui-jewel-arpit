@@ -13,7 +13,8 @@ public class Locators {
     public static By password = By.xpath("//input[@placeholder='Password']");
     public static By login_button = By.xpath("//button[text()='Login']");
     public static By home_button = By.xpath("//div[text()='Home']");
-    public static By profile = By.xpath("(//*[local-name()='svg' and @data-icon=\"arrow-right-from-bracket\"]/*[local-name()='path'])");
+    public static By Alert_text=By.xpath("//div[@role='alert']/div[2]");
+    public static By logout_btn=By.xpath("//div[text()='Logout']");
     public static By page_title = By.xpath("//div[text()='Jewel Applications']");
     public static By autolytics = By.xpath("(//div[text()='Autolytics'])[2]");
     public static By bridge_token = By.xpath("(//div[text()='Bridge Token'])[2]");
@@ -33,13 +34,12 @@ public class Locators {
     public static By login_alert = By.xpath("//div[@role='alert']");
     public static By three_lines_button = By.xpath("(//*[local-name()='svg' and @data-icon=\"circle-chevron-left\"]/*[local-name()='path'])");
     public static By signup_button = By.xpath("//span[text()='Sign up']");
+    public static By login_btn=By.xpath("//span[text()='Log in']");
     public static By first_name = By.xpath("//input[@placeholder='Firstname']");
     public static By last_name = By.xpath(" //input[@placeholder='Lastname']");
     public static By email = By.xpath("//input[@placeholder='Email']");
     public static By confirm_pass = By.xpath("//input[@placeholder='Confirm Password']");
-    public static By company_name = By.xpath("//input[@placeholder='Company Name']");
     public static By register_button = By.xpath("//button[text()='Register']");
-    public static By register_alert = By.xpath("//div[text()='User Registered.']");
     public static By create_report = By.xpath("//span[text()='Create Report']");
     public static By report_name_button = By.xpath("//span[text()='Select Report Name']");
     public static By suite_run = By.xpath("//li[text()='Suite Run Report']");
@@ -66,12 +66,10 @@ public class Locators {
     public static By right_most = By.xpath("(//div[starts-with(@id,'left-tabs-example-tabParent')])[5]/a");
 
     public static By left_next = By.xpath("(//div[starts-with(@id,'left-tabs-example-tabParent')])[4]/a");
-
-
-    public static By logIn = By.xpath("//*[@class='btn-text-login fw-normal']");
     public static By searchBox = By.xpath("//*[@title='Search']");
     public static By jewel = By.xpath("//*[@class='LC20lb MBeuO DKV0Md']");
     public static By username = By.xpath("//*[@class='form-control']");
+    public static By homepage_username=By.xpath("//div[contains(@class,'profileUsername')]");
     public static By passwordm = By.xpath("//*[@type='password']");
     public static By register_newww = By.xpath("//span[text()=\"Register New User\"]");
     public static By close = By.xpath("//*[@class='crossicon']");
@@ -90,7 +88,6 @@ public class Locators {
     public static By viewreport = By.xpath("//*[text()='View Report']");
     public static By viewreportcontent = By.xpath("//*[@class='whatisData mb-5 px-3']");
     public static By pricingcontent = By.xpath("//*[@class='paraText']");
-    public static By jewelconetnt = By.xpath("//*[@class='subHead ms-5']");
     public static By runtest = By.xpath("//*[text()='Run Test Suite']");
     public static By runtestc = By.xpath("(//*[@class='whatisData mb-5 px-3'])[2]");
     public static By facebook = By.xpath("(//*[@class='icon_links'])[1]");
@@ -99,7 +96,6 @@ public class Locators {
     public static By linkedin = By.xpath("(//*[@class='icon_links'])[4]");
     public static By jeweldashboard = By.xpath("//*[text()='Jewel dashboard']");
     public static By gempyp = By.xpath("//a[text()='GemPYP']");
-    public static By gemprf = By.xpath("//*[text()='GemPRF']");
     public static By gemjar = By.xpath("//*[text()='GemJAR']");
     public static By pricingbutton = By.xpath("//*[@class='sub-text list']/*/*[text()='Pricing']");
     public static By autolyticsm = By.xpath("//*[text()='Autolytics']");
@@ -124,15 +120,10 @@ public class Locators {
     public static By firstname = By.xpath("//*[@placeholder='Firstname']");
     public static By lastname = By.xpath("//*[@placeholder='Lastname']");
     public static By username1 = By.xpath("//*[@placeholder='Username']");
-    public static By emailm = By.xpath("//*[@placeholder='Email']");
-    public static By password1 = By.xpath("//*[@placeholder='Password']");
-    public static By confirmpass = By.xpath("//*[@placeholder='Confirm Password']");
-    public static By companyname = By.xpath("//*[@placeholder='Company Name']");
-    public static By register = By.xpath("//button[text()=\"Register\"]");
+    public static By signup_email = By.xpath("//*[@placeholder='Email']");
     public static By span = By.xpath("(//div[@class=\"text-center\"]/span)[1]");
     public static By new_compName = By.xpath("(//tr/td)[2]");
     public static By sno = By.xpath("//*[text()='S No']");
-    public static By secondPage = By.xpath("//*[@class='p-button p-component p-paginator-page p-paginator-element p-link p-highlight']");
     public static By total = By.xpath("//span[@class=\"p-paginator-current\"]");
     public static By total_superAdmin = By.xpath("//span[@class=\"p-paginator-current\"]");
     public static By total_superAdmin2 = By.xpath("(//tr/td)[1]");
@@ -151,8 +142,6 @@ public class Locators {
     public static By Alert_admin1 = By.xpath("(//div[contains(@class,'Toastify__toast-body')]//div)[2]");
     public static By companyName_Alert = By.xpath("//span[text()=\"Company Name Already Exists\"]");
     public static By Alert_admin2 = By.xpath("//div[contains(@class,'Toastify__toast-container--top-right')]//child::div[contains(@class,'Toastify__toast-body')]/div[2]");
-    public static By email_already_existss = By.xpath("//div[contains(@class,'Toastify__toast-container Toastify__toast-container--top-left')]//child::div[contains(@class,'Toastify__toast-body')]/div[2]");
-    public static By project_deleting = By.xpath("//td[@class=\"align-middle\"]/div[@class=\"typewriter\"]");
     public static By create_project = By.xpath("//button[text()=\"Create Project\"]");
     public static By project_name_create_project = By.xpath("//input[@placeholder=\"Project Name\"]");
     public static By enviro_create_project = By.xpath("//li[@class=\"p-chips-input-token\"]//input");
@@ -206,7 +195,6 @@ public class Locators {
     public static By lastPageSuperAdmin = By.xpath("//button[@aria-label=\"Last Page\"]");
     public static By company_Count = By.xpath("//span[@class=\"p-paginator-current\"]");
     public static By verify_confirmation = By.xpath("(//span[@class=\"pass-color boldText \"])[1]");
-    public static By unverify_confirmation = By.xpath("(//span[@class=\" fail-color boldText\"])[1]");
     public static By browser_isCompat = By.xpath("//strong[text()=\"If File is Browser Compatible it will open in new Window else it will download the file.\"]");
     public static By demo_test = By.xpath("(//div[@class=\"text-left\"])[1]");
     public static By selectFilter3 = By.xpath("(//*[@class='p-column-filter-menu-button p-link'])[11]");
@@ -216,7 +204,6 @@ public class Locators {
     public static By close_filter1 = By.xpath("(//*[@class='btn btn-sm statusBtn btn-success pass-btn'])[9]");
     public static By inside_filter_text = By.xpath("(//*[text()='August 16, 2022 5:20:03 PM (IST)'])[3]");
     public static By outside_filter_text = By.xpath("(//*[text()='August 16, 2022 5:20:03 PM (IST)'])[1]");
-    public static By login_screen = By.xpath("//span[text()='Log in']");
     public static By scroll_down = By.xpath("(//*[@class=\"p-dropdown-trigger\"])[2]");
     public static By select_24 = By.xpath("(//*[@class=\"p-dropdown-item\"])[1]");
     public static By suite_detail = By.xpath("(//*[text()=\"suite details are not found\"])");
@@ -267,7 +254,6 @@ public class Locators {
     public static By project_name_fltr = By.xpath("(//*[@class=\"p-column-filter-menu-button p-link\"])[1]");
     public static By pygem_project_select = By.xpath("(//*[@class=\"p-checkbox-box\"])[2]");
     public static By pygem_project_txt = By.xpath("//div[@class=\"text-left\"]//span[text()=\"Gemeco-api-jv\"]");
-    public static By pygem_project_txts = By.xpath("(//*[text()=\"pygem_project\"])");
     public static By broken_index_filtr = By.xpath("(//*[@class=\"p-column-filter-menu-button p-link\"])[4]");
 
     public static By reloadJAR = By.xpath("//button[text()=\"Reload JAR\"]");
@@ -364,10 +350,6 @@ public class Locators {
     public static By yesOPtion = By.xpath("//div[@class=\"btn btn-success\"]");
     public static By noOption = By.xpath("//div[@class=\"btn btn-danger mx-2\"]");
     public static By linkClick = By.xpath("//div[@class=\"container text-center  mt-3\"]/a");
-    public static By hasNext2 = By.xpath("//button[text()=\"1\"]");
-    public static By hasNext3 = By.xpath("//button[text()=\"3\"]");
-    public static By hasNext4 = By.xpath("//button[text()=\"4\"]");
-    public static By buttons = By.xpath("//span[@class=\"p-paginator-pages\"]/button");
     public static By super_admin = By.xpath("//div[text()=\"Super Admin\"]");
     public static By select_company_name = By.xpath("//input[@placeholder=\"Select Company Name\"]");
     public static By nextPageBtn = By.xpath("//button[@aria-label='Next Page']");
@@ -473,7 +455,6 @@ public class Locators {
     public static By email_bcc = By.xpath("(//li[@class='p-chips-input-token']/input)[3]");
     public static By email_save = By.xpath("//button[text()='Save ']");
     public static By gototop_button = By.xpath("//button[@id='scrolltop']");
-    public static By cross_icon = By.xpath("//img[@class='crossicon']");
     public static By alreadyregistered_btn = By.xpath("//a[text()='Login']");
     public static By notauser_btn = By.xpath("//a[text()='Signup']");
     public static By username_availability = By.xpath("//span[@class='me-1']");
