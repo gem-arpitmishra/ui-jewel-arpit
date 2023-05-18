@@ -120,16 +120,8 @@ public class Locators {
     public static By firstname = By.xpath("//*[@placeholder='Firstname']");
     public static By lastname = By.xpath("//*[@placeholder='Lastname']");
     public static By username1 = By.xpath("//*[@placeholder='Username']");
-//
-    public static By emailm = By.xpath("//*[@placeholder='Email']");
-    public static By password1 = By.xpath("//*[@placeholder='Password']");
-    public static By confirmpass = By.xpath("//*[@placeholder='Confirm Password']");
-    public static By companyname = By.xpath("//*[@placeholder='Company Name']");
-    public static By register = By.xpath("//button[text()=\"Register\"]");
-//
     public static By signup_email = By.xpath("//*[@placeholder='Email']");
     public static By span = By.xpath("(//div[@class=\"text-center\"]/span)[1]");
-//
     public static By new_compName = By.xpath("(//tr/td)[2]");
     public static By sno = By.xpath("//*[text()='S No']");
     public static By total = By.xpath("//span[@class=\"p-paginator-current\"]");
