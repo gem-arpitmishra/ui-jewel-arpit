@@ -120,8 +120,16 @@ public class Locators {
     public static By firstname = By.xpath("//*[@placeholder='Firstname']");
     public static By lastname = By.xpath("//*[@placeholder='Lastname']");
     public static By username1 = By.xpath("//*[@placeholder='Username']");
+//
+    public static By emailm = By.xpath("//*[@placeholder='Email']");
+    public static By password1 = By.xpath("//*[@placeholder='Password']");
+    public static By confirmpass = By.xpath("//*[@placeholder='Confirm Password']");
+    public static By companyname = By.xpath("//*[@placeholder='Company Name']");
+    public static By register = By.xpath("//button[text()=\"Register\"]");
+//
     public static By signup_email = By.xpath("//*[@placeholder='Email']");
     public static By span = By.xpath("(//div[@class=\"text-center\"]/span)[1]");
+//
     public static By new_compName = By.xpath("(//tr/td)[2]");
     public static By sno = By.xpath("//*[text()='S No']");
     public static By total = By.xpath("//span[@class=\"p-paginator-current\"]");
@@ -135,7 +143,7 @@ public class Locators {
     public static By total_projects = By.xpath("//span[@class=\"p-paginator-current\"]");
     public static By request_access = By.xpath("//button[text()=\"Request Access\"]");
     public static By dropdown_of_request = By.xpath("(//div[@class=\"p-multiselect-trigger\"])[2]");
-    public static String inputBox_of_request = "//li[@class=\"p-multiselect-item\"]//span[text()='@projectname']";
+    public static String inputBox_of_request = "//li[@class=\"p-multiselect-item\"]//span[text()=\"@projectname\"]";
     public static By select_access_request = By.xpath("(//div[@class=\"p-dropdown-trigger\"]/span)[2]");
     public static By request_access_btn = By.xpath("(//button[text()=\"Request Access\"])[2]");
     public static By admin_select = By.xpath("//li[text()=\"Admin\"]");
@@ -267,7 +275,7 @@ public class Locators {
     public static By test_case_run_rpt_txt = By.xpath("//div[text()=\"Testcase Run Report \"]");
     public static By testTool = By.xpath("//div[text()=\"Test Tool\"]");
     public static By suite = By.xpath("//div[text()=\"Suite\"]");
-    public static By infoButton=By.xpath("//div[text()=\"Info\"]");
+    public static By infoButton = By.xpath("//div[text()=\"Info\"]");
     public static By listBlock = By.xpath("(//div[text()='Admins']//parent::div//following-sibling::div//tr/td[2]//span//span)");
     public static By statusSuperAdmin = By.xpath("//div[text()='Admins']//parent::div//following-sibling::div//tr/td[6]/div/span/span");
     public static By adminsList = By.xpath("//div[text()='Admins']//parent::div//following-sibling::div//tr/td[2]/div/span/span");
@@ -432,17 +440,20 @@ public class Locators {
     public static By testCaseIdText = By.xpath("(//div[@class=\"p-multiselect-representative-option\"])[1]");
     public static By testCaseIdTexts = By.xpath("//td[@class=\"columnsPrime  maxWidthTableText \"][1]");
     public static By admin = By.xpath("//div[text()=\"Admin\"]");
-    public static By edit_project_details = By.xpath("(//*[local-name()='svg' and @data-icon='pen-to-square' and contains(@class,'disabledIcon')]/*[local-name()='path'])[1]");
+    public static By edit_project_details = By.xpath("(//*[local-name()='svg' and @data-icon='pen-to-square' and contains(@class,'notDisabledAdmin')]/*[local-name()='path'])[1]");
     public static By edit_project_details2 = By.xpath("(//*[local-name()='svg' and @data-icon='pen-to-square' and not(contains(@class,'disabledIcon'))]/*[local-name()='path'])[1]");
     //  public static By edit_project_details3=By.xpath("(//div/*[local-name()='svg' and @data-icon='pen-to-square']/*[local-name()='path'])[1]");
-    public static By delete_project = By.xpath("(//*[local-name()='svg' and @data-icon=\"trash-can\" and contains(@class,\"disabledIcon\")]/*[local-name()='path'])[1]");
+    public static By delete_project = By.xpath("(//*[local-name()='svg' and @data-icon=\"trash-can\" and contains(@class,\"notDisabledAdmin\")]/*[local-name()='path'])[1]");
     public static By delete_project2 = By.xpath("(//*[local-name()='svg' and @data-icon=\"trash-can\" and not(contains(@class,\"disabledIcon\"))]/*[local-name()='path'])[1]");
-    public static By edit_access = By.xpath("(//*[local-name()='svg' and @data-icon='circle-user' and contains(@class,'disabledIcon')]/*[local-name()='path'])[1]");
+    public static By edit_access = By.xpath("(//*[local-name()='svg' and @data-icon='circle-user' and contains(@class,'notDisabledAdmin')]/*[local-name()='path'])[1]");
     public static By edit_access2 = By.xpath("(//*[local-name()='svg' and @data-icon='circle-user' and not(contains(@class,'disabledIcon'))]/*[local-name()='path'])[1]");
+    public static By edit_access5 = By.xpath("(//*[local-name()='svg' and @data-icon='circle-user' and not(contains(@class,'disabledIcon'))]/*[local-name()='path'])[3]");
+    public static By edit_access3 = By.xpath("(//*[local-name()='svg' and @data-icon='circle-user' and not(contains(@class,'disabledIcon'))]/*[local-name()='path'])[2]");
     public static By addUser_project = By.xpath("//div[@class='nav-link addUserLink']");
     public static By changerole_tab = By.xpath("//div[@class='nav-link changeRoleLink']");
-    public static By users_list = By.xpath("//div[@id='pills-tabContent']//tr/td[2]");
-    public static By adduser_select = By.xpath("//div[@id='pills-tabContent']//div[@class='p-multiselect-label-container']/div[contains(@class,'p-multiselect-label')]");
+    public static By users_list = By.xpath("//div[@aria-labelledby=\"pills-changeRole-tab-\"]//tr/td[2]//span//span");
+    public static By adduser_select = By.xpath("//div[text()=\"Select User(s) to Add\"]");
+    public static By changeRolesUser = By.xpath("//div[text()=\"Change Roles\"]");
     public static By addUser_search = By.xpath("//input[@class='p-inputtext p-component p-multiselect-filter']");
     public static By add_user = By.xpath("//li/div[@class='p-checkbox p-component']");
     public static By select_role_empty = By.xpath("//span[text()='Select Access Role(s)']");
