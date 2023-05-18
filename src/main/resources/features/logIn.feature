@@ -12,7 +12,7 @@ Feature: Log In
   Scenario: Validate not a user button
     Then Click not a user button and validate navigation to signup screen
 
-    @smoke
+  @smoke
   Scenario: Login to Jewel (Negative)
     Then User fills incorrect username
     And Enter random password
