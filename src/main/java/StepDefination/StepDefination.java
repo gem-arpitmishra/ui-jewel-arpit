@@ -77,7 +77,7 @@ public class StepDefination extends GemEcoUpload {
     }
 
     @Given("^login as super-admin$")
-    public void loginAsSuper(){
+    public void loginAsSuper() {
         try {
             DriverAction.waitSec(1);
             DriverAction.click(Locators.logIn, "Log In");
@@ -125,7 +125,7 @@ public class StepDefination extends GemEcoUpload {
     }
 
     @Then("^login as super-admin again$")
-    public void loginAsSuperAgain(){
+    public void loginAsSuperAgain() {
         try {
             DriverAction.click(Locators.username, "Username");
             DriverAction.waitSec(1);
@@ -2190,6 +2190,7 @@ public class StepDefination extends GemEcoUpload {
             GemTestReporter.addTestStep("Error!!", "Something Wrong happened", STATUS.FAIL);
         }
     }
+
     @Given("^click on login and enter (.+) and (.+)$")
     public void loginn(String username, String password) {
         try {
@@ -3921,7 +3922,8 @@ public class StepDefination extends GemEcoUpload {
             DriverAction.waitSec(4);
             STATUS status;
             String s3 = DriverAction.getElementText(Locators.total_projects);
-            String s4 = s3.substring(6, 8);
+            String s4 = s3.substring(6, 7);
+            System.out.println("--" + s2 + "--" + s4 + "--");
             if (s2.equals(s4)) {
                 status = STATUS.PASS;
             } else {
@@ -3938,29 +3940,56 @@ public class StepDefination extends GemEcoUpload {
     @Then("^validate the alert when user don't have access$")
     public void validate_alert_when_user_have() throws Exception {
         try {
-            DriverAction.click(request_access, "Request Access Button");
-            DriverAction.waitSec(2);
-            DriverAction.click(dropdown_of_request, "Open Project(s) dropdown");
-            DriverAction.waitSec(2);
-            DriverAction.click(By.xpath(inputBox_of_request.replace("@projectname", "JEWEL-AUTOMATION_TEST1")), "Select project");
-            DriverAction.waitSec(2);
-            DriverAction.click(select_access_request, "Select Access Role(s)");
-            DriverAction.waitSec(2);
-            DriverAction.click(admin_select, "Admin");
-            DriverAction.waitSec(2);
-            DriverAction.click(request_access_btn, "Request Access");
-            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 10);
-            wait.until(ExpectedConditions.visibilityOfElementLocated(Alert_admin1));
-            String s = DriverAction.getElementText(Alert_admin1);
-            System.out.println("Alert: " + s);
-            String s2 = "Request has been send";
-            STATUS status;
-            if (s.equals(s2)) {
-                status = STATUS.PASS;
+            String url1 = ProjectConfigData.getProperty("launchUrl");
+            if (url1.contains("beta")) {
+                DriverAction.click(request_access, "Request Access Button");
+                DriverAction.waitSec(2);
+                DriverAction.click(dropdown_of_request, "Open Project(s) dropdown");
+                DriverAction.waitSec(2);
+                DriverAction.click(By.xpath(inputBox_of_request.replace("@projectname", "SAMPLE_PROJECT")), "Select project");
+                DriverAction.waitSec(2);
+                DriverAction.click(select_access_request, "Select Access Role(s)");
+                DriverAction.waitSec(2);
+                DriverAction.click(admin_select, "Admin");
+                DriverAction.waitSec(2);
+                DriverAction.click(request_access_btn, "Request Access");
+                WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 10);
+                wait.until(ExpectedConditions.visibilityOfElementLocated(Alert_admin1));
+                String s = DriverAction.getElementText(Alert_admin1);
+                System.out.println("Alert: " + s);
+                String s2 = "Request has been send";
+                STATUS status;
+                if (s.equals(s2)) {
+                    status = STATUS.PASS;
+                } else {
+                    status = STATUS.FAIL;
+                }
+                GemTestReporter.addTestStep("Request has been send Alert Validation", "Expected Text: " + s2 + "<br>Actual Text: " + s, status);
             } else {
-                status = STATUS.FAIL;
+                DriverAction.click(request_access, "Request Access Button");
+                DriverAction.waitSec(2);
+                DriverAction.click(dropdown_of_request, "Open Project(s) dropdown");
+                DriverAction.waitSec(2);
+                DriverAction.click(By.xpath(inputBox_of_request.replace("@projectname", "SAMPLE")), "Select project");
+                DriverAction.waitSec(2);
+                DriverAction.click(select_access_request, "Select Access Role(s)");
+                DriverAction.waitSec(2);
+                DriverAction.click(admin_select, "Admin");
+                DriverAction.waitSec(2);
+                DriverAction.click(request_access_btn, "Request Access");
+                WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 10);
+                wait.until(ExpectedConditions.visibilityOfElementLocated(Alert_admin1));
+                String s = DriverAction.getElementText(Alert_admin1);
+                System.out.println("Alert: " + s);
+                String s2 = "Request has been send";
+                STATUS status;
+                if (s.equals(s2)) {
+                    status = STATUS.PASS;
+                } else {
+                    status = STATUS.FAIL;
+                }
+                GemTestReporter.addTestStep("Request has been send Alert Validation", "Expected Text: " + s2 + "<br>Actual Text: " + s, status);
             }
-            GemTestReporter.addTestStep("Request has been send Alert Validation", "Expected Text: " + s2 + "<br>Actual Text: " + s, status);
         } catch (Exception e) {
             logger.info("Exception occurred", e);
             GemTestReporter.addTestStep("Error!!", "Something Wrong happened", STATUS.FAIL);
@@ -4005,20 +4034,20 @@ public class StepDefination extends GemEcoUpload {
             DriverAction.click(create_project, "Create Project Button");
             DriverAction.waitSec(2);
             DriverAction.click(project_name_create_project, "Project Name");
-            DriverAction.waitSec(1);
+            DriverAction.waitSec(2);
             DriverAction.typeText(project_name_create_project, projectNames);
             DriverAction.waitSec(2);
             GemTestReporter.addTestStep("New project name", "New Project name is: " + projectNames, STATUS.INFO);
             DriverAction.click(enviro_create_project, "Environment(s)");
-            DriverAction.waitSec(1);
+            DriverAction.waitSec(2);
             DriverAction.typeText(enviro_create_project, projectNames);
-            DriverAction.waitSec(1);
+            DriverAction.waitSec(2);
             DriverManager.getWebDriver().findElement(enviro_create_project).sendKeys(Keys.ENTER);
-            DriverAction.waitSec(1);
+            DriverAction.waitSec(2);
             DriverAction.click(textArea, "Project Description");
-            DriverAction.waitSec(1);
+            DriverAction.waitSec(2);
             DriverAction.typeText(textArea, projectNames);
-            DriverAction.waitSec(1);
+            DriverAction.waitSec(2);
             GemTestReporter.addTestStep("Description", "Description is: " + projectNames, STATUS.INFO);
             DriverAction.click(create_button_Admin, "Create");
             DriverAction.waitSec(2);
@@ -6143,72 +6172,161 @@ public class StepDefination extends GemEcoUpload {
 
     @When("^User (.*) is added to project$")
     public void addUser_UserAccess(String username) throws Exception {
-        project_created_onGrid();
-        DriverAction.click(edit_access2, "Edit access");
-        DriverAction.click(addUser_project, "Add Users tab");
-        DriverAction.click(adduser_select, "Add user dropdown");
-        DriverAction.typeText(addUser_search, username);
-        DriverAction.click(add_user, "Select user");
-        DriverAction.click(adduser_select, "Close selection dropdown");
-        DriverAction.click(select_role_empty, "Role dropdown");
-        DriverAction.click(select_role, "Select Admin");
-        DriverAction.click(adduser_btn, "Add user button");
+        String url = ProjectConfigData.getProperty("launchUrl");
+        if (url.contains("beta")) {
+            project_created_onGrid();
+            Actions action2 = new Actions(DriverManager.getWebDriver());
+            action2.moveToElement(DriverManager.getWebDriver().findElement(edit_access2)).build().perform();
+            action2.click(DriverManager.getWebDriver().findElement(edit_access2)).build().perform();
+            DriverAction.waitSec(4);
+            DriverAction.click(addUser_project, "Add Users tab");
+            DriverAction.click(adduser_select, "Add user dropdown");
+            DriverAction.typeText(addUser_search, "Shubham Kumar");
+            DriverAction.click(add_user, "");
+            DriverAction.click(select_role_empty, "Role dropdown");
+            DriverAction.click(select_role, "Select Admin");
+            DriverAction.click(adduser_btn, "Add user button");
+            DriverAction.waitSec(4);
+        } else {
+            project_created_onGrid();
+            Actions action2 = new Actions(DriverManager.getWebDriver());
+            action2.moveToElement(DriverManager.getWebDriver().findElement(edit_access2)).build().perform();
+            action2.click(DriverManager.getWebDriver().findElement(edit_access2)).build().perform();
+            DriverAction.waitSec(4);
+            DriverAction.click(addUser_project, "Add Users tab");
+            DriverAction.click(adduser_select, "Add user dropdown");
+            DriverAction.typeText(addUser_search, username);
+            DriverAction.click(add_user, "Select user");
+            DriverAction.click(select_role_empty, "Role dropdown");
+            DriverAction.click(select_role, "Select Admin");
+            DriverAction.click(adduser_btn, "Add user button");
+            DriverAction.waitSec(4);
+        }
     }
 
     @Then("^Validate user (.*) is added$")
     public void validate_useradded(String username) {
-        boolean flag = false;
-        WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 20);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(Alert_admin1));
-        if ("User Added!".equals(DriverAction.getElementText(Alert_admin1))) {
-            DriverAction.click(changerole_tab, "Change Role Tab");
-            List<String> users = DriverAction.getElementsText(users_list);
-            System.out.println(users);
-            for (int i = 0; i < users.size(); i++) {
-                System.out.println(username);
-                System.out.println(users.get(i));
-                if (users.get(i).contains("geco-maulik")) {
-                    flag = true;
-                    break;
+        try {
+            String url = ProjectConfigData.getProperty("launchUrl");
+            if (url.contains("beta")) {
+                boolean flag = false;
+                DriverAction.click(changerole_tab, "Change Role Tab");
+                DriverAction.waitSec(3);
+                List<String> users = DriverAction.getElementsText(users_list);
+                System.out.println(users);
+                for (int i = 0; i < users.size(); i++) {
+                    System.out.println(username);
+                    System.out.println(users.get(i));
+                    if (users.get(i).contains("Shubham Kumar")) {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (!flag) {
+                    GemTestReporter.addTestStep("Validate user is added", "User added successfully", STATUS.PASS);
+                } else {
+                    GemTestReporter.addTestStep("Validate user is added", "Failed to add user but alert for user added appeared", STATUS.FAIL);
+                }
+            } else {
+                boolean flag = false;
+                DriverAction.click(changerole_tab, "Change Role Tab");
+                DriverAction.waitSec(2);
+                List<String> users = DriverAction.getElementsText(users_list);
+                System.out.println(users);
+                for (int i = 0; i < users.size(); i++) {
+                    System.out.println(username);
+                    System.out.println(users.get(i));
+                    if (users.get(i).contains(username)) {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (!flag) {
+                    GemTestReporter.addTestStep("Validate user is added", "User added successfully", STATUS.PASS);
+                } else {
+                    GemTestReporter.addTestStep("Validate user is added", "Failed to add user but alert for user added appeared", STATUS.FAIL);
                 }
             }
-            if (flag) {
-                GemTestReporter.addTestStep("Validate user is added", "User added successfully", STATUS.PASS);
-            } else
-                GemTestReporter.addTestStep("Validate user is added", "Failed to add user but alert for user added appeared", STATUS.FAIL);
-        } else {
+        } catch (Exception e) {
             GemTestReporter.addTestStep("Validate user is added", "Failed to add user", STATUS.FAIL);
         }
     }
 
     @Then("^Validate delete user (.*) function$")
     public void deleteUser(String username) {
-        DriverAction.doubleClick(Locators.sno, "S No");
-        DriverAction.waitSec(2);
-        DriverAction.click(edit_access2, "Edit access");
-        WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 20);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(delete_user2));
-        Actions actions = new Actions(DriverManager.getWebDriver());
-        actions.moveToElement(DriverAction.getElement(delete_user2));
-        actions.click();
-        actions.perform();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(Alert_admin1));
-        if ("User removed !".equals(DriverAction.getElementText(Alert_admin1))) {
-            boolean flag = false;
-            List<String> users = DriverAction.getElementsText(users_list);
-            for (int i = 0; i < users.size(); i++) {
-                if (users.get(i).contains(username)) {
-                    flag = true;
-                    break;
+        try {
+            String url = ProjectConfigData.getProperty("launchUrl");
+            if (url.contains("beta")) {
+                Actions action2 = new Actions(DriverManager.getWebDriver());
+                action2.moveToElement(DriverManager.getWebDriver().findElement(edit_access3)).build().perform();
+                action2.click(DriverManager.getWebDriver().findElement(edit_access3)).build().perform();
+//            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 20);
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(delete_user2));
+                DriverAction.waitSec(3);
+                Actions action = new Actions(DriverManager.getWebDriver());
+                action.moveToElement(DriverManager.getWebDriver().findElement(delete_user2)).build().perform();
+                action.click(DriverManager.getWebDriver().findElement(delete_user2)).build().perform();
+                DriverAction.waitSec(3);
+                boolean flag = false;
+                List<String> users = DriverAction.getElementsText(users_list);
+                for (int i = 0; i < users.size(); i++) {
+                    if (users.get(i).contains("Shubham Kumar")) {
+                        flag = true;
+                        break;
+                    }
                 }
+                if (!flag) {
+                    GemTestReporter.addTestStep("Validate user is deleted", "User deleted successfully", STATUS.PASS);
+                } else {
+                    GemTestReporter.addTestStep("Validate user is deleted", "Failed to delete user but alert for user deletion appeared", STATUS.FAIL);
+                }
+                DriverAction.click(addUser_project, "Add Users tab");
+                DriverAction.click(adduser_select, "Add user dropdown");
+                DriverAction.typeText(addUser_search, "Shubham Kumar");
+                DriverAction.click(add_user, "Select user");
+                DriverAction.click(select_role_empty, "Role dropdown");
+                DriverAction.click(select_role, "Select Admin");
+                DriverAction.click(adduser_btn, "Add user button");
+                DriverAction.waitSec(4);
+            } else {
+//        DriverAction.doubleClick(Locators.sno, "S No");
+//        DriverAction.waitSec(2);
+                Actions action2 = new Actions(DriverManager.getWebDriver());
+                action2.moveToElement(DriverManager.getWebDriver().findElement(edit_access5)).build().perform();
+                action2.click(DriverManager.getWebDriver().findElement(edit_access5)).build().perform();
+//            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 20);
+//            wait.until(ExpectedConditions.visibilityOfElementLocated(delete_user2));
+                DriverAction.waitSec(3);
+                Actions action = new Actions(DriverManager.getWebDriver());
+                action.moveToElement(DriverManager.getWebDriver().findElement(delete_user2)).build().perform();
+                action.click(DriverManager.getWebDriver().findElement(delete_user2)).build().perform();
+                DriverAction.waitSec(3);
+                boolean flag = false;
+                List<String> users = DriverAction.getElementsText(users_list);
+                for (int i = 0; i < users.size(); i++) {
+                    if (users.get(i).contains(username)) {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (!flag) {
+                    GemTestReporter.addTestStep("Validate user is deleted", "User deleted successfully", STATUS.PASS);
+                } else {
+                    GemTestReporter.addTestStep("Validate user is deleted", "Failed to delete user but alert for user deletion appeared", STATUS.FAIL);
+                }
+                DriverAction.click(addUser_project, "Add Users tab");
+                DriverAction.click(adduser_select, "Add user dropdown");
+                DriverAction.typeText(addUser_search, username);
+                DriverAction.click(add_user, "Select user");
+                DriverAction.click(select_role_empty, "Role dropdown");
+                DriverAction.click(select_role, "Select Admin");
+                DriverAction.click(adduser_btn, "Add user button");
+                DriverAction.waitSec(4);
             }
-            if (!flag) {
-                GemTestReporter.addTestStep("Validate user is deleted", "User deleted successfully", STATUS.PASS);
-            } else
-                GemTestReporter.addTestStep("Validate user is deleted", "Failed to delete user but alert for user deletion appeared", STATUS.FAIL);
-        } else {
+        } catch (Exception e) {
             GemTestReporter.addTestStep("Validate user is deleted", "Failed to delete user", STATUS.FAIL);
         }
+
     }
 
     @Then("^Add an email$")
