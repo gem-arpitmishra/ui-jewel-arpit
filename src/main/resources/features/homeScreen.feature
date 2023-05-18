@@ -18,3 +18,5 @@ Feature: Home Screen
     Then Enter username as "jewelautomation"
     And Enter Password as 'dummy_test@123'
     Then Verify the Cards present on the home screen
+
+    Scenario: Validate navigation Bar collapse and expand

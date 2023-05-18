@@ -23,10 +23,9 @@ public class ForgotPassword extends GemEcoUpload {
     Logger logger = LoggerFactory.getLogger(StepDefination.class);
     WebDriverWait wait=new WebDriverWait(DriverManager.getWebDriver(),10);
 
-    @Given("You are on the login screen and move to forgot password")
+    @Given("Click on Forgot-Password")
     public void forgotScreen() {
         try {
-            DriverAction.click(Locators.login_screen, "Login screen");
             DriverAction.click(ObjForgotPassword.forgot_btn, "Forgot Password button");
         } catch (Exception e) {
             logger.info("An exception occurred!", e);

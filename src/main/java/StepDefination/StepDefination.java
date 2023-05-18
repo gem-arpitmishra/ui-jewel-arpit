@@ -42,7 +42,7 @@ public class StepDefination extends GemEcoUpload {
     public void global() {
         try {
             DriverAction.waitSec(1);
-            DriverAction.click(Locators.logIn, "Log In");
+            DriverAction.click(login_button, "Log In");
             DriverAction.waitSec(2);
             DriverAction.click(Locators.username, "Username");
             DriverAction.waitSec(1);
@@ -80,7 +80,7 @@ public class StepDefination extends GemEcoUpload {
     public void loginAsSuper() {
         try {
             DriverAction.waitSec(1);
-            DriverAction.click(Locators.logIn, "Log In");
+            DriverAction.click(login_button, "Log In");
             DriverAction.waitSec(2);
             DriverAction.click(Locators.username, "Username");
             DriverAction.waitSec(1);
@@ -104,7 +104,7 @@ public class StepDefination extends GemEcoUpload {
     public void loginAsAdmin() {
         try {
             DriverAction.waitSec(1);
-            DriverAction.click(Locators.logIn, "Log In");
+            DriverAction.click(Locators.login_button, "Log In");
             DriverAction.waitSec(2);
             DriverAction.click(Locators.username, "Username");
             DriverAction.waitSec(1);
@@ -257,7 +257,7 @@ public class StepDefination extends GemEcoUpload {
     }
 
     @Then("^click on > and < and >> and <<$")
-    public void nextPageSuper() throws Exception {
+    public void nextPageSuper() {
         try {
             DriverAction.click(nextPageSuperAdmin, ">>");
             DriverAction.waitSec(2);
@@ -274,7 +274,7 @@ public class StepDefination extends GemEcoUpload {
     }
 
     @Then("^From bottom right of the table change number of companies visible on screen$")
-    public void changeCompanyNumberSuper() throws Exception {
+    public void changeCompanyNumberSuper() {
         try {
             WebElement element = DriverManager.getWebDriver().findElement(scroll_upto);
             ((JavascriptExecutor) DriverManager.getWebDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
@@ -298,7 +298,7 @@ public class StepDefination extends GemEcoUpload {
     }
 
     @Then("^check sorting of super-admin page$")
-    public void super_adminSorting() throws Exception {
+    public void super_adminSorting() {
         DriverAction.doubleClick(sno);
         DriverAction.waitSec(1);
         String num = DriverAction.getElementText(total_superAdmin2);
@@ -314,7 +314,7 @@ public class StepDefination extends GemEcoUpload {
     }
 
     @Then("^Check select all option from dropdown$")
-    public void selectAllDropDwn() throws Exception {
+    public void selectAllDropDwn() {
         try {
             for (int i = 1; i <= 3; i++) {
                 String xPathWithVariable = "(//button[@aria-label=\"Filter\"])" + "[" + i + "]";
@@ -328,7 +328,7 @@ public class StepDefination extends GemEcoUpload {
     }
 
     @Then("^register a company$")
-    public void superCompanyRegitser() throws Exception {
+    public void superCompanyRegitser() {
         try {
             DriverAction.click(regitser_company);
             DriverAction.waitSec(2);
@@ -356,7 +356,7 @@ public class StepDefination extends GemEcoUpload {
     }
 
     @Then("^Enter a company name that already exists (.+)$")
-    public void companyAlready_Exist(String alert1) throws Exception {
+    public void companyAlready_Exist(String alert1) {
         try {
             DriverAction.click(regitser_company, "Register Company");
             DriverAction.waitSec(2);
@@ -377,7 +377,7 @@ public class StepDefination extends GemEcoUpload {
     }
 
     @Then("^Enter a domain name that already exists (.+)$")
-    public void domainAlready_Exist(String alert1) throws Exception {
+    public void domainAlready_Exist(String alert1){
         try {
             DriverAction.click(regitser_company, "Register Company");
             DriverAction.waitSec(2);
@@ -783,11 +783,10 @@ public class StepDefination extends GemEcoUpload {
 //        GemTestReporter.addTestStep("exception","Exception",STATUS.INFO);
     }
 
-
-    public void global2() throws Exception {
+    public void global2(){
         try {
             DriverAction.waitSec(1);
-            DriverAction.click(Locators.logIn, "Log In");
+            DriverAction.click(login_button, "Log In");
             DriverAction.waitSec(2);
             DriverAction.click(Locators.username, "Username");
             DriverAction.waitSec(1);
@@ -804,16 +803,7 @@ public class StepDefination extends GemEcoUpload {
         }
     }
 
-    @Given("You are on the login screen")
-    public void you_are_on_the_login_screen() {
-        try {
-            DriverAction.waitSec(2);
-            DriverAction.click(Locators.login_screen, "Login screen");
-        } catch (Exception e) {
-            logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
-        }
-    }
+
 
     @Then("Enter username as {string}")
     public void enter_username_as(String string) {
@@ -846,26 +836,6 @@ public class StepDefination extends GemEcoUpload {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
-
-    @Then("Verify Logout button is visible or not")
-    public void verify_logout_button_is_visible_or_not() {
-        try {
-            DriverAction.waitSec(2);
-            DriverAction.click(Locators.home_button, "Home Button");
-            DriverAction.waitSec(2);
-            if (DriverAction.getElement(profile).isDisplayed()) {
-                GemTestReporter.addTestStep("Status of logout button", "Logout button is  visible", STATUS.PASS, DriverAction.takeSnapShot());
-            } else {
-                GemTestReporter.addTestStep("Status of logout button", "Logout button is not visible", STATUS.PASS, DriverAction.takeSnapShot());
-
-            }
-        } catch (Exception e) {
-            logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("Status of logout button", "Logout button is not visible", STATUS.FAIL);
-        }
-    }
-
-
     @Then("Verify the text of the Home screen")
     public void verify_the_text_of_the_home_screen() {
         try {
@@ -1150,34 +1120,6 @@ public class StepDefination extends GemEcoUpload {
         }
     }
 
-    @Then("Click and verify the Logout button")
-    public void click_and_verify_the_logout_button() {
-        DriverAction.waitSec(2);
-        DriverAction.click(Locators.home_button, "Home button");
-        try {
-            DriverAction.waitSec(3);
-            Actions action2 = new Actions(DriverManager.getWebDriver());
-            action2.moveToElement(DriverManager.getWebDriver().findElement(profile)).build().perform();
-            action2.click(DriverManager.getWebDriver().findElement(profile)).build().perform();
-            DriverAction.waitSec(4);
-            GemTestReporter.addTestStep("Click on LogOut", "Successfully : Clicked on LogOut", STATUS.PASS, DriverAction.takeSnapShot());
-            String titlee = DriverAction.getCurrentURL();
-            STATUS status;
-            String str = ProjectConfigData.getProperty("launchUrl");
-            System.out.println("TITLE: " + titlee);
-            System.out.println("STR: " + str);
-            if (titlee.contains("login")) {
-                status = STATUS.PASS;
-            } else {
-                status = STATUS.FAIL;
-            }
-            GemTestReporter.addTestStep("Verifying the URL", "Expected :https://jewel.gemecosystem.com/#/login", status);
-        } catch (Exception e) {
-            logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("Error!!", "Something Wrong happened", STATUS.FAIL);
-        }
-    }
-
     @Then("Verify the content of the Home screen")
     public void verify_the_content_of_the_home_screen() {
         DriverAction.waitSec(2);
@@ -1298,38 +1240,6 @@ public class StepDefination extends GemEcoUpload {
         }
     }
 
-    @Then("Validate alert ,username and status of the window button")
-    public void validate_alert_username_and_status_of_the_window_button() {
-        try {
-            DriverAction.click(Locators.home_button, "Home Button");
-            DriverAction.waitSec(2);
-//            GemTestReporter.addTestStep("Login Success", "Successfully Logged in!!", STATUS.PASS);
-            String s = DriverAction.getElementText(Locators.login_alert);
-
-//            GemTestReporter.addTestStep("Alert Text", s, STATUS.INFO);
-            DriverAction.waitSec(5);
-            Actions action = new Actions(DriverManager.getWebDriver());
-            action.moveToElement(DriverManager.getWebDriver().findElement(three_lines_button)).build().perform();
-            action.click(DriverManager.getWebDriver().findElement(three_lines_button)).build().perform();
-            DriverAction.waitSec(4);
-            GemTestReporter.addTestStep("Click on Sidebar Collapse Option", "Successfully : Clicked on Sidebar Collapse Option", STATUS.PASS, DriverAction.takeSnapShot());
-            String y = DriverAction.getElementText(Locators.home_button);
-            if (y.equals("Home")) {
-                GemTestReporter.addTestStep("Status of the side window", "Whole text is appearing", STATUS.INFO);
-            } else {
-                GemTestReporter.addTestStep("Status of the side window", "Only icons are appearing", STATUS.INFO);
-            }
-            Actions action2 = new Actions(DriverManager.getWebDriver());
-            action2.moveToElement(DriverManager.getWebDriver().findElement(profile)).build().perform();
-            action2.click(DriverManager.getWebDriver().findElement(profile)).build().perform();
-            DriverAction.waitSec(2);
-            GemTestReporter.addTestStep("Click on LogOut", "Successfully : Clicked on LogOut", STATUS.PASS, DriverAction.takeSnapShot());
-        } catch (Exception e) {
-            logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("Something wrong Happened", "Error!!", STATUS.FAIL);
-        }
-    }
-
     @Then("Validate if there is change token button available ,if so click it")
     public void validate_if_there_is_change_token_button_available_if_so_click_it() {
         DriverAction.waitSec(2);
@@ -1353,60 +1263,6 @@ public class StepDefination extends GemEcoUpload {
             }
         } else {
             GemTestReporter.addTestStep("Error", "No such element", STATUS.FAIL);
-        }
-    }
-
-    @Then("Enter random username")
-    public void enter_random_username() {
-        try {
-            DriverAction.waitSec(2);
-            DriverAction.typeText(Locators.first_name, "Hello");
-            DriverAction.waitSec(3);
-        } catch (Exception e) {
-            logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("Error!!", "Something Wrong happened", STATUS.FAIL);
-        }
-    }
-
-    @Then("Enter all the fields and Validate the status")
-    public void enter_all_the_fields_and_validate_the_status() {
-        try {
-            DriverAction.waitSec(2);
-            DriverAction.typeText(Locators.last_name, "Jewel", "Last Name");
-            DriverAction.waitSec(2);
-            DriverAction.typeText(Locators.user_name, "test1" + System.currentTimeMillis(), "Username");
-            DriverAction.waitSec(2);
-            String s = "TESTER_" + Math.random();
-            DriverAction.typeText(Locators.email, s + "@geminisolutions.com", "Test.jewel@geminisolutions.com");
-            GemTestReporter.addTestStep("Status of username", "Clicked successfully", STATUS.INFO, DriverAction.takeSnapShot());
-            DriverAction.typeText(Locators.password, "Hellothere", "Password");
-            DriverAction.waitSec(2);
-            DriverAction.typeText(Locators.confirm_pass, "Hellothere", "Confirm Password");
-            DriverAction.waitSec(2);
-            DriverAction.typeText(Locators.company_name, "Gemini solutions", "Company Name");
-            DriverAction.click(Locators.register_button, "Register button");
-            DriverAction.waitSec(6);
-//            String text = DriverAction.getElement(Locators.register_alert).getText();
-//            System.out.println("TEXXXXT: " + text);
-//            STATUS status;
-//            if (text.equals("User Registered.")) {
-//                status = STATUS.PASS;
-//            } else {
-//                status = STATUS.FAIL;
-//            }
-//            GemTestReporter.addTestStep("User Registered Status", "Expected :User Registered Successfully", status, DriverAction.takeSnapShot());
-//            String tt = DriverManager.getWebDriver().getCurrentUrl();
-//            System.out.println("TT: " + tt);
-//            STATUS status1;
-//            if (tt.contains("login")) {
-//                status1 = STATUS.PASS;
-//            } else {
-//                status1 = STATUS.FAIL;
-//            }
-//            GemTestReporter.addTestStep("Login screen status", "Expected: URL is matching ", status1, DriverAction.takeSnapShot());
-        } catch (Exception e) {
-            logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("Error!!", "Something Wrong happened", STATUS.FAIL);
         }
     }
 
@@ -1611,45 +1467,7 @@ public class StepDefination extends GemEcoUpload {
             GemTestReporter.addTestStep("Error!!", "Something Wrong happened", STATUS.FAIL);
         }
     }
-
-    //////////////////////////////////////////////////////////
-    @Given("^user clicks on logIn button and closes it$")
-    public void logIn() {
-        try {
-            DriverAction.waitSec(2);
-            DriverAction.click(Locators.logIn, "Login button");
-            DriverAction.waitSec(2);
-            DriverAction.click(Locators.close, "Close button");
-            DriverAction.waitSec(2);
-        } catch (Exception e) {
-            logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("Error!!", "Something Wrong happened", STATUS.FAIL);
-        }
-    }
-
-    @Then("^user again clicks on logIn button and enters (.+) and (.+)")
-    public void loginPage(String Username, String Password) {
-        try {
-            DriverAction.waitSec(1);
-            DriverAction.click(Locators.logIn, "Login");
-            DriverAction.waitSec(2);
-            DriverAction.click(Locators.username, "Username");
-            DriverAction.waitSec(1);
-            DriverAction.typeText(Locators.username, Username);
-            DriverAction.waitSec(1);
-            DriverAction.click(Locators.passwordm, "Password");
-            DriverAction.waitSec(1);
-            DriverAction.typeText(Locators.passwordm, Password);
-            DriverAction.waitSec(1);
-            DriverAction.click(Locators.eye, "Eye button");
-            DriverAction.waitSec(1);
-            DriverAction.click(Locators.eyeclose, "Eye button close");
-            DriverAction.waitSec(1);
-        } catch (Exception e) {
-            logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("Error!!", "Something Wrong happened", STATUS.FAIL);
-        }
-    }
+    ////////////////////////////////////////////////////////
 
     @Then("^user navigates back after loggin in$")
     public void logout() {
@@ -2195,7 +2013,7 @@ public class StepDefination extends GemEcoUpload {
     public void loginn(String username, String password) {
         try {
             DriverAction.waitSec(1);
-            DriverAction.click(Locators.logIn, "Login");
+            DriverAction.click(Locators.login_button, "Login");
             DriverAction.waitSec(2);
             DriverAction.click(Locators.username, "Username");
             DriverAction.waitSec(1);
@@ -2329,7 +2147,7 @@ public class StepDefination extends GemEcoUpload {
     public void loginnn(String usernames, String passwords) {
         try {
             DriverAction.waitSec(1);
-            DriverAction.click(Locators.logIn, "Log In");
+            DriverAction.click(Locators.login_button, "Log In");
             DriverAction.waitSec(2);
             DriverAction.click(Locators.username, "Username");
             DriverAction.waitSec(1);
@@ -2777,7 +2595,7 @@ public class StepDefination extends GemEcoUpload {
     public void login_again(String u, String p) throws Exception {
         try {
             DriverAction.waitSec(1);
-            DriverAction.click(Locators.logIn);
+            DriverAction.click(Locators.login_button);
             DriverAction.waitSec(2);
             DriverAction.click(Locators.username);
             DriverAction.waitSec(1);
@@ -2902,7 +2720,7 @@ public class StepDefination extends GemEcoUpload {
             String url = ProjectConfigData.getProperty("launchUrl");
             if (url.contains("beta")) {
                 DriverAction.waitSec(1);
-                DriverAction.click(Locators.logIn, "Log In");
+                DriverAction.click(Locators.login_button, "Log In");
                 DriverAction.waitSec(2);
                 DriverAction.click(Locators.username, "Username");
                 DriverAction.waitSec(1);
@@ -2940,7 +2758,7 @@ public class StepDefination extends GemEcoUpload {
                 DriverAction.waitSec(25);
             } else {
                 DriverAction.waitSec(1);
-                DriverAction.click(Locators.logIn, "Log In");
+                DriverAction.click(Locators.login_button, "Log In");
                 DriverAction.waitSec(2);
                 DriverAction.click(Locators.username, "Username");
                 DriverAction.waitSec(1);
@@ -3189,7 +3007,7 @@ public class StepDefination extends GemEcoUpload {
     public void ss_feature(String us, String pa) throws Exception {
         try {
             DriverAction.waitSec(1);
-            DriverAction.click(Locators.logIn, "Log In");
+            DriverAction.click(Locators.login_button, "Log In");
             DriverAction.waitSec(2);
             DriverAction.click(Locators.username, "Username");
             DriverAction.waitSec(1);
@@ -6398,7 +6216,7 @@ public class StepDefination extends GemEcoUpload {
 
     @Then("user clicks login button and validates the url")
     public void login_url() {
-        DriverAction.click(Locators.logIn, "Login button");
+        DriverAction.click(Locators.login_button, "Login button");
         if (GemJarGlobalVar.environment.equals("prod")) {
             if (DriverAction.getCurrentURL().equals("https://jewel.gemecosystem.com/#/login")) {
                 GemTestReporter.addTestStep("Validate login url", "Redirected to login page", STATUS.PASS, DriverAction.takeSnapShot());
@@ -6435,48 +6253,6 @@ public class StepDefination extends GemEcoUpload {
             }
         } else {
             GemTestReporter.addTestStep("Validate login url", "Unknown Environment", STATUS.FAIL, DriverAction.takeSnapShot());
-        }
-    }
-
-    @Then("Click not a user button and validate navigation to signup screen")
-    public void notaUser_btn() {
-        try {
-            DriverAction.click(notauser_btn, "Not a User button");
-            if (DriverAction.getCurrentURL().contains("signup")) {
-                GemTestReporter.addTestStep("Validate Not a User button redirect", "Redirected to Signup page", STATUS.PASS, DriverAction.takeSnapShot());
-            } else {
-                GemTestReporter.addTestStep("Validate Not a User button redirect", "Failed to redirect to Signup page", STATUS.FAIL, DriverAction.takeSnapShot());
-            }
-        } catch (Exception e) {
-            logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED: " + e, STATUS.FAIL, DriverAction.takeSnapShot());
-        }
-    }
-
-    @Then("Enter incorrect password")
-    public void enter_incorrectPassword() {
-        try {
-            DriverAction.typeText(Locators.password, "arpit1234" + Math.random());
-            DriverAction.click(Locators.login_button, "Login Button");
-        } catch (Exception e) {
-            logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED: " + e, STATUS.FAIL, DriverAction.takeSnapShot());
-        }
-    }
-
-    @Then("Validate login is unsuccessful")
-    public void login_unsuccessful() {
-        try {
-            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 20);
-            wait.until(ExpectedConditions.presenceOfElementLocated(Alert_admin1));
-            if (!DriverAction.getElementText(Alert_admin1).equals("Login Successfull !")) {
-                GemTestReporter.addTestStep("Validate if login fails", "Failed to login", STATUS.PASS, DriverAction.takeSnapShot());
-            } else {
-                GemTestReporter.addTestStep("Validate if login fails", "Login successful", STATUS.FAIL, DriverAction.takeSnapShot());
-            }
-        } catch (Exception e) {
-            logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED: " + e, STATUS.FAIL, DriverAction.takeSnapShot());
         }
     }
 }
