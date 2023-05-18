@@ -32,18 +32,6 @@ public class Login_Logout {
         }
     }
 
-    @When("Login to Jewel")
-    public void login() {
-        try {
-            DriverAction.typeText(Locators.user_name, Script_PreConfig.username, "Username: ");
-            DriverAction.typeText(Locators.password, Script_PreConfig.password, "Password: ");
-            DriverAction.click(Locators.login_button, "Login Button");
-        } catch (Exception e) {
-            logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED " + e, STATUS.FAIL, DriverAction.takeSnapShot());
-        }
-    }
-
     @Then("Verify Logout button visibility")
     public void logout_visibility() {
         try {
@@ -97,7 +85,8 @@ public class Login_Logout {
         } catch (Exception e) {
             logger.info("An exception occurred!", e);
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED: " + e, STATUS.FAIL, DriverAction.takeSnapShot());
-        }}
+        }
+    }
 
     @Then("Click not a user button and validate navigation to signup screen")
     public void notaUser_btn() {

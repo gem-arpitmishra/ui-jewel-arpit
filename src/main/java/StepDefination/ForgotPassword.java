@@ -76,7 +76,7 @@ public class ForgotPassword extends GemEcoUpload {
     @When("^User fills a \"(.*)\"$")
     public void username(String username) {
         try {
-            DriverAction.click(ObjForgotPassword.username, "Username");
+                DriverAction.click(ObjForgotPassword.username, "Username");
             DriverAction.typeText(ObjForgotPassword.username, username, "Username");
         } catch (Exception e) {
             logger.info("An exception occurred!", e);

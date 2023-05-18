@@ -13,6 +13,7 @@ Feature: ForgotPassword
     Then Verify reset password fails
 
   Scenario: Password and Password Confirmation equality check
+    When Enter username
     When User fills a "jewelautomation"
     And Enter a "password@8723" and "conirmation-password@8723"
     Then Verify reset password fails
