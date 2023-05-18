@@ -26,7 +26,7 @@ Feature: Admin Screen
     Then Validate the alert user already have access for "<projectName>"
     Examples:
       | projectName   |
-      | GEMECO-API-JV |
+      | PROJECT-DEMO2 |
 
   @smoke
   Scenario: Validate create project functionality (when project is new)
@@ -55,17 +55,19 @@ Feature: Admin Screen
     Then validate when user clicks on no
     Then validate when user clicks on yes
 
+  @testing
   Scenario Outline: Validate Add user functionality
     Given click on admin
     Then User <username> is added to project
     Then Validate user <username> is added
     Examples:
-      | username    |
-      | geco-maulik |
+      | username     |
+      | aakash gupta |
 
+  @testing
   Scenario Outline: Validate delete option in project user access
     Given click on admin
     Then Validate delete user <username> function
     Examples:
-      | username    |
-      | geco-maulik |
+      | username     |
+      | aakash gupta |
