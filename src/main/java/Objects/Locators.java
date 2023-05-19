@@ -120,6 +120,7 @@ public class Locators {
     public static By firstname = By.xpath("//*[@placeholder='Firstname']");
     public static By lastname = By.xpath("//*[@placeholder='Lastname']");
     public static By username1 = By.xpath("//*[@placeholder='Username']");
+    public static By login_warning=By.xpath("//div[@id='warningCredentials']");
     public static By signup_email = By.xpath("//*[@placeholder='Email']");
     public static By span = By.xpath("(//div[@class=\"text-center\"]/span)[1]");
     public static By new_compName = By.xpath("(//tr/td)[2]");

@@ -17,6 +17,6 @@ Feature: Log In
     Then User fills incorrect username
     And Enter random password
     Then Validate login is unsuccessful
-    Then Enter username as "jewelOTP"
+    Then Enter credentials for login
     And Enter random password
     Then Validate login is unsuccessful

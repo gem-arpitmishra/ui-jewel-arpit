@@ -1,5 +1,5 @@
 Feature: ForgotPassword
-  
+
   Background: Navigate to Forgot-Password-Screen
     Given Navigate to login-screen
     Then Click on Forgot-Password

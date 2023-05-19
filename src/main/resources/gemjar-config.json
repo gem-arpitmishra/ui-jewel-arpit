@@ -8,7 +8,7 @@
   "feature": "src/main/resources/features/admin.feature",
   "tags": "@testing",
   "scenario": "",
-  "email_report": "y",
+  "email_report": "noo",
   "email_to": [
     "maulick.bharadwaj@geminisolutions.com",
     "anshul.gandotra@geminisolutions.com",
