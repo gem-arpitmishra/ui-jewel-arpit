@@ -6,7 +6,7 @@ Feature: Bridge Token
     And Enter Password as 'dummy_test@123'
     Then Verify if the Bridge token card is visible
 
-  @smoke
+  @smoke @test
   Scenario: Validate the content of Bridge Token Card
     Given You are on the login screen
     Then Enter username as "jewelautomation"
