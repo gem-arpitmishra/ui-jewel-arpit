@@ -470,5 +470,7 @@ public class Locators {
     public static By password_check = By.xpath("//h6");
     public static By password_suggestion_tooltip = By.xpath("//div[@class='p-tooltip-text']");
     public static By password_suggestion_icon = By.xpath("(//*[local-name()='svg' and @data-icon='circle-info']/*[local-name()='path'])");
+    public static By testLab_button=By.xpath("//div[text()='TestPad']");
+    public static By Alab_button=By.xpath("//div[text()='ALAB']");
 }
 
