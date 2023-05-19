@@ -231,10 +231,13 @@ public class Locators {
     public static By envrmnt_fltrr = By.xpath("(//*[@class=\"p-column-filter-menu-button p-link\"])[3]");
     public static By enviromnt_filter_prod = By.xpath("(//*[@class=\"p-column-filter-menu-button p-link\"])[3]");
     public static By betaa = By.xpath("(//*[@class=\"p-checkbox-box\"])[3]");
+    public static By betaa_2 = By.xpath("(//*[@class=\"p-checkbox-box\"])[2]");
     public static By betaa_txtingg = By.xpath("(//*[@class=\"p-checkbox-box\"])[2]");
     public static By beta_txt = By.xpath("//span[@class=\"image-text\"]/span[text()=\"Prod\"]");
+    public static By beta_txt2 = By.xpath("//span[@class=\"image-text\"]/span[text()=\"Beta\"]");
     public static By prod_txt = By.xpath("//span[@class=\"image-text\"]/span[text()=\"Prod\"]");
     public static By betas = By.xpath("(//*[text()=\"Prod\"])");
+    public static By betas2 = By.xpath("(//*[text()=\"Beta\"])");
     public static By prods = By.xpath("(//*[text()=\"Prod\"])");
     public static By betaa2 = By.xpath("(//*[@class=\"p-checkbox-icon p-c pi pi-check\"])");
     public static By shared_reportt = By.xpath("//*[text()=\"Shared Report\"]");
@@ -280,6 +283,8 @@ public class Locators {
     public static By textAddName = By.xpath("//input[@role=\"textbox\"]");
 
     public static By edit_pencil = By.xpath("(//*[local-name()='svg' and @data-icon=\"pencil\"]/*[local-name()='path'])[5]");
+    public static By edit_pencil2 = By.xpath("(//*[local-name()='svg' and @data-icon=\"pencil\"]/*[local-name()='path'])[2]");
+
     public static By unlink = By.xpath("(//*[local-name()='svg' and @data-icon=\"ban\"]/*[local-name()='path'])");
     public static By pencil_opt = By.xpath("(//*[local-name()='svg' and @data-icon=\"pen-to-square\"]/*[local-name()='path'])[9]");
     public static By desciption = By.xpath("//textarea");

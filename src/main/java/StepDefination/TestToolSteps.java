@@ -45,7 +45,7 @@ public class TestToolSteps {
             String password = credentials.get(0).get("password");
             byte[] decodingString = Base64.decodeBase64(password);
             String passwordDecoded = new String(decodingString);
-            DriverAction.click(Locators.login_button, "Log In");
+            DriverAction.click(Locators.login_btn, "Log In");
             DriverAction.typeText(Locators.username, username, "Username");
             DriverAction.typeText(Locators.password, "Enter Password", "Password entered successfully",
                     passwordDecoded);
