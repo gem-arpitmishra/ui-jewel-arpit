@@ -26,7 +26,7 @@ Feature: ForgotPassword
     Then Verify reset password selection success
     Then Validate OTP recognition
 
-  @smoke
+
   Scenario: OTP Validation
     When User fills a "jewelOTP"
     And Enter a "dummy_test@123" and "dummy_test@123"
