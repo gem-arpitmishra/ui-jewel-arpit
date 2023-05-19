@@ -99,12 +99,21 @@ public class StepDefination extends GemEcoUpload {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
-
+    @Given("You are on the login screen")
+    public void you_are_on_the_login_screen() {
+        try {
+            DriverAction.waitSec(2);
+            DriverAction.click(login_btn, "Login screen");
+        } catch (Exception e) {
+            logger.info("An exception occurred!", e);
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
+        }
+    }
     @Given("^login as admin$")
     public void loginAsAdmin() {
         try {
             DriverAction.waitSec(1);
-            DriverAction.click(Locators.login_button, "Log In");
+            DriverAction.click(Locators.login_btn, "Log In");
             DriverAction.waitSec(2);
             DriverAction.click(Locators.username, "Username");
             DriverAction.waitSec(1);
