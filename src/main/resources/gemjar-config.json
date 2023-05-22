@@ -5,8 +5,8 @@
   "jewel_user": "geco-maulick",
   "jewel_bridge_token": "f9cae95b-cccf-404c-aded-895e2d49a5d41684151414484",
   "enter_point": "https://apis.gemecosystem.com/enter-point",
-  "feature": "src/main/resources/features/admin.feature",
-  "tags": "@testing",
+  "feature": "src/main/resources/features",
+  "tags": "@smoke",
   "scenario": "",
   "email_report": "y",
   "email_to": [

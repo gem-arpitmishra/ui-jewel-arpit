@@ -1,5 +1,5 @@
 Feature: ForgotPassword
-  
+
   Background: Navigate to Forgot-Password-Screen
     Given Navigate to login-screen
     Then Click on Forgot-Password
@@ -13,6 +13,7 @@ Feature: ForgotPassword
     Then Verify reset password fails
 
   Scenario: Password and Password Confirmation equality check
+    When Enter username
     When User fills a "jewelautomation"
     And Enter a "password@8723" and "conirmation-password@8723"
     Then Verify reset password fails
@@ -25,7 +26,7 @@ Feature: ForgotPassword
     Then Verify reset password selection success
     Then Validate OTP recognition
 
-  @smoke
+
   Scenario: OTP Validation
     When User fills a "jewelOTP"
     And Enter a "dummy_test@123" and "dummy_test@123"

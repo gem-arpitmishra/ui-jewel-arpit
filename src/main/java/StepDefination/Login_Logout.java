@@ -15,8 +15,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static Objects.Locators.Alert_admin1;
-import static Objects.Locators.notauser_btn;
 
 
 public class Login_Logout {
@@ -26,18 +24,6 @@ public class Login_Logout {
     public void navigate_login() {
         try {
             DriverAction.click(Locators.login_btn, "Login screen");
-        } catch (Exception e) {
-            logger.info("An exception occurred!", e);
-            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED " + e, STATUS.FAIL, DriverAction.takeSnapShot());
-        }
-    }
-
-    @When("Login to Jewel")
-    public void login() {
-        try {
-            DriverAction.typeText(Locators.user_name, Script_PreConfig.username, "Username: ");
-            DriverAction.typeText(Locators.password, Script_PreConfig.password, "Password: ");
-            DriverAction.click(Locators.login_button, "Login Button");
         } catch (Exception e) {
             logger.info("An exception occurred!", e);
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED " + e, STATUS.FAIL, DriverAction.takeSnapShot());
@@ -97,12 +83,13 @@ public class Login_Logout {
         } catch (Exception e) {
             logger.info("An exception occurred!", e);
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED: " + e, STATUS.FAIL, DriverAction.takeSnapShot());
-        }}
+        }
+    }
 
     @Then("Click not a user button and validate navigation to signup screen")
     public void notaUser_btn() {
         try {
-            DriverAction.click(notauser_btn, "Not a User button");
+            DriverAction.click(Locators.notauser_btn, "Not a User button");
             if (DriverAction.getCurrentURL().contains("signup")) {
                 GemTestReporter.addTestStep("Validate Not a User button redirect", "Redirected to Signup page", STATUS.PASS, DriverAction.takeSnapShot());
             } else {
@@ -129,12 +116,22 @@ public class Login_Logout {
     public void login_unsuccessful() {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), 20);
-            wait.until(ExpectedConditions.presenceOfElementLocated(Alert_admin1));
-            if (!DriverAction.getElementText(Alert_admin1).equals("Login Successfull !")) {
-                GemTestReporter.addTestStep("Validate if login fails", "Failed to login", STATUS.PASS, DriverAction.takeSnapShot());
+            wait.until(ExpectedConditions.presenceOfElementLocated(Locators.Alert_text));
+            if (!DriverAction.getElementText(Locators.Alert_text).equals("Login Successfull !")) {
+                if(DriverAction.getElementText(Locators.user_name).equals(Script_PreConfig.username)){
+                    if(DriverAction.getElementText(Locators.login_warning).equals("Invalid Credentials")){
+                        GemTestReporter.addTestStep("Validate Invalid credentials warning", "Warning displayed", STATUS.PASS, DriverAction.takeSnapShot());
+                    }else{
+                        GemTestReporter.addTestStep("Validate Invalid credentials warning", "Failed to find warning", STATUS.FAIL, DriverAction.takeSnapShot());
+                    }
+                }else {
+                    GemTestReporter.addTestStep("Validate if login fails", "Failed to login", STATUS.PASS, DriverAction.takeSnapShot());
+                }
             } else {
                 GemTestReporter.addTestStep("Validate if login fails", "Login successful", STATUS.FAIL, DriverAction.takeSnapShot());
             }
+
+            DriverAction.waitUntilElementDisappear(Locators.Alert_text,10);
         } catch (Exception e) {
             logger.info("An exception occurred!", e);
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED: " + e, STATUS.FAIL, DriverAction.takeSnapShot());

@@ -12,11 +12,11 @@ Feature: Log In
   Scenario: Validate not a user button
     Then Click not a user button and validate navigation to signup screen
 
-    @smoke
+  @smoke  @test
   Scenario: Login to Jewel (Negative)
     Then User fills incorrect username
     And Enter random password
     Then Validate login is unsuccessful
-    Then Enter username as "jewelOTP"
+    Then Enter credentials for login
     And Enter random password
     Then Validate login is unsuccessful

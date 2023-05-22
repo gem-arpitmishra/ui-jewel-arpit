@@ -6,6 +6,7 @@ import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.ui.utils.DriverAction;
 import com.gemini.generic.ui.utils.DriverManager;
+import com.gemini.generic.utils.GemJarGlobalVar;
 import com.gemini.generic.utils.ProjectConfigData;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
@@ -45,7 +46,7 @@ public class TestToolSteps {
             String password = credentials.get(0).get("password");
             byte[] decodingString = Base64.decodeBase64(password);
             String passwordDecoded = new String(decodingString);
-            DriverAction.click(Locators.login_button, "Log In");
+            DriverAction.click(Locators.login_btn, "Log In");
             DriverAction.typeText(Locators.username, username, "Username");
             DriverAction.typeText(Locators.password, "Enter Password", "Password entered successfully",
                     passwordDecoded);
@@ -60,10 +61,18 @@ public class TestToolSteps {
     @When("Navigate to {string} Section")
     public void navigateToSection(String section) {
         try {
-            if (section.equalsIgnoreCase("TestTool"))
-                DriverAction.click(TestToolLocators.testTool, "Test tool");
-            if (section.equalsIgnoreCase("Admin"))
-                DriverAction.click(TestToolLocators.admin, "Admin");
+            if(GemJarGlobalVar.environment.equals("prod")) {
+                if (section.equalsIgnoreCase("TestTool"))
+                    DriverAction.click(TestToolLocators.testTool, "Test tool");
+                if (section.equalsIgnoreCase("Admin"))
+                    DriverAction.click(TestToolLocators.admin, "Admin");
+            }
+            else if (GemJarGlobalVar.environment.equals("beta")) {
+                if (section.equalsIgnoreCase("TestTool")) {
+                    DriverAction.click(Locators.testLab_button, "Test Lab button");
+                    DriverAction.click(Locators.Alab_button, "Test tool");
+                }
+            }
         } catch (Exception e) {
             logger.info("Exception occurred", e);
             GemTestReporter.addTestStep("Error!!", "Fail to navigate to " + section +
