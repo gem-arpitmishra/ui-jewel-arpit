@@ -40,8 +40,7 @@ public class Login_Logout {
             } else {
                 GemTestReporter.addTestStep("verify logout button visibility", "Logout button not found", STATUS.FAIL, DriverAction.takeSnapShot());
             }
-        } catch (Exception e) {DriverAction.waitUntilElementAppear(Locators.homepage_username,10);
-            DriverAction.hoverOver(Locators.homepage_username);
+        } catch (Exception e) {
             logger.info("An exception occurred!", e);
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED " + e, STATUS.FAIL, DriverAction.takeSnapShot());
         }
