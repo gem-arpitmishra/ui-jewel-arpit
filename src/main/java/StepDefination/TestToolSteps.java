@@ -1,7 +1,7 @@
 package StepDefination;
 
 import Objects.Locators;
-import Objects.TestToolLocators;
+import Objects.ObjTestTool;
 import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
 import com.gemini.generic.ui.utils.DriverAction;
@@ -26,7 +26,6 @@ import java.time.Duration;
 import java.util.*;
 
 import static Objects.Locators.suite;
-import static Objects.Locators.testcaseUpdated;
 
 public class TestToolSteps {
     Logger logger = LoggerFactory.getLogger(StepDefination.class);
@@ -63,9 +62,9 @@ public class TestToolSteps {
         try {
             if(GemJarGlobalVar.environment.equals("prod")) {
                 if (section.equalsIgnoreCase("TestTool"))
-                    DriverAction.click(TestToolLocators.testTool, "Test tool");
+                    DriverAction.click(ObjTestTool.testTool, "Test tool");
                 if (section.equalsIgnoreCase("Admin"))
-                    DriverAction.click(TestToolLocators.admin, "Admin");
+                    DriverAction.click(ObjTestTool.admin, "Admin");
             }
             else if (GemJarGlobalVar.environment.equals("beta")) {
                 if (section.equalsIgnoreCase("TestTool")) {
@@ -84,7 +83,7 @@ public class TestToolSteps {
     public void verifyUserIsNavigatedToTestToolSuitePage() {
         try {
             DriverAction.waitSec(2);
-            if (DriverAction.getElement(TestToolLocators.suite).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.suite).isDisplayed()) {
                 GemTestReporter.addTestStep("Suite Pill", "Suite pill is displayed",
                         STATUS.PASS, DriverAction.takeSnapShot());
             } else {
@@ -102,22 +101,22 @@ public class TestToolSteps {
     @And("Click on {string} pagination button")
     public void clickOnPaginationButton(String page) {
         try {
-            if (DriverAction.getElement(TestToolLocators.suiteFirstRowData).isDisplayed()) {
-                tempData = DriverAction.getElementText(TestToolLocators.nextTestToolPageBtn);
+            if (DriverAction.getElement(ObjTestTool.suiteFirstRowData).isDisplayed()) {
+                tempData = DriverAction.getElementText(ObjTestTool.nextTestToolPageBtn);
             } else {
                 GemTestReporter.addTestStep("Suite Table", "Suite Table not displayed",
                         STATUS.FAIL, DriverAction.takeSnapShot());
             }
             if (page.equalsIgnoreCase("NEXT")) {
-                if (DriverAction.getElement(TestToolLocators.nextTestToolPageBtn).isDisplayed()) {
-                    DriverAction.click(TestToolLocators.nextTestToolPageBtn, "Next");
+                if (DriverAction.getElement(ObjTestTool.nextTestToolPageBtn).isDisplayed()) {
+                    DriverAction.click(ObjTestTool.nextTestToolPageBtn, "Next");
                 } else {
                     GemTestReporter.addTestStep("NEXT button", "Fail to click on " + page + " button",
                             STATUS.FAIL, DriverAction.takeSnapShot());
                 }
             } else if (page.equalsIgnoreCase("PREVIOUS")) {
-                if (DriverAction.getElement(TestToolLocators.previousTestToolPageBtn).isDisplayed()) {
-                    DriverAction.click(TestToolLocators.previousTestToolPageBtn, "Previous");
+                if (DriverAction.getElement(ObjTestTool.previousTestToolPageBtn).isDisplayed()) {
+                    DriverAction.click(ObjTestTool.previousTestToolPageBtn, "Previous");
                 } else {
                     GemTestReporter.addTestStep("PREVIOUS button", "Fail to click on " + page + " button",
                             STATUS.FAIL, DriverAction.takeSnapShot());
@@ -134,8 +133,8 @@ public class TestToolSteps {
     public void verifyThePageDisplayed(String page) {
         try {
             DriverAction.waitSec(2);
-            if (DriverAction.getElement(TestToolLocators.suiteFirstRowData).isDisplayed()) {
-                if (DriverAction.getElementText(TestToolLocators.nextTestToolPageBtn).equals(tempData)) {
+            if (DriverAction.getElement(ObjTestTool.suiteFirstRowData).isDisplayed()) {
+                if (DriverAction.getElementText(ObjTestTool.nextTestToolPageBtn).equals(tempData)) {
                     GemTestReporter.addTestStep("Verify " + page + " Page", "Successfully navigated to "
                             + page, STATUS.PASS, DriverAction.takeSnapShot());
                 } else {
@@ -156,14 +155,14 @@ public class TestToolSteps {
     @And("Select display count {string} from filter")
     public void selectDisplayCountFromFilter(String count) {
         try {
-            if (DriverAction.getElement(TestToolLocators.suiteCountFilter).isDisplayed()) {
-                DriverAction.click(TestToolLocators.suiteCountFilter, "Suite Filter");
+            if (DriverAction.getElement(ObjTestTool.suiteCountFilter).isDisplayed()) {
+                DriverAction.click(ObjTestTool.suiteCountFilter, "Suite Filter");
             } else {
                 GemTestReporter.addTestStep("Suite Filter", "Fail to click on suite filter",
                         STATUS.FAIL, DriverAction.takeSnapShot());
             }
 
-            List<WebElement> options = DriverAction.getElements(TestToolLocators.suiteCountFilterOptions);
+            List<WebElement> options = DriverAction.getElements(ObjTestTool.suiteCountFilterOptions);
             for (WebElement option : options) {
                 if (option.getText().equals(count)) {
                     tempData = count;
@@ -182,8 +181,8 @@ public class TestToolSteps {
     public void verifyTheNumberOfSuitesDisplayedShouldBeLessThanOrEqualToSelectedCount() {
         try {
             DriverAction.waitSec(2);
-            if (DriverAction.getElement(TestToolLocators.suiteFirstRowData).isDisplayed()) {
-                int rows = DriverAction.getElements(TestToolLocators.suiteTableRows).size();
+            if (DriverAction.getElement(ObjTestTool.suiteFirstRowData).isDisplayed()) {
+                int rows = DriverAction.getElements(ObjTestTool.suiteTableRows).size();
                 if (Integer.parseInt(tempData) <= rows - 1) {
                     GemTestReporter.addTestStep("Table Suite Count", "Successfully count " +
                                     "matched. Expected - " + tempData + " Actual - " + (rows - 1), STATUS.PASS,
@@ -209,8 +208,8 @@ public class TestToolSteps {
     public void clickOnHeaderToSortInSortingOrder(String header, String order) {
         try {
             int i = 0;
-            if (DriverAction.getElement(TestToolLocators.suiteHeaderName).isDisplayed()) {
-                List<WebElement> headers = DriverAction.getElements(TestToolLocators.suiteHeaderName);
+            if (DriverAction.getElement(ObjTestTool.suiteHeaderName).isDisplayed()) {
+                List<WebElement> headers = DriverAction.getElements(ObjTestTool.suiteHeaderName);
                 for (WebElement headerElement : headers) {
                     if (headerElement.getText().equals(header)) {
                         tempData = i + "";
@@ -239,9 +238,9 @@ public class TestToolSteps {
     public void verifySuiteColumnShouldBeInSortedOrder(String order) {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(30));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.suiteHeaderSort));
-            if (DriverAction.getElement(TestToolLocators.suiteHeaderSort).isDisplayed()) {
-                List<WebElement> headers = DriverAction.getElements(TestToolLocators.suiteHeaderSort);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.suiteHeaderSort));
+            if (DriverAction.getElement(ObjTestTool.suiteHeaderSort).isDisplayed()) {
+                List<WebElement> headers = DriverAction.getElements(ObjTestTool.suiteHeaderSort);
                 String actualValue = headers.get(Integer.parseInt(tempData)).getAttribute("aria-sort");
                 if (order.equalsIgnoreCase(actualValue)) {
                     GemTestReporter.addTestStep("Verifying Sorting", "Column sorted " +
@@ -267,8 +266,8 @@ public class TestToolSteps {
     public void verifySortingHasBeenShiftedToFrom(String header2, String header1) {
         try {
             int oldHeaderIndex = 0;
-            if (DriverAction.getElement(TestToolLocators.suiteHeaderSort).isDisplayed()) {
-                List<WebElement> headersName = DriverAction.getElements(TestToolLocators.suiteHeaderName);
+            if (DriverAction.getElement(ObjTestTool.suiteHeaderSort).isDisplayed()) {
+                List<WebElement> headersName = DriverAction.getElements(ObjTestTool.suiteHeaderName);
                 for (int i = 0; i < headersName.size(); i++) {
                     if (headersName.get(i).getText().equalsIgnoreCase(header1)) {
                         oldHeaderIndex = i;
@@ -276,7 +275,7 @@ public class TestToolSteps {
                     }
                 }
 
-                List<WebElement> headers = DriverAction.getElements(TestToolLocators.suiteHeaderSort);
+                List<WebElement> headers = DriverAction.getElements(ObjTestTool.suiteHeaderSort);
                 String oldHeaderOrder = headers.get(oldHeaderIndex).getAttribute("aria-sort");
                 String newHeaderOrder = headers.get(Integer.parseInt(tempData)).getAttribute("aria-sort");
                 if (oldHeaderOrder.equalsIgnoreCase("none") && !newHeaderOrder.equalsIgnoreCase("none")) {
@@ -301,18 +300,18 @@ public class TestToolSteps {
     @And("Verify the displayed suite count")
     public void verifyTheDisplayedSuiteCount() {
         try {
-            if (DriverAction.getElement(TestToolLocators.suiteHeaderSort).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.suiteHeaderSort).isDisplayed()) {
                 int filterValue =
-                        Integer.parseInt(DriverAction.getElementText(TestToolLocators.suiteFilterCount));
-                String expectedCount = DriverAction.getElementText(TestToolLocators.suiteCounts);
+                        Integer.parseInt(DriverAction.getElementText(ObjTestTool.suiteFilterCount));
+                String expectedCount = DriverAction.getElementText(ObjTestTool.suiteCounts);
                 int actualCount = 0;
 
-                DriverAction.click(TestToolLocators.LastTestToolPageBtn, "Last Page");
+                DriverAction.click(ObjTestTool.LastTestToolPageBtn, "Last Page");
                 DriverAction.waitSec(1);
-                List<String> pageNumbers = DriverAction.getElementsText(TestToolLocators.paginationActiveButtons);
+                List<String> pageNumbers = DriverAction.getElementsText(ObjTestTool.paginationActiveButtons);
                 int lastPageNumber = Integer.parseInt(pageNumbers.get(pageNumbers.size() - 1));
 
-                int lastPageSuiteCounts = DriverAction.getElements(TestToolLocators.suiteTableRows).size() - 1;
+                int lastPageSuiteCounts = DriverAction.getElements(ObjTestTool.suiteTableRows).size() - 1;
 
                 actualCount = filterValue * (lastPageNumber - 1) + lastPageSuiteCounts;
 
@@ -340,12 +339,12 @@ public class TestToolSteps {
     public void clickOnFilterForHeader(String header) {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(40));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.suiteHeaderFilter(header)));
-            if (DriverAction.getElement(TestToolLocators.suiteHeaderSort).isDisplayed()) {
-                List<WebElement> headers = DriverAction.getElements(TestToolLocators.suiteHeaderName);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.suiteHeaderFilter(header)));
+            if (DriverAction.getElement(ObjTestTool.suiteHeaderSort).isDisplayed()) {
+                List<WebElement> headers = DriverAction.getElements(ObjTestTool.suiteHeaderName);
                 for (WebElement headerElement : headers) {
                     if (headerElement.getText().equals(header)) {
-                        DriverAction.click(TestToolLocators.suiteHeaderFilter(header), header + "Header");
+                        DriverAction.click(ObjTestTool.suiteHeaderFilter(header), header + "Header");
                         break;
                     }
                 }
@@ -364,19 +363,19 @@ public class TestToolSteps {
     public void selectAllOptionsFromTheFilterList(String options) {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(30));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.suiteHeaderActiveFilter));
-            if (DriverAction.getElement(TestToolLocators.suiteHeaderActiveFilter).isDisplayed()) {
-                DriverAction.click(TestToolLocators.suiteHeaderActiveFilter, "Filter Dropdown");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.suiteHeaderActiveFilter));
+            if (DriverAction.getElement(ObjTestTool.suiteHeaderActiveFilter).isDisplayed()) {
+                DriverAction.click(ObjTestTool.suiteHeaderActiveFilter, "Filter Dropdown");
                 if (options.equalsIgnoreCase("Random")) {
                     options = tempData;
                 }
                 if (options.equalsIgnoreCase("All")) {
-                    DriverAction.click(TestToolLocators.suiteHeaderFilterOptionAll, "Filter All option");
+                    DriverAction.click(ObjTestTool.suiteHeaderFilterOptionAll, "Filter All option");
                     DriverAction.waitSec(2);
                 } else {
                     List<String> filterOptions = Arrays.asList(options.split(","));
                     List<WebElement> filterValues =
-                            DriverAction.getElements(TestToolLocators.suiteHeaderFilterOptions);
+                            DriverAction.getElements(ObjTestTool.suiteHeaderFilterOptions);
 
                     for (String option : filterOptions) {
                         for (WebElement filterValue : filterValues) {
@@ -403,11 +402,11 @@ public class TestToolSteps {
     @And("Verify all suites are visible inside suite table")
     public void verifyAllSuitesAreVisibleInsideSuiteTable() {
         try {
-            if (DriverAction.getElement(TestToolLocators.suiteHeaderName).isDisplayed()) {
-                String paginationSuiteCount = DriverAction.getElementText(TestToolLocators.suiteCounts);
+            if (DriverAction.getElement(ObjTestTool.suiteHeaderName).isDisplayed()) {
+                String paginationSuiteCount = DriverAction.getElementText(ObjTestTool.suiteCounts);
                 int expectedCount = getNumberFromString(paginationSuiteCount);
 
-                String filterSuiteCount = DriverAction.getElementText(TestToolLocators.
+                String filterSuiteCount = DriverAction.getElementText(ObjTestTool.
                         suiteHeaderFilterResultLabel);
                 int actualCount = getNumberFromString(filterSuiteCount);
 
@@ -446,9 +445,9 @@ public class TestToolSteps {
     @And("Verify selected options {string} are visible for header {string} inside suite table")
     public void verifySelectedOptionsAreVisibleForHeaderInsideSuiteTable(String options, String header) {
         try {
-            if (DriverAction.getElement(TestToolLocators.suiteFirstRowData).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.suiteFirstRowData).isDisplayed()) {
                 int column = 0;
-                List<WebElement> headersName = DriverAction.getElements(TestToolLocators.suiteHeaderName);
+                List<WebElement> headersName = DriverAction.getElements(ObjTestTool.suiteHeaderName);
                 for (int i = 0; i < headersName.size(); i++) {
                     if (headersName.get(i).getText().equalsIgnoreCase(header)) {
                         column = i + 1;
@@ -457,7 +456,7 @@ public class TestToolSteps {
                 }
 
                 List<String> columnData =
-                        DriverAction.getElementsText(TestToolLocators.suiteTableRowsData(column));
+                        DriverAction.getElementsText(ObjTestTool.suiteTableRowsData(column));
 
                 List<String> filterOptions = Arrays.asList(options.split(","));
 
@@ -487,12 +486,12 @@ public class TestToolSteps {
     public void verifySelectedOptionsAndAreVisibleForHeaderAndInsideSuiteTable(String option1, String option2,
                                                                                String header1, String header2) {
         try {
-            if (DriverAction.getElement(TestToolLocators.suiteFirstRowData).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.suiteFirstRowData).isDisplayed()) {
                 int column1 = 0;
                 int column2 = 0;
 
 
-                List<WebElement> headersName = DriverAction.getElements(TestToolLocators.suiteHeaderName);
+                List<WebElement> headersName = DriverAction.getElements(ObjTestTool.suiteHeaderName);
                 for (int i = 0; i < headersName.size(); i++) {
                     if (headersName.get(i).getText().equalsIgnoreCase(header1)) {
                         column1 = i + 1;
@@ -512,10 +511,10 @@ public class TestToolSteps {
                 }
 
                 List<String> columnData1 =
-                        DriverAction.getElementsText(TestToolLocators.suiteTableRowsData(column1));
+                        DriverAction.getElementsText(ObjTestTool.suiteTableRowsData(column1));
 
                 List<String> columnData2 =
-                        DriverAction.getElementsText(TestToolLocators.suiteTableRowsData(column2));
+                        DriverAction.getElementsText(ObjTestTool.suiteTableRowsData(column2));
 
                 List<String> filterOptions1 = Arrays.asList(option1.split(","));
                 List<String> filterOptions2 = Arrays.asList(option2.split(","));
@@ -558,8 +557,8 @@ public class TestToolSteps {
     @And("Click on create suite button for creating new suite")
     public void clickOnCreateSuiteButtonForCreatingNewSuite() {
         try {
-            if (DriverAction.getElement(TestToolLocators.buttonCreateSuite).isDisplayed()) {
-                DriverAction.click(TestToolLocators.buttonCreateSuite, "Create Suite");
+            if (DriverAction.getElement(ObjTestTool.buttonCreateSuite).isDisplayed()) {
+                DriverAction.click(ObjTestTool.buttonCreateSuite, "Create Suite");
             } else {
                 GemTestReporter.addTestStep("Create Suite Button", "Create Suite Button not" +
                         " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -575,16 +574,16 @@ public class TestToolSteps {
     public void selectProjectNameOptionsForCreatingSuite(String projectName) {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(60));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.projectNameDropdown));
-            if (DriverAction.getElement(TestToolLocators.projectNameDropdown).isDisplayed()) {
-                DriverAction.click(TestToolLocators.projectNameDropdown, "Project Name Dropdown");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.projectNameDropdown));
+            if (DriverAction.getElement(ObjTestTool.projectNameDropdown).isDisplayed()) {
+                DriverAction.click(ObjTestTool.projectNameDropdown, "Project Name Dropdown");
                 DriverAction.waitSec(2);
                 WebElement listItem =
-                        DriverAction.getElements(TestToolLocators.projectNameOptionsList).get(0);
+                        DriverAction.getElements(ObjTestTool.projectNameOptionsList).get(0);
                 wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(listItem,
                         "No results found")));
-                DriverAction.typeText(TestToolLocators.projectNameSearchTextBox, projectName, "Project Name");
-                DriverAction.click(DriverAction.getElements(TestToolLocators.projectNameOptionsList).get(0)
+                DriverAction.typeText(ObjTestTool.projectNameSearchTextBox, projectName, "Project Name");
+                DriverAction.click(DriverAction.getElements(ObjTestTool.projectNameOptionsList).get(0)
                         , projectName);
             } else {
                 GemTestReporter.addTestStep("Create Suite Popup", "Create Suite popup not" +
@@ -600,13 +599,13 @@ public class TestToolSteps {
     @And("Enter suite name {string} for creating suite")
     public void enterSuiteNameForCreatingSuite(String suiteName) {
         try {
-            if (DriverAction.getElement(TestToolLocators.suiteNameTextBox).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.suiteNameTextBox).isDisplayed()) {
                 if (suiteName.equalsIgnoreCase("Random")) {
                     int randomDigit = (int) (Math.random() * (9999 - 1111 + 1) + 1111);
                     suiteName = "SUITE_" + randomDigit;
                     tempData = suiteName;
                 }
-                DriverAction.typeText(TestToolLocators.suiteNameTextBox, suiteName, "Suite Name");
+                DriverAction.typeText(ObjTestTool.suiteNameTextBox, suiteName, "Suite Name");
             } else {
                 GemTestReporter.addTestStep("Create Suite Popup", "Suite Name text box not" +
                         " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -621,8 +620,8 @@ public class TestToolSteps {
     @And("Click on create suite button")
     public void clickOnCreateSuiteButton() {
         try {
-            if (DriverAction.getElement(TestToolLocators.buttonCreateSuiteFinish).isDisplayed()) {
-                DriverAction.click(TestToolLocators.buttonCreateSuiteFinish, "Create Suite");
+            if (DriverAction.getElement(ObjTestTool.buttonCreateSuiteFinish).isDisplayed()) {
+                DriverAction.click(ObjTestTool.buttonCreateSuiteFinish, "Create Suite");
                 SUITE_CREATION_TIME = getFormattedDate(new Date());
                 DriverAction.waitSec(5);
                 DriverAction.refresh();
@@ -640,8 +639,8 @@ public class TestToolSteps {
     @And("Verify duplicates suites for the same {string}")
     public void verifyDuplicatesSuitesForTheSame(String suiteName) {
         try {
-            if (DriverAction.getElement(TestToolLocators.suiteFirstRowData).isDisplayed()) {
-                int rows = DriverAction.getElements(TestToolLocators.suiteTableRows).size() - 1;
+            if (DriverAction.getElement(ObjTestTool.suiteFirstRowData).isDisplayed()) {
+                int rows = DriverAction.getElements(ObjTestTool.suiteTableRows).size() - 1;
                 if (rows > 1) {
                     GemTestReporter.addTestStep("Verifying Suite counts",
                             "Duplicate Suite found", STATUS.PASS, DriverAction.takeSnapShot());
@@ -663,9 +662,9 @@ public class TestToolSteps {
     @And("Verify searched project name {string} {string}")
     public void verifySearchedProjectName(String projectName, String isMatch) {
         try {
-            if (DriverAction.getElement(TestToolLocators.projectNameDropdown).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.projectNameDropdown).isDisplayed()) {
                 if (isMatch.equalsIgnoreCase("Matched")) {
-                    if (DriverAction.getElementsText(TestToolLocators.projectNameOptionsList).get(0)
+                    if (DriverAction.getElementsText(ObjTestTool.projectNameOptionsList).get(0)
                             .equalsIgnoreCase(projectName)) {
                         GemTestReporter.addTestStep("Project Name", "Project found"
                                 , STATUS.PASS, DriverAction.takeSnapShot());
@@ -674,7 +673,7 @@ public class TestToolSteps {
                                 , STATUS.FAIL, DriverAction.takeSnapShot());
                     }
                 } else {
-                    if (DriverAction.getElementsText(TestToolLocators.projectNameOptionsList).get(0)
+                    if (DriverAction.getElementsText(ObjTestTool.projectNameOptionsList).get(0)
                             .equalsIgnoreCase("No available options")) {
                         GemTestReporter.addTestStep("Project Name", "Project not found"
                                 , STATUS.PASS, DriverAction.takeSnapShot());
@@ -697,15 +696,15 @@ public class TestToolSteps {
     @Then("Enter project name {string} options for creating suite")
     public void enterProjectNameOptionsForCreatingSuite(String projectName) {
         try {
-            if (DriverAction.getElement(TestToolLocators.projectNameDropdown).isDisplayed()) {
-                DriverAction.click(TestToolLocators.projectNameDropdown, "Project Name Dropdown");
+            if (DriverAction.getElement(ObjTestTool.projectNameDropdown).isDisplayed()) {
+                DriverAction.click(ObjTestTool.projectNameDropdown, "Project Name Dropdown");
                 DriverAction.waitSec(2);
                 WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(30));
                 WebElement listItem =
-                        DriverAction.getElements(TestToolLocators.projectNameOptionsList).get(0);
+                        DriverAction.getElements(ObjTestTool.projectNameOptionsList).get(0);
                 wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(listItem,
                         "No results found")));
-                DriverAction.typeText(TestToolLocators.projectNameSearchTextBox, projectName, "Project Name");
+                DriverAction.typeText(ObjTestTool.projectNameSearchTextBox, projectName, "Project Name");
             } else {
                 GemTestReporter.addTestStep("Create Suite Popup", "Create Suite popup not" +
                         " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -720,11 +719,11 @@ public class TestToolSteps {
     @Then("Click on test case plus button for {string}")
     public void clickOnTestCasePlusButtonFor(String suiteName) {
         try {
-            if (DriverAction.getElement(TestToolLocators.suiteFirstRowData).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.suiteFirstRowData).isDisplayed()) {
                 int column1 = 0;
                 int column2 = 0;
 
-                List<WebElement> headersName = DriverAction.getElements(TestToolLocators.suiteHeaderName);
+                List<WebElement> headersName = DriverAction.getElements(ObjTestTool.suiteHeaderName);
 
                 for (int i = 0; i < headersName.size(); i++) {
                     if (headersName.get(i).getText().equalsIgnoreCase("Suite ID")) {
@@ -740,10 +739,10 @@ public class TestToolSteps {
                     }
                 }
 
-                String suiteId = DriverAction.getElementText(TestToolLocators.suiteTableSuiteFirstRows(column1));
+                String suiteId = DriverAction.getElementText(ObjTestTool.suiteTableSuiteFirstRows(column1));
                 SUITE_ID = suiteId;
 
-                DriverAction.click(TestToolLocators.suiteTableSuiteAddButton(column2), "Add");
+                DriverAction.click(ObjTestTool.suiteTableSuiteAddButton(column2), "Add");
                 DriverAction.waitSec(2);
 
             } else {
@@ -762,14 +761,14 @@ public class TestToolSteps {
         try {
             DriverAction.waitSec(3);
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(20));
-            wait.until(ExpectedConditions.textToBePresentInElement(DriverAction.getElement(TestToolLocators.testCasesHeader)
+            wait.until(ExpectedConditions.textToBePresentInElement(DriverAction.getElement(ObjTestTool.testCasesHeader)
                     , suiteName));
-            if (DriverAction.getElement(TestToolLocators.testCasesHeader).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.testCasesHeader).isDisplayed()) {
                 if (suiteName.equalsIgnoreCase("random")) {
                     suiteName = tempData;
                 }
                 String expectedHeader = suiteName + "(" + SUITE_ID + ")";
-                String actualHeader = DriverAction.getElementText(TestToolLocators.testCasesHeader);
+                String actualHeader = DriverAction.getElementText(ObjTestTool.testCasesHeader);
 
                 if (actualHeader.equalsIgnoreCase(expectedHeader)) {
                     GemTestReporter.addTestStep("Verifying Header on Test Case Tab",
@@ -796,11 +795,11 @@ public class TestToolSteps {
     public void getTheTestcaseCountOf(String suiteName) {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(20));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.suiteFirstRowData));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.suiteFirstRowData));
 
-            if (DriverAction.getElement(TestToolLocators.suiteFirstRowData).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.suiteFirstRowData).isDisplayed()) {
                 int column = 0;
-                List<WebElement> headersName = DriverAction.getElements(TestToolLocators.suiteHeaderName);
+                List<WebElement> headersName = DriverAction.getElements(ObjTestTool.suiteHeaderName);
 
                 for (int i = 0; i < headersName.size(); i++) {
                     if (headersName.get(i).getText().equalsIgnoreCase("Testcase Count")) {
@@ -810,7 +809,7 @@ public class TestToolSteps {
                 }
 
                 String suiteCount =
-                        DriverAction.getElementText(TestToolLocators.suiteTableSuiteFirstRows(column));
+                        DriverAction.getElementText(ObjTestTool.suiteTableSuiteFirstRows(column));
                 tempData = suiteCount;
 
             } else {
@@ -827,8 +826,8 @@ public class TestToolSteps {
     @And("Verify the total test case count on test case tab")
     public void verifyTheTotalTestCaseCountOnTestCaseTab() {
         try {
-            if (DriverAction.getElements(TestToolLocators.suiteCounts).get(1).isDisplayed()) {
-                int expectedCount = getNumberFromString(DriverAction.getElementsText(TestToolLocators.suiteCounts).get(1));
+            if (DriverAction.getElements(ObjTestTool.suiteCounts).get(1).isDisplayed()) {
+                int expectedCount = getNumberFromString(DriverAction.getElementsText(ObjTestTool.suiteCounts).get(1));
                 int actualCount = Integer.parseInt(tempData);
                 if (expectedCount == actualCount) {
                     GemTestReporter.addTestStep("Verifying Test Case Count",
@@ -853,13 +852,13 @@ public class TestToolSteps {
     @And("Click on delete button to delete the test case")
     public void clickOnDeleteButtonToDeleteTheTestCase() {
         try {
-            if(DriverAction.isExist(TestToolLocators.alertMessageHeader)){
-                DriverAction.waitUntilElementDisappear(TestToolLocators.alertMessageHeader,10);
+            if(DriverAction.isExist(ObjTestTool.alertMessageHeader)){
+                DriverAction.waitUntilElementDisappear(ObjTestTool.alertMessageHeader,10);
             }
-            if (DriverAction.getElement(TestToolLocators.testCasePillTableHeaders).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.testCasePillTableHeaders).isDisplayed()) {
 
                 int column = 0;
-                List<WebElement> headersName = DriverAction.getElements(TestToolLocators.testCasePillTableHeaders);
+                List<WebElement> headersName = DriverAction.getElements(ObjTestTool.testCasePillTableHeaders);
 
                 for (int i = 0; i < headersName.size(); i++) {
                     if (headersName.get(i).getText().equalsIgnoreCase("Testcase ID")) {
@@ -867,10 +866,10 @@ public class TestToolSteps {
                         break;
                     }
                 }
-                if (DriverAction.getElements(TestToolLocators.testCasePillTableRows).size() >= 1) {
+                if (DriverAction.getElements(ObjTestTool.testCasePillTableRows).size() >= 1) {
                     tempData =
-                            DriverAction.getElementText(TestToolLocators.testCasePillTableRowsData(column));
-                    DriverAction.click(TestToolLocators.testCasePillTableDeleteButton, "Delete");
+                            DriverAction.getElementText(ObjTestTool.testCasePillTableRowsData(column));
+                    DriverAction.click(ObjTestTool.testCasePillTableDeleteButton, "Delete");
                 } else {
                     GemTestReporter.addTestStep("Test Case Pill Table", "Test case rows not" +
                             " available", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -890,9 +889,9 @@ public class TestToolSteps {
     public void verifyTheAlertBoxWithMessage(String message) {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(30));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.alertMessageHeader));
-            if (DriverAction.getElement(TestToolLocators.alertMessageHeader).isDisplayed()) {
-                String actualMessage = DriverAction.getElementText(TestToolLocators.alertMessageHeader);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.alertMessageHeader));
+            if (DriverAction.getElement(ObjTestTool.alertMessageHeader).isDisplayed()) {
+                String actualMessage = DriverAction.getElementText(ObjTestTool.alertMessageHeader);
 
                 if (actualMessage.contains(message)) {
                     GemTestReporter.addTestStep("Verifying Alert Message",
@@ -919,15 +918,15 @@ public class TestToolSteps {
     public void clickOnButtonForDeletingTestCase(String button) {
         try {
             if (button.equalsIgnoreCase("No")) {
-                if (DriverAction.getElement(TestToolLocators.alertMessageNOButton).isDisplayed()) {
-                    DriverAction.click(TestToolLocators.alertMessageNOButton, "Alert - No");
+                if (DriverAction.getElement(ObjTestTool.alertMessageNOButton).isDisplayed()) {
+                    DriverAction.click(ObjTestTool.alertMessageNOButton, "Alert - No");
                 } else {
                     GemTestReporter.addTestStep("Alert No Button", "No button not" +
                             " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
                 }
             } else {
-                if (DriverAction.getElement(TestToolLocators.alertMessageYESButton).isDisplayed()) {
-                    DriverAction.click(TestToolLocators.alertMessageYESButton, "Alert - Yes");
+                if (DriverAction.getElement(ObjTestTool.alertMessageYESButton).isDisplayed()) {
+                    DriverAction.click(ObjTestTool.alertMessageYESButton, "Alert - Yes");
                 } else {
                     GemTestReporter.addTestStep("Alert Yes Button", "Yes button not" +
                             " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -944,21 +943,21 @@ public class TestToolSteps {
     public void selectTestIDFromTheFilterForTestCase() {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(30));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.testCasePillTableHeaders));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.testCasePillTableHeaders));
 
-            if (DriverAction.getElement(TestToolLocators.testCasePillTableHeaders).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.testCasePillTableHeaders).isDisplayed()) {
                 int column = 0;
-                List<WebElement> headersName = DriverAction.getElements(TestToolLocators.testCasePillTableHeaders);
+                List<WebElement> headersName = DriverAction.getElements(ObjTestTool.testCasePillTableHeaders);
                 for (int i = 0; i < headersName.size(); i++) {
                     if (headersName.get(i).getText().equalsIgnoreCase("Testcase ID")) {
                         column = i + 1;
                         break;
                     }
                 }
-                DriverAction.click(TestToolLocators.testCaseHeaderFilter(column), "filter");
-                DriverAction.click(TestToolLocators.suiteHeaderActiveFilter, "Filter Dropdown");
+                DriverAction.click(ObjTestTool.testCaseHeaderFilter(column), "filter");
+                DriverAction.click(ObjTestTool.suiteHeaderActiveFilter, "Filter Dropdown");
                 List<WebElement> filterValues =
-                        DriverAction.getElements(TestToolLocators.suiteHeaderFilterOptions);
+                        DriverAction.getElements(ObjTestTool.suiteHeaderFilterOptions);
                 DriverAction.waitSec(2);
 
                 for (WebElement filterValue : filterValues) {
@@ -982,9 +981,9 @@ public class TestToolSteps {
     public void verifyTheTestCaseShouldNotBeDeleted() {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.testCasePillTableRows));
-            if (DriverAction.getElement(TestToolLocators.testCasePillTableRows).isDisplayed()) {
-                List<WebElement> rows = DriverAction.getElements(TestToolLocators.testCasePillTableRows);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.testCasePillTableRows));
+            if (DriverAction.getElement(ObjTestTool.testCasePillTableRows).isDisplayed()) {
+                List<WebElement> rows = DriverAction.getElements(ObjTestTool.testCasePillTableRows);
                 if (rows.size() == 1) {
                     GemTestReporter.addTestStep("Verifying Test Case",
                             "Test case not deleted", STATUS.PASS, DriverAction.takeSnapShot());
@@ -1008,9 +1007,9 @@ public class TestToolSteps {
     public void verifyTheTestCaseShouldBeDeleted() {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.testCasePillTableRows));
-            if (DriverAction.getElement(TestToolLocators.testCasePillTableRows).isDisplayed()) {
-                List<WebElement> rows = DriverAction.getElements(TestToolLocators.testCasePillTableRows);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.testCasePillTableRows));
+            if (DriverAction.getElement(ObjTestTool.testCasePillTableRows).isDisplayed()) {
+                List<WebElement> rows = DriverAction.getElements(ObjTestTool.testCasePillTableRows);
                 if (rows.size() == 0) {
                     GemTestReporter.addTestStep("Verifying Test Case",
                             "Test case deleted", STATUS.PASS, DriverAction.takeSnapShot());
@@ -1033,9 +1032,9 @@ public class TestToolSteps {
     public void verifyDeletedToastAlertWithMessage(String message) {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.toastAlertMessage));
-            if (DriverAction.getElement(TestToolLocators.toastAlertMessage).isDisplayed()) {
-                String actualMessage = DriverAction.getElementText(TestToolLocators.toastAlertMessage);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.toastAlertMessage));
+            if (DriverAction.getElement(ObjTestTool.toastAlertMessage).isDisplayed()) {
+                String actualMessage = DriverAction.getElementText(ObjTestTool.toastAlertMessage);
                 if (actualMessage.equalsIgnoreCase(message)) {
                     GemTestReporter.addTestStep("Verifying Toast Message",
                             "Alert Message matched successfully", STATUS.PASS, DriverAction.takeSnapShot());
@@ -1057,9 +1056,9 @@ public class TestToolSteps {
     @And("Verify creation time of the suite")
     public void verifyCreationTimeOfTheSuite() {
         try {
-            if (DriverAction.getElement(TestToolLocators.suiteFirstRowData).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.suiteFirstRowData).isDisplayed()) {
                 int column1 = 0;
-                List<WebElement> headersName = DriverAction.getElements(TestToolLocators.suiteHeaderName);
+                List<WebElement> headersName = DriverAction.getElements(ObjTestTool.suiteHeaderName);
                 for (int i = 0; i < headersName.size(); i++) {
                     if (headersName.get(i).getText().equalsIgnoreCase("Creation Time")) {
                         column1 = i + 1;
@@ -1067,7 +1066,7 @@ public class TestToolSteps {
                     }
                 }
                 List<String> columnData =
-                        DriverAction.getElementsText(TestToolLocators.suiteTableRowsData(column1));
+                        DriverAction.getElementsText(ObjTestTool.suiteTableRowsData(column1));
 
                 SimpleDateFormat inputFormat = new SimpleDateFormat("MMMM d, yyyy h:mm:ss a (z)");
                 String expectedDate = getFormattedDate(inputFormat.parse(columnData.get(0)));
@@ -1107,8 +1106,8 @@ public class TestToolSteps {
     @And("Click on create test case button")
     public void clickOnCreateTestCaseButton() {
         try {
-            if (DriverAction.getElement(TestToolLocators.createTestCaseButton).isDisplayed()) {
-                DriverAction.click(TestToolLocators.createTestCaseButton, "Create Test Case");
+            if (DriverAction.getElement(ObjTestTool.createTestCaseButton).isDisplayed()) {
+                DriverAction.click(ObjTestTool.createTestCaseButton, "Create Test Case");
                 DriverAction.waitSec(3);
             } else {
                 GemTestReporter.addTestStep("Create Test Case Button", "Create Test Case Button not" +
@@ -1124,8 +1123,8 @@ public class TestToolSteps {
     @And("Select GemJAR as a base project")
     public void selectGemJARAsABaseProject() {
         try {
-            if (DriverAction.getElement(TestToolLocators.createTestCaseBaseProjectModal).isDisplayed()) {
-                DriverAction.click(TestToolLocators.gemjarBaseProjectSelectButton, "GemJar");
+            if (DriverAction.getElement(ObjTestTool.createTestCaseBaseProjectModal).isDisplayed()) {
+                DriverAction.click(ObjTestTool.gemjarBaseProjectSelectButton, "GemJar");
             } else {
                 GemTestReporter.addTestStep("Create Test Case Modal", "Create Test Case Modal not" +
                         " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -1140,8 +1139,8 @@ public class TestToolSteps {
     @And("Enter testcase name {string} to create test")
     public void enterTestcaseNameToCreateTest(String name) {
         try {
-            if (DriverAction.getElement(TestToolLocators.testcaseNameInput).isDisplayed()) {
-                DriverAction.typeText(TestToolLocators.testcaseNameInput, name, "testcase name");
+            if (DriverAction.getElement(ObjTestTool.testcaseNameInput).isDisplayed()) {
+                DriverAction.typeText(ObjTestTool.testcaseNameInput, name, "testcase name");
             } else {
                 GemTestReporter.addTestStep("Test Case Name", "Name input box not" +
                         " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -1156,10 +1155,10 @@ public class TestToolSteps {
     @And("Select testcase type {string} to create test")
     public void selectTestcaseTypeToCreateTest(String type) {
         try {
-            if (DriverAction.getElement(TestToolLocators.testcaseTypeDropdown).isDisplayed()) {
-                DriverAction.click(TestToolLocators.testcaseTypeDropdown, "testcase type");
+            if (DriverAction.getElement(ObjTestTool.testcaseTypeDropdown).isDisplayed()) {
+                DriverAction.click(ObjTestTool.testcaseTypeDropdown, "testcase type");
                 List<WebElement> options =
-                        DriverAction.getElements(TestToolLocators.testcaseTypeDropdownItems);
+                        DriverAction.getElements(ObjTestTool.testcaseTypeDropdownItems);
                 for (WebElement option : options) {
                     if (option.getText().equalsIgnoreCase(type)) {
                         DriverAction.click(option, type);
@@ -1180,8 +1179,8 @@ public class TestToolSteps {
     @And("Enter testcase steps {string} to create test")
     public void enterTestcaseStepsToCreateTest(String steps) {
         try {
-            if (DriverAction.getElement(TestToolLocators.testcaseStepsInput).isDisplayed()) {
-                DriverAction.typeText(TestToolLocators.testcaseStepsInput, steps, "testcase steps");
+            if (DriverAction.getElement(ObjTestTool.testcaseStepsInput).isDisplayed()) {
+                DriverAction.typeText(ObjTestTool.testcaseStepsInput, steps, "testcase steps");
             } else {
                 GemTestReporter.addTestStep("Test Case Name", "Steps input box not" +
                         " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -1196,8 +1195,8 @@ public class TestToolSteps {
     @And("Enter category {string} to create test")
     public void enterCategoryToCreateTest(String category) {
         try {
-            if (DriverAction.getElement(TestToolLocators.testcaseCategory).isDisplayed()) {
-                DriverAction.typeText(TestToolLocators.testcaseCategory, category, "testcase category");
+            if (DriverAction.getElement(ObjTestTool.testcaseCategory).isDisplayed()) {
+                DriverAction.typeText(ObjTestTool.testcaseCategory, category, "testcase category");
             } else {
                 GemTestReporter.addTestStep("Test Case Name", "Category input box not" +
                         " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -1212,10 +1211,10 @@ public class TestToolSteps {
     @And("Select run flag {string} to create test")
     public void selectRunFlagToCreateTest(String runFlag) {
         try {
-            if (DriverAction.getElement(TestToolLocators.testcaseRunFlagDropdown).isDisplayed()) {
-                DriverAction.click(TestToolLocators.testcaseRunFlagDropdown, "runflag");
+            if (DriverAction.getElement(ObjTestTool.testcaseRunFlagDropdown).isDisplayed()) {
+                DriverAction.click(ObjTestTool.testcaseRunFlagDropdown, "runflag");
                 List<WebElement> options =
-                        DriverAction.getElements(TestToolLocators.testcaseTypeDropdownItems);
+                        DriverAction.getElements(ObjTestTool.testcaseTypeDropdownItems);
                 for (WebElement option : options) {
                     if (option.getText().equalsIgnoreCase(runFlag)) {
                         DriverAction.click(option, runFlag);
@@ -1236,8 +1235,8 @@ public class TestToolSteps {
     @And("Click on create test case button for creating new test case")
     public void clickOnCreateTestCaseButtonForCreatingNewTestCase() {
         try {
-            if (DriverAction.getElement(TestToolLocators.createTestCaseFinishButton).isDisplayed()) {
-                DriverAction.click(TestToolLocators.createTestCaseFinishButton, "Create Test Case");
+            if (DriverAction.getElement(ObjTestTool.createTestCaseFinishButton).isDisplayed()) {
+                DriverAction.click(ObjTestTool.createTestCaseFinishButton, "Create Test Case");
                 SUITE_UPDATION_TIME = getFormattedDate(new Date());
             } else {
                 GemTestReporter.addTestStep("Create Test Case Button", "Create Test Case Button not" +
@@ -1258,9 +1257,9 @@ public class TestToolSteps {
     public void navigateBackToTestSuitePage() {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(30));
-            wait.until(ExpectedConditions.elementToBeClickable(DriverAction.getElement(TestToolLocators.suite)));
-            if (DriverAction.getElement(TestToolLocators.suite).isDisplayed()) {
-                DriverAction.click(TestToolLocators.suite, "Suite Pill");
+            wait.until(ExpectedConditions.elementToBeClickable(DriverAction.getElement(ObjTestTool.suite)));
+            if (DriverAction.getElement(ObjTestTool.suite).isDisplayed()) {
+                DriverAction.click(ObjTestTool.suite, "Suite Pill");
                 DriverAction.waitSec(3);
             } else {
                 GemTestReporter.addTestStep("Navigate to Suite Page", "Suite Pill not" +
@@ -1276,9 +1275,9 @@ public class TestToolSteps {
     @And("Verify updation time of the suite")
     public void verifyUpdationTimeOfTheSuite() {
         try {
-            if (DriverAction.getElement(TestToolLocators.suiteFirstRowData).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.suiteFirstRowData).isDisplayed()) {
                 int column1 = 0;
-                List<WebElement> headersName = DriverAction.getElements(TestToolLocators.suiteHeaderName);
+                List<WebElement> headersName = DriverAction.getElements(ObjTestTool.suiteHeaderName);
                 for (int i = 0; i < headersName.size(); i++) {
                     if (headersName.get(i).getText().equalsIgnoreCase("Updation Time")) {
                         column1 = i + 1;
@@ -1286,7 +1285,7 @@ public class TestToolSteps {
                     }
                 }
                 List<String> columnData =
-                        DriverAction.getElementsText(TestToolLocators.suiteTableRowsData(column1));
+                        DriverAction.getElementsText(ObjTestTool.suiteTableRowsData(column1));
 
                 SimpleDateFormat inputFormat = new SimpleDateFormat("MMMM d, yyyy h:mm:ss a (z)");
                 String expectedDate = getFormattedDate(inputFormat.parse(columnData.get(0)));
@@ -1315,9 +1314,9 @@ public class TestToolSteps {
     public void verifyCreateTestCaseAlertWithMessage(String message) {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(20));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.toastAlertMessage));
-            if (DriverAction.getElement(TestToolLocators.toastAlertMessage).isDisplayed()) {
-                String actualMessage = DriverAction.getElementText(TestToolLocators.toastAlertMessage);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.toastAlertMessage));
+            if (DriverAction.getElement(ObjTestTool.toastAlertMessage).isDisplayed()) {
+                String actualMessage = DriverAction.getElementText(ObjTestTool.toastAlertMessage);
                 if (actualMessage.equalsIgnoreCase(message)) {
                     GemTestReporter.addTestStep("Verifying Toast Message",
                             "Alert Message matched successfully", STATUS.PASS, DriverAction.takeSnapShot());
@@ -1339,8 +1338,8 @@ public class TestToolSteps {
     @And("Select GemPYP as a base project")
     public void selectGemPYPAsABaseProject() {
         try {
-            if (DriverAction.getElement(TestToolLocators.createTestCaseBaseProjectModal).isDisplayed()) {
-                DriverAction.click(TestToolLocators.gempypBaseProjectSelectButton, "GemJar");
+            if (DriverAction.getElement(ObjTestTool.createTestCaseBaseProjectModal).isDisplayed()) {
+                DriverAction.click(ObjTestTool.gempypBaseProjectSelectButton, "GemJar");
             } else {
                 GemTestReporter.addTestStep("Create Test Case Modal", "Create Test Case Modal not" +
                         " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -1355,9 +1354,9 @@ public class TestToolSteps {
     @And("Enter testcase type {string} to search test type")
     public void enterTestcaseTypeToSearchTestType(String type) {
         try {
-            if (DriverAction.getElement(TestToolLocators.testcaseTypeDropdown).isDisplayed()) {
-                DriverAction.click(TestToolLocators.testcaseTypeDropdown, "testcase type");
-                DriverAction.typeText(TestToolLocators.testcaseDropdownSearchInput, type, "type");
+            if (DriverAction.getElement(ObjTestTool.testcaseTypeDropdown).isDisplayed()) {
+                DriverAction.click(ObjTestTool.testcaseTypeDropdown, "testcase type");
+                DriverAction.typeText(ObjTestTool.testcaseDropdownSearchInput, type, "type");
             } else {
                 GemTestReporter.addTestStep("Test Case Type", "Testcase Type dropdown not" +
                         " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -1372,9 +1371,9 @@ public class TestToolSteps {
     @And("Verify the selected testcase type {string}")
     public void verifyTheSelectedTestcaseType(String type) {
         try {
-            if (DriverAction.getElement(TestToolLocators.testcaseTypeDropdownItems).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.testcaseTypeDropdownItems).isDisplayed()) {
                 String actualType =
-                        DriverAction.getElementsText(TestToolLocators.testcaseTypeDropdownItems).get(0);
+                        DriverAction.getElementsText(ObjTestTool.testcaseTypeDropdownItems).get(0);
                 if (actualType.equalsIgnoreCase(type)) {
                     GemTestReporter.addTestStep("Verifying Selected Test Case Type",
                             "Test type matched successfully", STATUS.PASS, DriverAction.takeSnapShot());
@@ -1397,9 +1396,9 @@ public class TestToolSteps {
     public void clickOnExpandButtonOfTestcase() {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.testCasePillTableRows));
-            if (DriverAction.getElement(TestToolLocators.testCasePillTableRows).isDisplayed()) {
-                DriverAction.click(TestToolLocators.testCasePillTableExpandButton, "expand");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.testCasePillTableRows));
+            if (DriverAction.getElement(ObjTestTool.testCasePillTableRows).isDisplayed()) {
+                DriverAction.click(ObjTestTool.testCasePillTableExpandButton, "expand");
             } else {
                 GemTestReporter.addTestStep("Test Case rows",
                         "Test case rows not displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -1414,7 +1413,7 @@ public class TestToolSteps {
     @And("Verify testcase details for given test case")
     public void verifyTestcaseDetailsForGivenTestCase() {
         try {
-            if (DriverAction.getElement(TestToolLocators.testcaseDescriptionHeader).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.testcaseDescriptionHeader).isDisplayed()) {
                 GemTestReporter.addTestStep("Test Description", "Test Description is displayed",
                         STATUS.PASS, DriverAction.takeSnapShot());
             } else {
@@ -1431,9 +1430,9 @@ public class TestToolSteps {
     @And("Verify suite creation username")
     public void verifySuiteCreationUsername() {
         try {
-            if (DriverAction.getElement(TestToolLocators.suiteFirstRowData).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.suiteFirstRowData).isDisplayed()) {
                 int column1 = 0;
-                List<WebElement> headersName = DriverAction.getElements(TestToolLocators.suiteHeaderName);
+                List<WebElement> headersName = DriverAction.getElements(ObjTestTool.suiteHeaderName);
                 for (int i = 0; i < headersName.size(); i++) {
                     if (headersName.get(i).getText().equalsIgnoreCase("Created By")) {
                         column1 = i + 1;
@@ -1441,7 +1440,7 @@ public class TestToolSteps {
                     }
                 }
                 List<String> columnData =
-                        DriverAction.getElementsText(TestToolLocators.suiteTableRowsData(column1));
+                        DriverAction.getElementsText(ObjTestTool.suiteTableRowsData(column1));
 
                 String actualUsername = columnData.get(0);
                 String expectedUsername = ProjectConfigData.getProperty("username");
@@ -1470,11 +1469,11 @@ public class TestToolSteps {
     public void verifySuiteUpdationUsername() {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(20));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.suiteFirstRowData));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.suiteFirstRowData));
 //            DriverAction.waitSec(3);
-            if (DriverAction.getElement(TestToolLocators.suiteFirstRowData).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.suiteFirstRowData).isDisplayed()) {
                 int column1 = 0;
-                List<WebElement> headersName = DriverAction.getElements(TestToolLocators.suiteHeaderName);
+                List<WebElement> headersName = DriverAction.getElements(ObjTestTool.suiteHeaderName);
                 for (int i = 0; i < headersName.size(); i++) {
                     if (headersName.get(i).getText().equalsIgnoreCase("Updated By")) {
                         column1 = i + 1;
@@ -1482,7 +1481,7 @@ public class TestToolSteps {
                     }
                 }
                 List<String> columnData =
-                        DriverAction.getElementsText(TestToolLocators.suiteTableRowsData(column1));
+                        DriverAction.getElementsText(ObjTestTool.suiteTableRowsData(column1));
 
                 String actualUsername = columnData.get(0);
                 String expectedUsername = ProjectConfigData.getProperty("username");
@@ -1511,15 +1510,15 @@ public class TestToolSteps {
     public void getAllTheDetailsOfSelectedTestcase() {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.testCasePillTableRows));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.testCasePillTableRows));
 
             int name_column = 0;
             int category_column = 0;
             int type_column = 0;
             int flag_column = 0;
 
-            if (DriverAction.getElement(TestToolLocators.testCasePillTableRows).isDisplayed()) {
-                List<WebElement> headersName = DriverAction.getElements(TestToolLocators.testCasePillTableHeaders);
+            if (DriverAction.getElement(ObjTestTool.testCasePillTableRows).isDisplayed()) {
+                List<WebElement> headersName = DriverAction.getElements(ObjTestTool.testCasePillTableHeaders);
                 for (int i = 0; i < headersName.size(); i++) {
                     if (headersName.get(i).getText().equalsIgnoreCase("Testcase Name")) {
                         name_column = i + 1;
@@ -1548,10 +1547,10 @@ public class TestToolSteps {
                     }
                 }
                 expected_testDetails = new ArrayList<>();
-                expected_testDetails.add(DriverAction.getElementText(TestToolLocators.testCasePillTableRowsData(name_column)));
-                expected_testDetails.add(DriverAction.getElementText(TestToolLocators.testCasePillTableRowsData(type_column)));
-                expected_testDetails.add(DriverAction.getElementText(TestToolLocators.testCasePillTableRowsData(category_column)));
-                expected_testDetails.add(DriverAction.getElementText(TestToolLocators.testCasePillTableRowsData(flag_column)));
+                expected_testDetails.add(DriverAction.getElementText(ObjTestTool.testCasePillTableRowsData(name_column)));
+                expected_testDetails.add(DriverAction.getElementText(ObjTestTool.testCasePillTableRowsData(type_column)));
+                expected_testDetails.add(DriverAction.getElementText(ObjTestTool.testCasePillTableRowsData(category_column)));
+                expected_testDetails.add(DriverAction.getElementText(ObjTestTool.testCasePillTableRowsData(flag_column)));
 
             } else {
                 GemTestReporter.addTestStep("Test Case rows",
@@ -1569,18 +1568,18 @@ public class TestToolSteps {
     public void clickOnEditButtonOfTestcase() {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.testCasePillTableRows));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.testCasePillTableRows));
 
             int column = 0;
-            List<WebElement> headersName = DriverAction.getElements(TestToolLocators.testCasePillTableHeaders);
+            List<WebElement> headersName = DriverAction.getElements(ObjTestTool.testCasePillTableHeaders);
             for (int i = 0; i < headersName.size(); i++) {
                 if (headersName.get(i).getText().equalsIgnoreCase("Edit")) {
                     column = i + 1;
                     break;
                 }
             }
-            if (DriverAction.getElement(TestToolLocators.testCasePillTableEditButton(column)).isDisplayed()) {
-                DriverAction.click(TestToolLocators.testCasePillTableEditButton(column), "edit");
+            if (DriverAction.getElement(ObjTestTool.testCasePillTableEditButton(column)).isDisplayed()) {
+                DriverAction.click(ObjTestTool.testCasePillTableEditButton(column), "edit");
             } else {
                 GemTestReporter.addTestStep("Test Case Edit Button",
                         "Test case edit button not displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -1596,14 +1595,14 @@ public class TestToolSteps {
     public void verifyEditDetailsForGivenTestCase() {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.testcaseEditDialog));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.testcaseEditDialog));
 
-            if (DriverAction.getElement(TestToolLocators.testcaseEditDialog).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.testcaseEditDialog).isDisplayed()) {
                 List<String> actualDetails = new ArrayList<>();
-                actualDetails.add(DriverAction.getAttributeName(TestToolLocators.testcaseNameInput, "value"));
-                actualDetails.add(DriverAction.getElementText(TestToolLocators.testcaseTypeDropdownValue));
-                actualDetails.add(DriverAction.getAttributeName(TestToolLocators.testcaseCategory, "value"));
-                actualDetails.add(DriverAction.getElementText(TestToolLocators.testcaseTypeRunFlagValue));
+                actualDetails.add(DriverAction.getAttributeName(ObjTestTool.testcaseNameInput, "value"));
+                actualDetails.add(DriverAction.getElementText(ObjTestTool.testcaseTypeDropdownValue));
+                actualDetails.add(DriverAction.getAttributeName(ObjTestTool.testcaseCategory, "value"));
+                actualDetails.add(DriverAction.getElementText(ObjTestTool.testcaseTypeRunFlagValue));
 
                 System.out.println(actualDetails);
 
@@ -1630,8 +1629,8 @@ public class TestToolSteps {
     @And("Clear category field to make empty")
     public void clearCategoryFieldToMakeEmpty() {
         try {
-            DriverAction.clearText(TestToolLocators.testcaseCategory);
-            DriverAction.click(TestToolLocators.testcaseNameInput);
+            DriverAction.clearText(ObjTestTool.testcaseCategory);
+            DriverAction.click(ObjTestTool.testcaseNameInput);
         } catch (Exception e) {
             logger.info("Exception occurred", e);
             GemTestReporter.addTestStep("Error!!", "Fail to clear test category field.",
@@ -1642,8 +1641,8 @@ public class TestToolSteps {
     @And("Click on save button to update the test case")
     public void clickOnSaveButtonToUpdateTheTestCase() {
         try {
-            if (DriverAction.getElement(TestToolLocators.createTestCaseSaveButton).isDisplayed()) {
-                DriverAction.click(TestToolLocators.createTestCaseSaveButton, "save");
+            if (DriverAction.getElement(ObjTestTool.createTestCaseSaveButton).isDisplayed()) {
+                DriverAction.click(ObjTestTool.createTestCaseSaveButton, "save");
             } else {
                 GemTestReporter.addTestStep("Test Case save button",
                         "Save button not displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -1659,21 +1658,21 @@ public class TestToolSteps {
     public void getTheExecutableTestCaseCount() {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(30));
-            wait.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.closeEditDialogButton)));
+            wait.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.closeEditDialogButton)));
 
-            if (DriverAction.getElement(TestToolLocators.testCasePillTableHeaders).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.testCasePillTableHeaders).isDisplayed()) {
                 int column = 0;
-                List<WebElement> headersName = DriverAction.getElements(TestToolLocators.testCasePillTableHeaders);
+                List<WebElement> headersName = DriverAction.getElements(ObjTestTool.testCasePillTableHeaders);
                 for (int i = 0; i < headersName.size(); i++) {
                     if (headersName.get(i).getText().equalsIgnoreCase("RUN FLAG")) {
                         column = i + 1;
                         break;
                     }
                 }
-                DriverAction.click(TestToolLocators.testCaseHeaderFilter(column), "filter");
-                DriverAction.click(TestToolLocators.suiteHeaderActiveFilter, "Filter Dropdown");
+                DriverAction.click(ObjTestTool.testCaseHeaderFilter(column), "filter");
+                DriverAction.click(ObjTestTool.suiteHeaderActiveFilter, "Filter Dropdown");
                 List<WebElement> filterValues =
-                        DriverAction.getElements(TestToolLocators.suiteHeaderFilterOptions);
+                        DriverAction.getElements(ObjTestTool.suiteHeaderFilterOptions);
                 DriverAction.waitSec(2);
 
                 for (WebElement filterValue : filterValues) {
@@ -1684,14 +1683,14 @@ public class TestToolSteps {
                 }
 
                 int unexecutableCounts =
-                        DriverAction.getElements(TestToolLocators.testCasePillTableRows).size();
+                        DriverAction.getElements(ObjTestTool.testCasePillTableRows).size();
 
                 tempData =
-                        (getNumberFromString(DriverAction.getElementsText(TestToolLocators.suiteCounts).get(1))
+                        (getNumberFromString(DriverAction.getElementsText(ObjTestTool.suiteCounts).get(1))
                                 - unexecutableCounts) + "";
 
                 SUITE_ID =
-                        "" + getNumberFromString(DriverAction.getElementText(TestToolLocators.testCasesHeader));
+                        "" + getNumberFromString(DriverAction.getElementText(ObjTestTool.testCasesHeader));
 
             } else {
                 GemTestReporter.addTestStep("Test Case Header", "Header not" +
@@ -1708,15 +1707,15 @@ public class TestToolSteps {
     public void clickOnExecuteButtonToExecuteSuite() {
         try {
             int column = 0;
-            List<WebElement> headersName = DriverAction.getElements(TestToolLocators.suiteHeaderName);
+            List<WebElement> headersName = DriverAction.getElements(ObjTestTool.suiteHeaderName);
             for (int i = 0; i < headersName.size(); i++) {
                 if (headersName.get(i).getText().equalsIgnoreCase("Execute")) {
                     column = i + 1;
                     break;
                 }
             }
-            if (DriverAction.getElements(TestToolLocators.suiteTableSuiteFirstRows(column)).get(0).isDisplayed()) {
-                DriverAction.click(DriverAction.getElements(TestToolLocators.suiteTableSuiteFirstRows(column))
+            if (DriverAction.getElements(ObjTestTool.suiteTableSuiteFirstRows(column)).get(0).isDisplayed()) {
+                DriverAction.click(DriverAction.getElements(ObjTestTool.suiteTableSuiteFirstRows(column))
                         .get(0), "execute");
             } else {
                 GemTestReporter.addTestStep("Execution Button", "Button not" +
@@ -1733,11 +1732,11 @@ public class TestToolSteps {
     public void selectExecutionRunMode(String mode) {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(30));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.executeSuiteDialog));
-            if (DriverAction.getElement(TestToolLocators.executeSuiteDialog).isDisplayed()) {
-                DriverAction.click(TestToolLocators.executeModeDropdown, "mode");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.executeSuiteDialog));
+            if (DriverAction.getElement(ObjTestTool.executeSuiteDialog).isDisplayed()) {
+                DriverAction.click(ObjTestTool.executeModeDropdown, "mode");
                 List<WebElement> options =
-                        DriverAction.getElements(TestToolLocators.testcaseTypeDropdownItems);
+                        DriverAction.getElements(ObjTestTool.testcaseTypeDropdownItems);
                 for (WebElement option : options) {
                     if (option.getText().equalsIgnoreCase(mode)) {
                         DriverAction.click(option, mode);
@@ -1758,10 +1757,10 @@ public class TestToolSteps {
     @And("Select execution environment {string}")
     public void selectExecutionEnvironment(String env) {
         try {
-            if (DriverAction.getElement(TestToolLocators.executeSuiteDialog).isDisplayed()) {
-                DriverAction.click(TestToolLocators.executeEnvDropdown, "environment");
+            if (DriverAction.getElement(ObjTestTool.executeSuiteDialog).isDisplayed()) {
+                DriverAction.click(ObjTestTool.executeEnvDropdown, "environment");
                 List<WebElement> options =
-                        DriverAction.getElements(TestToolLocators.testcaseTypeDropdownItems);
+                        DriverAction.getElements(ObjTestTool.testcaseTypeDropdownItems);
                 for (WebElement option : options) {
                     if (option.getText().equalsIgnoreCase(env)) {
                         DriverAction.click(option, env);
@@ -1782,8 +1781,8 @@ public class TestToolSteps {
     @And("Click on execute button")
     public void clickOnExecuteButton() {
         try {
-            if (DriverAction.getElement(TestToolLocators.executeButton).isDisplayed()) {
-                DriverAction.click(TestToolLocators.executeButton, "execute");
+            if (DriverAction.getElement(ObjTestTool.executeButton).isDisplayed()) {
+                DriverAction.click(ObjTestTool.executeButton, "execute");
             } else {
                 GemTestReporter.addTestStep("Execution Button", "Button not" +
                         " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -1799,9 +1798,9 @@ public class TestToolSteps {
     public void openGeneratedReportLink() {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(30));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.executedViewReportLink));
-            if (DriverAction.getElement(TestToolLocators.executedViewReportLink).isDisplayed()) {
-                DriverAction.click(TestToolLocators.executedViewReportLink, "view report");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.executedViewReportLink));
+            if (DriverAction.getElement(ObjTestTool.executedViewReportLink).isDisplayed()) {
+                DriverAction.click(ObjTestTool.executedViewReportLink, "view report");
             } else {
                 GemTestReporter.addTestStep("View Report Link", "Link not" +
                         " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -1820,8 +1819,8 @@ public class TestToolSteps {
             DriverAction.switchToWindow(windows.get(windows.size() - 1));
 
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(60));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.expectedTestCaseCount));
-            String actualCount = DriverAction.getElementText(TestToolLocators.expectedTestCaseCount);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.expectedTestCaseCount));
+            String actualCount = DriverAction.getElementText(ObjTestTool.expectedTestCaseCount);
 
             if (actualCount.contains(tempData)) {
                 GemTestReporter.addTestStep("Verifying Executable Test Count",
@@ -1844,11 +1843,11 @@ public class TestToolSteps {
     public void selectSuiteIDOptionsFromTheFilterList() {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(30));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.suiteHeaderActiveFilter));
-            if (DriverAction.getElement(TestToolLocators.suiteHeaderActiveFilter).isDisplayed()) {
-                DriverAction.click(TestToolLocators.suiteHeaderActiveFilter, "Filter Dropdown");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.suiteHeaderActiveFilter));
+            if (DriverAction.getElement(ObjTestTool.suiteHeaderActiveFilter).isDisplayed()) {
+                DriverAction.click(ObjTestTool.suiteHeaderActiveFilter, "Filter Dropdown");
                 List<WebElement> filterValues =
-                        DriverAction.getElements(TestToolLocators.suiteHeaderFilterOptions);
+                        DriverAction.getElements(ObjTestTool.suiteHeaderFilterOptions);
 
                 for (WebElement filterValue : filterValues) {
                     if (SUITE_ID.equalsIgnoreCase(filterValue.getText())) {
@@ -1868,7 +1867,7 @@ public class TestToolSteps {
     @And("Get the suite ID")
     public void getTheSuiteID() {
         try {
-            List<WebElement> headersName = DriverAction.getElements(TestToolLocators.suiteHeaderName);
+            List<WebElement> headersName = DriverAction.getElements(ObjTestTool.suiteHeaderName);
 
             int column = 0;
             for (int i = 0; i < headersName.size(); i++) {
@@ -1878,7 +1877,7 @@ public class TestToolSteps {
                 }
             }
 
-            String suiteId = DriverAction.getElementText(TestToolLocators.suiteTableSuiteFirstRows(column));
+            String suiteId = DriverAction.getElementText(ObjTestTool.suiteTableSuiteFirstRows(column));
             SUITE_ID = suiteId;
 
         } catch (Exception e) {
@@ -1895,10 +1894,10 @@ public class TestToolSteps {
             DriverAction.switchToWindow(windows.get(windows.size() - 1));
 
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(60));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.expectedTestCaseCount));
-            String actualCount = DriverAction.getElementText(TestToolLocators.expectedTestCaseCount);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.expectedTestCaseCount));
+            String actualCount = DriverAction.getElementText(ObjTestTool.expectedTestCaseCount);
 
-            if (DriverAction.getElement(TestToolLocators.expectedTestCaseCount).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.expectedTestCaseCount).isDisplayed()) {
                 GemTestReporter.addTestStep("View Report",
                         "Opened successfully", STATUS.PASS, DriverAction.takeSnapShot());
             } else {
@@ -1916,15 +1915,15 @@ public class TestToolSteps {
     public void clickOnGitButtonToAddTestCasesFromGit() {
         try {
             int column = 0;
-            List<WebElement> headersName = DriverAction.getElements(TestToolLocators.suiteHeaderName);
+            List<WebElement> headersName = DriverAction.getElements(ObjTestTool.suiteHeaderName);
             for (int i = 0; i < headersName.size(); i++) {
                 if (headersName.get(i).getText().equalsIgnoreCase("Version Control")) {
                     column = i + 1;
                     break;
                 }
             }
-            if (DriverAction.getElements(TestToolLocators.suiteTableSuiteGitButton(column)).get(0).isDisplayed()) {
-                DriverAction.click(DriverAction.getElements(TestToolLocators.suiteTableSuiteGitButton(column))
+            if (DriverAction.getElements(ObjTestTool.suiteTableSuiteGitButton(column)).get(0).isDisplayed()) {
+                DriverAction.click(DriverAction.getElements(ObjTestTool.suiteTableSuiteGitButton(column))
                         .get(0), "execute");
             } else {
                 GemTestReporter.addTestStep("Git Button", "Button not" +
@@ -1940,8 +1939,8 @@ public class TestToolSteps {
     @And("Enter the github URL {string}")
     public void enterTheGithubURL(String url) {
         try {
-            if (DriverAction.getElement(TestToolLocators.IntegrateGitDialog).isDisplayed()) {
-                DriverAction.typeText(TestToolLocators.gitURLInput, url, "url");
+            if (DriverAction.getElement(ObjTestTool.IntegrateGitDialog).isDisplayed()) {
+                DriverAction.typeText(ObjTestTool.gitURLInput, url, "url");
             } else {
                 GemTestReporter.addTestStep("Integrate Git Modal", "Modal not" +
                         " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -1956,8 +1955,8 @@ public class TestToolSteps {
     @And("Click on integrate Git button")
     public void clickOnIntegrateGitButton() {
         try {
-            if (DriverAction.getElement(TestToolLocators.integrateGitButton).isDisplayed()) {
-                DriverAction.click(TestToolLocators.integrateGitButton, "Integrate button");
+            if (DriverAction.getElement(ObjTestTool.integrateGitButton).isDisplayed()) {
+                DriverAction.click(ObjTestTool.integrateGitButton, "Integrate button");
             } else {
                 GemTestReporter.addTestStep("Integrate Git Button", "Button not" +
                         " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -1976,17 +1975,17 @@ public class TestToolSteps {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(30));
             int column = 0;
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.suiteHeaderName));
-            List<WebElement> headersName = DriverAction.getElements(TestToolLocators.suiteHeaderName);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.suiteHeaderName));
+            List<WebElement> headersName = DriverAction.getElements(ObjTestTool.suiteHeaderName);
             for (int i = 0; i < headersName.size(); i++) {
                 if (headersName.get(i).getText().equalsIgnoreCase("Version Control")) {
                     column = i + 1;
                     break;
                 }
             }
-            wait.until(ExpectedConditions.elementToBeClickable(DriverAction.getElements(TestToolLocators.
+            wait.until(ExpectedConditions.elementToBeClickable(DriverAction.getElements(ObjTestTool.
                     suiteTableSuiteGitButton(column)).get(0)));
-            if (DriverAction.getElements(TestToolLocators.suiteTableSuiteGitButton(column)).get(0).getAttribute(
+            if (DriverAction.getElements(ObjTestTool.suiteTableSuiteGitButton(column)).get(0).getAttribute(
                     "class").contains("blink")) {
                 GemTestReporter.addTestStep("Git Button", "Git button is blinking" +
                         "", STATUS.PASS);
@@ -2005,15 +2004,15 @@ public class TestToolSteps {
     public void clickOnGitButtonToValidatingTheJarProcess() {
         try {
             int column = 0;
-            List<WebElement> headersName = DriverAction.getElements(TestToolLocators.suiteHeaderName);
+            List<WebElement> headersName = DriverAction.getElements(ObjTestTool.suiteHeaderName);
             for (int i = 0; i < headersName.size(); i++) {
                 if (headersName.get(i).getText().equalsIgnoreCase("Version Control")) {
                     column = i + 1;
                     break;
                 }
             }
-            if (DriverAction.getElements(TestToolLocators.suiteTableSuiteGitButton(column)).get(0).isDisplayed()) {
-                DriverAction.click(DriverAction.getElements(TestToolLocators.suiteTableSuiteGitButton(column))
+            if (DriverAction.getElements(ObjTestTool.suiteTableSuiteGitButton(column)).get(0).isDisplayed()) {
+                DriverAction.click(DriverAction.getElements(ObjTestTool.suiteTableSuiteGitButton(column))
                         .get(0), "execute");
             } else {
                 GemTestReporter.addTestStep("Execution Button", "Button not" +
@@ -2029,11 +2028,11 @@ public class TestToolSteps {
     @And("Verify new buttons {string} should be added into integrate git modal")
     public void verifyNewButtonsShouldBeAddedIntoIntegrateGitModal(String buttonsList) {
         try {
-            if (DriverAction.getElement(TestToolLocators.IntegrateGitDialog).isDisplayed()) {
+            if (DriverAction.getElement(ObjTestTool.IntegrateGitDialog).isDisplayed()) {
                 List<String> buttons = Arrays.asList(buttonsList.split(","));
                 String status = "pass";
                 for (String button : buttons) {
-                    if (!DriverAction.getElement(TestToolLocators.commonButtons(button)).isDisplayed()) {
+                    if (!DriverAction.getElement(ObjTestTool.commonButtons(button)).isDisplayed()) {
                         GemTestReporter.addTestStep(button, button + " not" +
                                 " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
                         status = "fail";
@@ -2057,8 +2056,8 @@ public class TestToolSteps {
     @And("click on Remove Git button")
     public void clickOnRemoveGitButton() {
         try {
-            if (DriverAction.getElement(TestToolLocators.commonButtons("Remove Git")).isDisplayed()) {
-                DriverAction.click(TestToolLocators.commonButtons("Remove Git"), "Remove Git");
+            if (DriverAction.getElement(ObjTestTool.commonButtons("Remove Git")).isDisplayed()) {
+                DriverAction.click(ObjTestTool.commonButtons("Remove Git"), "Remove Git");
             } else {
                 GemTestReporter.addTestStep("Remove Git Button", "Button not" +
                         " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -2074,10 +2073,10 @@ public class TestToolSteps {
     public void verifyAlertWithMessage(String message) {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(20));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.toastAlertMessage));
-            if (DriverAction.getElement(TestToolLocators.toastAlertMessage).isDisplayed()) {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.toastAlertMessage));
+            if (DriverAction.getElement(ObjTestTool.toastAlertMessage).isDisplayed()) {
                 List<String> toastMessages =
-                        DriverAction.getElementsText(TestToolLocators.toastAlertMessage);
+                        DriverAction.getElementsText(ObjTestTool.toastAlertMessage);
 //                String actualMessage = DriverAction.getElementText(TestToolLocators.toastAlertMessage);
                 System.out.println(toastMessages);
                 if (message.equalsIgnoreCase("Git Unlinked from Suite Id")) {
@@ -2120,8 +2119,8 @@ public class TestToolSteps {
     public void waitForNavigatingToTestCaseScreen() {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(20));
-            wait.until(ExpectedConditions.elementToBeClickable(TestToolLocators.createTestCaseButton));
-            if (!DriverAction.getElement(TestToolLocators.createTestCaseButton).isDisplayed()) {
+            wait.until(ExpectedConditions.elementToBeClickable(ObjTestTool.createTestCaseButton));
+            if (!DriverAction.getElement(ObjTestTool.createTestCaseButton).isDisplayed()) {
                 GemTestReporter.addTestStep("Test Case Page",
                         "Page not displayed", STATUS.FAIL, DriverAction.takeSnapShot());
             }
@@ -2148,15 +2147,15 @@ public class TestToolSteps {
     public void clickOnEmailButtonToAddEmailFunctionality() {
         try {
             int column = 0;
-            List<WebElement> headersName = DriverAction.getElements(TestToolLocators.suiteHeaderName);
+            List<WebElement> headersName = DriverAction.getElements(ObjTestTool.suiteHeaderName);
             for (int i = 0; i < headersName.size(); i++) {
                 if (headersName.get(i).getText().equalsIgnoreCase("Share Via")) {
                     column = i + 1;
                     break;
                 }
             }
-            if (DriverAction.getElements(TestToolLocators.suiteTableSuiteMailButton(column)).get(0).isDisplayed()) {
-                DriverAction.click(DriverAction.getElements(TestToolLocators.suiteTableSuiteMailButton(column))
+            if (DriverAction.getElements(ObjTestTool.suiteTableSuiteMailButton(column)).get(0).isDisplayed()) {
+                DriverAction.click(DriverAction.getElements(ObjTestTool.suiteTableSuiteMailButton(column))
                         .get(0), "email");
             } else {
                 GemTestReporter.addTestStep("Mail Button", "Button not" +
@@ -2172,9 +2171,9 @@ public class TestToolSteps {
     @And("Enter the email TO {string}")
     public void enterTheEmailTO(String TO) {
         try {
-            if (DriverAction.getElement(TestToolLocators.AddEmailDialog).isDisplayed()) {
-                DriverAction.typeText(TestToolLocators.emailTOInput, TO, "email to");
-                DriverAction.getElement(TestToolLocators.emailTOInput).sendKeys(Keys.ENTER);
+            if (DriverAction.getElement(ObjTestTool.AddEmailDialog).isDisplayed()) {
+                DriverAction.typeText(ObjTestTool.emailTOInput, TO, "email to");
+                DriverAction.getElement(ObjTestTool.emailTOInput).sendKeys(Keys.ENTER);
             } else {
                 GemTestReporter.addTestStep("Add Email Modal", "Modal not" +
                         " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -2189,8 +2188,8 @@ public class TestToolSteps {
     @And("Click on Save button")
     public void clickOnSaveButton() {
         try {
-            if (DriverAction.getElement(TestToolLocators.commonButtons("Save ")).isDisplayed()) {
-                DriverAction.click(TestToolLocators.commonButtons("Save "), "Save");
+            if (DriverAction.getElement(ObjTestTool.commonButtons("Save ")).isDisplayed()) {
+                DriverAction.click(ObjTestTool.commonButtons("Save "), "Save");
             } else {
                 GemTestReporter.addTestStep("Email Save Button", "Button not" +
                         " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -2206,11 +2205,11 @@ public class TestToolSteps {
     public void clickOnUnlinkEmailButton() {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(20));
-            wait.until(ExpectedConditions.elementToBeClickable(TestToolLocators.commonButtons("Unlink " +
+            wait.until(ExpectedConditions.elementToBeClickable(ObjTestTool.commonButtons("Unlink " +
                     "Email")));
             DriverAction.waitSec(1);
-            if (DriverAction.getElement(TestToolLocators.commonButtons("Unlink Email")).isDisplayed()) {
-                DriverAction.click(TestToolLocators.commonButtons("Unlink Email"), "Unlink");
+            if (DriverAction.getElement(ObjTestTool.commonButtons("Unlink Email")).isDisplayed()) {
+                DriverAction.click(ObjTestTool.commonButtons("Unlink Email"), "Unlink");
             } else {
                 GemTestReporter.addTestStep("Email unlink Button", "Button not" +
                         " displayed", STATUS.FAIL, DriverAction.takeSnapShot());
@@ -2227,13 +2226,13 @@ public class TestToolSteps {
         try {
             DriverAction.waitSec(2);
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(20));
-            wait.until(ExpectedConditions.visibilityOfAllElements(DriverAction.getElements(TestToolLocators.suiteCounts).get(0)));
-            wait.until(ExpectedConditions.textToBePresentInElement(DriverAction.getElements(TestToolLocators.suiteCounts).get(0), "Project(s) Found"));
+            wait.until(ExpectedConditions.visibilityOfAllElements(DriverAction.getElements(ObjTestTool.suiteCounts).get(0)));
+            wait.until(ExpectedConditions.textToBePresentInElement(DriverAction.getElements(ObjTestTool.suiteCounts).get(0), "Project(s) Found"));
 
-            if (DriverAction.getElements(TestToolLocators.suiteCounts).get(0).isDisplayed()) {
+            if (DriverAction.getElements(ObjTestTool.suiteCounts).get(0).isDisplayed()) {
 
                 tempData =
-                        "" + (getNumberFromString(DriverAction.getElementsText(TestToolLocators.
+                        "" + (getNumberFromString(DriverAction.getElementsText(ObjTestTool.
                                 suiteCounts).get(0)));
 
             } else {
@@ -2251,12 +2250,12 @@ public class TestToolSteps {
     public void verifyTheTotalAvailableProject() {
         try {
             WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(30));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(TestToolLocators.suiteHeaderActiveFilter));
-            if (DriverAction.getElement(TestToolLocators.suiteHeaderActiveFilter).isDisplayed()) {
-                DriverAction.click(TestToolLocators.suiteHeaderActiveFilter, "Filter Dropdown");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.suiteHeaderActiveFilter));
+            if (DriverAction.getElement(ObjTestTool.suiteHeaderActiveFilter).isDisplayed()) {
+                DriverAction.click(ObjTestTool.suiteHeaderActiveFilter, "Filter Dropdown");
             }
             List<WebElement> filterValues =
-                    DriverAction.getElements(TestToolLocators.suiteHeaderFilterOptions);
+                    DriverAction.getElements(ObjTestTool.suiteHeaderFilterOptions);
             int actualCount = filterValues.size();
             int expectedCount = Integer.parseInt(tempData);
 

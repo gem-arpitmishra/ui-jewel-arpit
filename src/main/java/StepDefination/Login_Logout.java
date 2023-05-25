@@ -33,13 +33,15 @@ public class Login_Logout {
     @Then("Verify Logout button visibility")
     public void logout_visibility() {
         try {
-            DriverAction.waitSec(3);
+            DriverAction.waitUntilElementAppear(Locators.homepage_username,5);
+            DriverAction.hoverOver(Locators.homepage_username);
             if (DriverAction.isExist(Locators.logout_btn)) {
                 GemTestReporter.addTestStep("verify logout button visibility", "Logout button Displayed successfully", STATUS.PASS, DriverAction.takeSnapShot());
             } else {
                 GemTestReporter.addTestStep("verify logout button visibility", "Logout button not found", STATUS.FAIL, DriverAction.takeSnapShot());
             }
-        } catch (Exception e) {
+        } catch (Exception e) {DriverAction.waitUntilElementAppear(Locators.homepage_username,10);
+            DriverAction.hoverOver(Locators.homepage_username);
             logger.info("An exception occurred!", e);
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED " + e, STATUS.FAIL, DriverAction.takeSnapShot());
         }
