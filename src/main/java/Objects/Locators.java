@@ -233,7 +233,7 @@ public class Locators {
     public static By enviromnt_filter_prod = By.xpath("(//*[@class=\"p-column-filter-menu-button p-link\"])[3]");
     public static By betaa = By.xpath("(//*[@class=\"p-checkbox-box\"])[3]");
     public static By betaa_2 = By.xpath("(//*[@class=\"p-checkbox-box\"])[2]");
-    public static By betaa_txtingg = By.xpath("(//*[@class=\"p-checkbox-box\"])[2]");
+    public static By betaa_txtingg = By.xpath("(//*[@class=\"p-checkbox-box\"])[3]");
     public static By beta_txt = By.xpath("//span[@class=\"image-text\"]/span[text()=\"Prod\"]");
     public static By beta_txt2 = By.xpath("//span[@class=\"image-text\"]/span[text()=\"Beta\"]");
     public static By prod_txt = By.xpath("//span[@class=\"image-text\"]/span[text()=\"Prod\"]");

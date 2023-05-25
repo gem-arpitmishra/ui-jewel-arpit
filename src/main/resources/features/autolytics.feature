@@ -78,7 +78,7 @@ Feature: Autolytics
     Examples:
       | usernamess      | passwordss     |
       | jewelautomation | dummy_test@123 |
-#
+##
   Scenario Outline:Validate the edit report button
     Given uss on loginnnn
     Then validate edit report button and check you're report selected has been generated or not <report_gen>
@@ -125,11 +125,11 @@ Feature: Autolytics
     Examples:
       | tsr                     |
       | Testcase Summary Report |
-#
-#  Scenario Outline: Check the screenshot functionality and validate buttons
-#    Given generate suite run report <username> and <password>
-#    Then open execution report and validate button of screenshots
-#    Examples:
-#      | username     | password  |
-#      | arpit.mishra | arpit1234 |
+
+  Scenario Outline: Check the screenshot functionality and validate buttons
+    Given generate suite run report <username> and <password>
+    Then open execution report and validate button of screenshots
+    Examples:
+      | username     | password  |
+      | arpit.mishra | arpit1234 |
 
