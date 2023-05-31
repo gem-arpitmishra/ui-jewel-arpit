@@ -1,10 +1,8 @@
 package Objects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
-public class TestToolLocators {
+public class ObjTestTool {
     public static By testTool = By.xpath("//div[text()=\"Test Tool\"]");
     public static By admin = By.xpath("//div[text()=\"Admin\"]");
     public static By suite = By.xpath("//div[text()=\"Suite\"]");
