@@ -162,4 +162,3 @@ Feature: MLab
       When Open testcase
       When Move to attached-requirements tab
       Then Verify no attachment is attached by default
-      When

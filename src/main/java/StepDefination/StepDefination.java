@@ -72,6 +72,7 @@ public class StepDefination extends GemEcoUpload {
             DriverAction.waitUntilElementAppear(total_projects, 10);
         } catch (Exception e) {
             e.printStackTrace();
+            GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
 
