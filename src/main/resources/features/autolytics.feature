@@ -1,7 +1,7 @@
 Feature: Autolytics
 
   @smoke
-  Scenario:Click on the Autolytics button
+  Scenario: Click on the Autolytics button
     Given You are on the login screen
     Then Enter username as "jewelautomation"
     And Enter Password
@@ -71,7 +71,7 @@ Feature: Autolytics
       | jewelautomation | dummy_test@123 |
 #
   @smoke
-  Scenario Outline:Validate new filers of suite summary report
+  Scenario Outline: Validate new filers of suite summary report
     Given click er clickon loginnn and entersss <usernamess> and <passwordss>
     Then validate enviroment filter
 #    Then validate pie chart filter
@@ -79,21 +79,21 @@ Feature: Autolytics
       | usernamess      | passwordss     |
       | jewelautomation | dummy_test@123 |
 ##
-  Scenario Outline:Validate the edit report button
+  Scenario Outline: Validate the edit report button
     Given uss on loginnnn
     Then validate edit report button and check you're report selected has been generated or not <report_gen>
     Examples:
       | report_gen       |
       | Suite Run Report |
 #
-  Scenario Outline:Check if filters applied are still there on the shared report link
+  Scenario Outline: Check if filters applied are still there on the shared report link
     Given usserr cicks onn loginnnn
     Then validate the filter on the share report <sharedReport>
     Examples:
       | sharedReport  |
       | Shared Report |
 #
-  Scenario Outline:Check for Suite Diagnose Report and validate A filter of it
+  Scenario Outline: Check for Suite Diagnose Report and validate A filter of it
     Given user logs in again
     Then Generates Suite Diagnose Report <sdr>
     Then validate filter
@@ -102,7 +102,7 @@ Feature: Autolytics
       | Suite Diagnose Report |
 #
   @fail
-  Scenario Outline:Check for Test Diagnose Report and vaidate a filter of it
+  Scenario Outline: Check for Test Diagnose Report and vaidate a filter of it
     Given user logs in again for Test Diagnose Report
     Then Generates Test Diagnose report <tdr>
     Then validates a filter
@@ -110,7 +110,7 @@ Feature: Autolytics
       | tdr                      |
       | Testcase Diagnose Report |
 #
-  Scenario Outline:Check for Testcase Run Report and validate a filter of it
+  Scenario Outline: Check for Testcase Run Report and validate a filter of it
     Given user logs in for Testcase Run Report
     Then Generates Testcase Run Report <trr>
     Then validatess a filter
@@ -118,7 +118,7 @@ Feature: Autolytics
       | trr                 |
       | Testcase Run Report |
 #
-  Scenario Outline:Check for Testcase Summary Report and validate filter of it
+  Scenario Outline: Check for Testcase Summary Report and validate filter of it
     Given user logs in for Testcase Summary Report
     Then Generates Testcase Summary Report <tsr>
     Then validate a filterr

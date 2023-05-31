@@ -25,19 +25,19 @@ Feature: Bridge Token
     And Enter Password as 'dummy_test@123'
     Then Verify the Bridge Token Button is clickable or not
 
-  Scenario: Click on copy Bridge Token
+  Scenario: Copy Bridge Token
     Given You are on the login screen
     Then Enter username as "jewelautomation"
     And Enter Password as 'dummy_test@123'
     Then Click on Copy Bridge Token
 
-  Scenario: Check the alert
+  Scenario: Alert validation for bridgeToken copy
     Given You are on the login screen
     Then Enter username as "jewelautomation"
     And Enter Password as 'dummy_test@123'
     Then Verify the Alert when copy button is clicked
 
-  Scenario: Check the alert of Change Token
+  Scenario: Alert validation for Change Token
     Given You are on the login screen
     Then Enter username as "jewelautomation"
     And Enter Password as 'dummy_test@123'

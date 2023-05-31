@@ -47,7 +47,7 @@ Feature: Sign Up
   Scenario: Password strength and suggestion dialog
     Then Password strength dialog appears on focusing on password field and disappears if it goes out of focus
 
-  Scenario: confirmation password equality check
+  Scenario: Confirmation password equality check
     When Fill fields "jewel","Automation user","","dummy_test54@gemperf.com","dummy_test@123","dummy_test@123","Y"
     When User enters "different" passwords in password and confirmation-password
     Then Click Register

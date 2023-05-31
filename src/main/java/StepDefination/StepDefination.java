@@ -1,6 +1,7 @@
 package StepDefination;
 
 import Functions.Functions_Admin;
+import Objects.Locators;
 import com.gemini.generic.reporting.GemEcoUpload;
 import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
@@ -13,23 +14,21 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.*;
-import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
-import Objects.*;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static Objects.Locators.*;
 
@@ -99,6 +98,7 @@ public class StepDefination extends GemEcoUpload {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
+
     @Given("You are on the login screen")
     public void you_are_on_the_login_screen() {
         try {
@@ -109,6 +109,7 @@ public class StepDefination extends GemEcoUpload {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
+
     @Given("^login as admin$")
     public void loginAsAdmin() {
         try {
@@ -386,7 +387,7 @@ public class StepDefination extends GemEcoUpload {
     }
 
     @Then("^Enter a domain name that already exists (.+)$")
-    public void domainAlready_Exist(String alert1){
+    public void domainAlready_Exist(String alert1) {
         try {
             DriverAction.click(regitser_company, "Register Company");
             DriverAction.waitSec(2);
@@ -556,7 +557,7 @@ public class StepDefination extends GemEcoUpload {
                 } else {
                     GemTestReporter.addTestStep("Admin added validation", "Admin is not present in the list", STATUS.FAIL, DriverAction.takeSnapShot());
                 }
-            }else {
+            } else {
                 Actions action2 = new Actions(DriverManager.getWebDriver());
                 action2.moveToElement(DriverManager.getWebDriver().findElement(edit_pencil2)).build().perform();
                 action2.click(DriverManager.getWebDriver().findElement(edit_pencil2)).build().perform();
@@ -858,7 +859,8 @@ public class StepDefination extends GemEcoUpload {
 //        GemTestReporter.addTestStep("exception","Exception",STATUS.INFO);
     }
 
-    public void global2(){
+    @Then("Login to jewel")
+    public void global2() {
         try {
             DriverAction.waitSec(1);
             DriverAction.click(login_btn, "Log In");
@@ -877,7 +879,6 @@ public class StepDefination extends GemEcoUpload {
             e.printStackTrace();
         }
     }
-
 
 
     @Then("Enter username as {string}")
@@ -911,6 +912,7 @@ public class StepDefination extends GemEcoUpload {
             GemTestReporter.addTestStep("ERROR", "SOME ERROR OCCURRED", STATUS.FAIL);
         }
     }
+
     @Then("Verify the text of the Home screen")
     public void verify_the_text_of_the_home_screen() {
         try {
