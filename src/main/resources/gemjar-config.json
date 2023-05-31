@@ -22,7 +22,6 @@
     "shubham.kumar@geminisolutions.com",
     "tushar.chauhan@geminisolutions.com"
   ],
-  "gemjarSubID": "test_id",
   "glueCode": "StepDefination",
   "prod": {
     "browserName": "chrome",
