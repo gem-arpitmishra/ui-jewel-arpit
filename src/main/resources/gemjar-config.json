@@ -3,7 +3,7 @@
   "project_name": "JEWEL",
   "report_name": "JEWEL-UI-REGRESSION",
   "jewel_user": "geco-maulick",
-  "jewel_bridge_token": "f9cae95b-cccf-404c-aded-895e2d49a5d41684151414484",
+  "jewel_bridge_token": "",
   "enter_point": "https://apis.gemecosystem.com/enter-point",
   "feature": "src/main/resources/features",
   "tags": "",
