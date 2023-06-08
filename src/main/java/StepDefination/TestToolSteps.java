@@ -852,8 +852,8 @@ public class TestToolSteps {
     @And("Click on delete button to delete the test case")
     public void clickOnDeleteButtonToDeleteTheTestCase() {
         try {
-            if(DriverAction.isExist(ObjTestTool.alertMessageHeader)){
-                DriverAction.waitUntilElementDisappear(ObjTestTool.alertMessageHeader,10);
+            if(DriverAction.isExist(Locators.Alert_text)){
+                DriverAction.waitUntilElementDisappear(Locators.Alert_text,10);
             }
             if (DriverAction.getElement(ObjTestTool.testCasePillTableHeaders).isDisplayed()) {
 
