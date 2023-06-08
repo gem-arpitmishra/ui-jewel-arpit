@@ -141,8 +141,8 @@ public class SignUp{
     @Then("Validate if signUp is successful")
     public void register_success(){
         try {
-            DriverAction.waitUntilElementAppear(Locators.Alert_admin1, 10);
-            if (DriverAction.getElementText(Locators.Alert_admin1).equals("User Registered.") && DriverAction.getCurrentURL().contains("login")) {
+            DriverAction.waitUntilElementClickable(Locators.Alert_text,10);
+            if (DriverAction.getElementText(Locators.Alert_text).equals("User Registered.") && DriverAction.getCurrentURL().contains("login")) {
                 GemTestReporter.addTestStep("Validate signUp", "SignUp success", STATUS.PASS, DriverAction.takeSnapShot());
             } else {
                 GemTestReporter.addTestStep("Validate signUp", "SignUp fail", STATUS.FAIL, DriverAction.takeSnapShot());

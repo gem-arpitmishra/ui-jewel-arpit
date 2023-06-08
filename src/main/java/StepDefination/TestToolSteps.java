@@ -61,13 +61,13 @@ public class TestToolSteps {
     public void navigateToSection(String section) {
         try {
             if(GemJarGlobalVar.environment.equals("prod")) {
-                if (section.equalsIgnoreCase("TestTool"))
+                if (section.equalsIgnoreCase("ALab"))
                     DriverAction.click(ObjTestTool.testTool, "Test tool");
                 if (section.equalsIgnoreCase("Admin"))
                     DriverAction.click(ObjTestTool.admin, "Admin");
             }
             else if (GemJarGlobalVar.environment.equals("beta")) {
-                if (section.equalsIgnoreCase("TestTool")) {
+                if (section.equalsIgnoreCase("ALab")) {
                     DriverAction.click(Locators.testLab_button, "Test Lab button");
                     DriverAction.click(Locators.Alab_button, "Test tool");
                 }

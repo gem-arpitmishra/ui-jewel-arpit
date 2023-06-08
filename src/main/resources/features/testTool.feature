@@ -4,7 +4,7 @@ Feature: Test Tool
     Given User login into Jewel Portal with valid credentials
       | username        | password             |
       | jewelautomation | ZHVtbXlfdGVzdEAxMjM= |
-    When Navigate to "TestTool" Section
+    When Navigate to "ALab" Section
 
   Scenario: Jewel-TestTool : Page Loading validation
     Then Verify user is navigated to TestTool Suite Page
@@ -83,7 +83,7 @@ Feature: Test Tool
   Scenario: Jewel-TestTool : Filter Option Available Project Validation
     Given Navigate to "Admin" Section
     And Get the total count of projects
-    When Navigate to "TestTool" Section
+    When Navigate to "ALab" Section
     And Verify user is navigated to TestTool Suite Page
     And Click on filter for header "Project Name"
     Then Verify the total available project
@@ -103,7 +103,7 @@ Feature: Test Tool
 
     Examples:
       | suiteName | projectName   |
-      | random    | PROJECT-DEMO2 |
+      | random    | PROJECT-DEMO |
 
   Scenario Outline: Jewel-TestTool : Create suite with duplicate name validation
     When Verify user is navigated to TestTool Suite Page
@@ -207,7 +207,7 @@ Feature: Test Tool
 
     Examples:
       | projectName   | suiteName       | message                                  | toast_message                  |
-      | PROJECT-DEMO2 | DELETE_TESTING2 | Are you Sure you want to delete Testcase | Test Case deleted Successfully |
+      | PROJECT-DEMO | DELETE_TESTING2 | Are you Sure you want to delete Testcase | Test Case deleted Successfully |
 
   Scenario Outline: Jewel-TestTool : Create Suite and validate Suite Creation time
     When Verify user is navigated to TestTool Suite Page
@@ -273,7 +273,7 @@ Feature: Test Tool
 
     Examples:
       | suiteName      | projectName  | testcaseName | testcaseType | testcaseSteps        | category | runFlag | toast_message                  |
-      | DELETE_TESTING | PROJECT-DEMO2 | sample       | Scenario     | Given Launch browser | launch   | Y       | Test Case created Successfully |
+      | DELETE_TESTING | PROJECT-DEMO | sample       | Scenario     | Given Launch browser | launch   | Y       | Test Case created Successfully |
 
   @smoke
   Scenario Outline: Jewel-TestTool : Create testcase and select base project as GemPYP
@@ -299,7 +299,7 @@ Feature: Test Tool
 
     Examples:
       | suiteName      | projectName  | testcaseName | testcaseType | category | runFlag | toast_message                  |
-      | DELETE_TESTING | PROJECT-DEMO2 | sample       | GEMPYP       | launch   | Y       | Test Case created Successfully |
+      | DELETE_TESTING | PROJECT-DEMO | sample       | GEMPYP       | launch   | Y       | Test Case created Successfully |
 
   Scenario Outline: Jewel-TestTool : Create testcase with base project GemJAR and validate Test Type search dropdown
     When Verify user is navigated to TestTool Suite Page

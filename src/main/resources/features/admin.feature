@@ -28,7 +28,7 @@ Feature: Admin Screen
       | projectName   |
       | PROJECT-DEMO2 |
 
-  @smoke  @test
+  @smoke
   Scenario: Validate create project functionality (when project is new)
     Given click on admin
     Then validate the project has been created on grid
