@@ -543,7 +543,7 @@ public class StepDefination extends GemEcoUpload {
                 DriverAction.waitSec(2);
                 DriverAction.click(userToBeAdded);
                 DriverAction.waitSec(2);
-         //       DriverAction.click(addAdmins);
+                DriverAction.click(addAdmins);
                 DriverAction.waitSec(2);
                 DriverAction.click(addAdmin_btn);
                 DriverAction.waitSec(5);
@@ -3953,14 +3953,13 @@ public class StepDefination extends GemEcoUpload {
             DriverAction.waitUntilElementAppear(Alert_text,10);
             String s3 = DriverAction.getElementText(Alert_text);
             String s2 = "Project is created Successfully !!";
-            STATUS status;
             if (s3.equals(s2)) {
                 GemTestReporter.addTestStep("Project is created Successfully !! Validation", "Successful<br>Expected Text: " + s2 + "<br>Actual Text: " + s3, STATUS.PASS);
             } else {
                 GemTestReporter.addTestStep("Project is created Successfully !! Validation", "Unsuccessful<br>Expected Text: " + s2 + "<br>Actual Text: " + s3, STATUS.FAIL);
             }
             DriverAction.doubleClick(Locators.sno, "S No");
-            DriverAction.waitSec(4);
+            DriverAction.waitSec(10);
             String project_name = DriverAction.getElementText(project_name_Admin);
             if (projectNames.equals(project_name)) {
                 GemTestReporter.addTestStep("Project has been added or not?", "Successful<br>Expected Text: " + projectNames + "<br>Actual Text: " + project_name, STATUS.PASS);
