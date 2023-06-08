@@ -62,6 +62,6 @@ Feature: Sign Up
 
   @smoke
   Scenario: SignUp (positive)
-    When Fill fields "Test","user","","@gemperf.com","dummy_test@123","dummy_test@123","Y"
+    When Fill fields "Test","user","","@gemperf.com","Dummy_test@123","Dummy_test@123","Y"
     Then Click Register
     Then Validate if signUp is successful

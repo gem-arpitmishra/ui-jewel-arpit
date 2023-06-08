@@ -138,6 +138,9 @@ public class StepDefination extends GemEcoUpload {
     @Then("^login as super-admin again$")
     public void loginAsSuperAgain() {
         try {
+            if(DriverAction.isExist(Alert_text)){
+                DriverAction.waitUntilElementDisappear(Alert_text,10);
+            }
             DriverAction.click(Locators.username, "Username");
             DriverAction.waitSec(1);
             DriverAction.typeText(Locators.username, "super-admin");
@@ -159,6 +162,7 @@ public class StepDefination extends GemEcoUpload {
     @Then("^verify the company is created$")
     public void superAdminCompanyVerify() {
         try {
+            DriverAction.waitUntilElementAppear(By.xpath("//tr[3]"),10);
             DriverAction.doubleClick(sno, "S_NO");
             DriverAction.waitSec(2);
             String newCompany = DriverAction.getElementText(company_new_name);
@@ -539,7 +543,7 @@ public class StepDefination extends GemEcoUpload {
                 DriverAction.waitSec(2);
                 DriverAction.click(userToBeAdded);
                 DriverAction.waitSec(2);
-                DriverAction.click(addAdmins);
+         //       DriverAction.click(addAdmins);
                 DriverAction.waitSec(2);
                 DriverAction.click(addAdmin_btn);
                 DriverAction.waitSec(5);
@@ -2795,8 +2799,8 @@ public class StepDefination extends GemEcoUpload {
     @Given("click er clickon loginnn and entersss (.+) and (.+)$")
     public void suite_su(String us, String pa) throws Exception {
         try {
-            String url = ProjectConfigData.getProperty("launchUrl");
-            if (url.contains("beta")) {
+//            String url = ProjectConfigData.getProperty("launchUrl");
+//            if (url.contains("beta")) {
                 DriverAction.waitSec(1);
                 DriverAction.click(login_btn, "Log In");
                 DriverAction.waitSec(2);
@@ -2834,45 +2838,45 @@ public class StepDefination extends GemEcoUpload {
                 DriverAction.waitSec(1);
                 DriverAction.click(Locators.generate, "Generate");
                 DriverAction.waitSec(25);
-            } else {
-                DriverAction.waitSec(1);
-                DriverAction.click(login_btn, "Log In");
-                DriverAction.waitSec(2);
-                DriverAction.click(Locators.username, "Username");
-                DriverAction.waitSec(1);
-                DriverAction.typeText(Locators.username, us);
-                DriverAction.waitSec(1);
-                DriverAction.click(Locators.passwordm, "Password");
-                DriverAction.waitSec(1);
-                DriverAction.typeText(Locators.passwordm, pa);
-                DriverAction.waitSec(1);
-                DriverAction.click(login_button, "Login Button");
-                DriverAction.waitSec(2);
-                DriverAction.click(Locators.autolyticsm, "Autolytics");
-                DriverAction.waitSec(2);
-                DriverAction.click(Locators.reporting_new_btn, "Reporting");
-                DriverAction.waitSec(2);
-                DriverAction.click(Locators.createReport, "Create Report");
-                DriverAction.waitSec(2);
-                DriverAction.click(Locators.reportNameScroll, "Report Name");
-                DriverAction.waitSec(2);
-                DriverAction.click(Locators.suite_sum, "Suite Summary Report");
-                DriverAction.waitSec(1);
-                DriverAction.click(Locators.projectScroll, "Project Name");
-                DriverAction.waitSec(5);
-                DriverAction.click(Locators.gemEcoApis2, "PROJECT-DEMO2");
-                DriverAction.waitSec(1);
-                DriverAction.click(Locators.enviromentScroll, "Environment");
-                DriverAction.waitSec(1);
-                DriverAction.click(Locators.select_all2, "Select All");
-                DriverAction.waitSec(1);
-                DriverAction.click(Locators.dateRangeScroll, "Date Range");
-                DriverAction.waitSec(1);
-                DriverAction.click(Locators.thisYear, "This Year");
-                DriverAction.waitSec(1);
-                DriverAction.click(Locators.generate, "Generate");
-                DriverAction.waitSec(25);
-            }
+//            } else {
+//                DriverAction.waitSec(1);
+//                DriverAction.click(login_btn, "Log In");
+//                DriverAction.waitSec(2);
+//                DriverAction.click(Locators.username, "Username");
+//                DriverAction.waitSec(1);
+//                DriverAction.typeText(Locators.username, us);
+//                DriverAction.waitSec(1);
+//                DriverAction.click(Locators.passwordm, "Password");
+//                DriverAction.waitSec(1);
+//                DriverAction.typeText(Locators.passwordm, pa);
+//                DriverAction.waitSec(1);
+//                DriverAction.click(login_button, "Login Button");
+//                DriverAction.waitSec(2);
+//                DriverAction.click(Locators.autolyticsm, "Autolytics");
+//                DriverAction.waitSec(2);
+//                DriverAction.click(Locators.reporting_new_btn, "Reporting");
+//                DriverAction.waitSec(2);
+//                DriverAction.click(Locators.createReport, "Create Report");
+//                DriverAction.waitSec(2);
+//                DriverAction.click(Locators.reportNameScroll, "Report Name");
+//                DriverAction.waitSec(2);
+//                DriverAction.click(Locators.suite_sum, "Suite Summary Report");
+//                DriverAction.waitSec(1);
+//                DriverAction.click(Locators.projectScroll, "Project Name");
+//                DriverAction.waitSec(5);
+//                DriverAction.click(Locators.gemEcoApis2, "PROJECT-DEMO2");
+//                DriverAction.waitSec(1);
+//                DriverAction.click(Locators.enviromentScroll, "Environment");
+//                DriverAction.waitSec(1);
+//                DriverAction.click(Locators.select_all2, "Select All");
+//                DriverAction.waitSec(1);
+//                DriverAction.click(Locators.dateRangeScroll, "Date Range");
+//                DriverAction.waitSec(1);
+//                DriverAction.click(Locators.thisYear, "This Year");
+//                DriverAction.waitSec(1);
+//                DriverAction.click(Locators.generate, "Generate");
+//                DriverAction.waitSec(25);
+//            }
         } catch (Exception e) {
             logger.info("Exception occurred", e);
             GemTestReporter.addTestStep("Error!!", "Something Wrong happened", STATUS.FAIL);
@@ -3946,8 +3950,8 @@ public class StepDefination extends GemEcoUpload {
             DriverAction.waitSec(2);
             GemTestReporter.addTestStep("Description", "Description is: " + projectNames, STATUS.INFO);
             DriverAction.click(create_button_Admin, "Create");
-            DriverAction.waitSec(2);
-            String s3 = DriverAction.getElementText(Alert_admin1);
+            DriverAction.waitUntilElementAppear(Alert_text,10);
+            String s3 = DriverAction.getElementText(Alert_text);
             String s2 = "Project is created Successfully !!";
             STATUS status;
             if (s3.equals(s2)) {

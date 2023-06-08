@@ -232,14 +232,14 @@ public class Locators {
     public static By envrmnt_fltrr = By.xpath("(//*[@class=\"p-column-filter-menu-button p-link\"])[3]");
     public static By enviromnt_filter_prod = By.xpath("(//*[@class=\"p-column-filter-menu-button p-link\"])[3]");
     public static By betaa = By.xpath("(//*[@class=\"p-checkbox-box\"])[3]");
-    public static By betaa_2 = By.xpath("(//*[@class=\"p-checkbox-box\"])[2]");
-    public static By betaa_txtingg = By.xpath("(//*[@class=\"p-checkbox-box\"])[3]");
+    public static By betaa_2 = By.xpath("//span/span[text()='Beta']");
+    public static By betaa_txtingg = By.xpath("//span/span[text()='Prod']");
     public static By beta_txt = By.xpath("//span[@class=\"image-text\"]/span[text()=\"Prod\"]");
     public static By beta_txt2 = By.xpath("//span[@class=\"image-text\"]/span[text()=\"Beta\"]");
     public static By prod_txt = By.xpath("//span[@class=\"image-text\"]/span[text()=\"Prod\"]");
-    public static By betas = By.xpath("(//*[text()=\"Prod\"])");
-    public static By betas2 = By.xpath("(//*[text()=\"Beta\"])");
-    public static By prods = By.xpath("(//*[text()=\"Prod\"])");
+    public static By betas = By.xpath("//*[text()='Prod']");
+    public static By betas2 = By.xpath("//*[text()='Beta']");
+    public static By prods = By.xpath("//*[text()='Prod']");
     public static By betaa2 = By.xpath("(//*[@class=\"p-checkbox-icon p-c pi pi-check\"])");
     public static By shared_reportt = By.xpath("//*[text()=\"Shared Report\"]");
     public static By shared_pie = By.xpath("//*[@class=\"p-column-filter-menu-button p-link p-column-filter-menu-button-active\"]");
@@ -471,6 +471,6 @@ public class Locators {
     public static By password_suggestion_tooltip = By.xpath("//div[@class='p-tooltip-text']");
     public static By password_suggestion_icon = By.xpath("(//*[local-name()='svg' and @data-icon='circle-info']/*[local-name()='path'])");
     public static By testLab_button=By.xpath("//div[text()='TestPad']");
-    public static By Alab_button=By.xpath("//div[text()='ALAB']");
+    public static By Alab_button=By.xpath("//div[text()='ALab']");
 }
 
