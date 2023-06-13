@@ -1,5 +1,5 @@
 {
-  "environment": "prod",
+  "environment": "beta",
   "project_name": "JEWEL",
   "report_name": "JEWEL-UI-REGRESSION",
   "jewel_user": "geco-maulick",

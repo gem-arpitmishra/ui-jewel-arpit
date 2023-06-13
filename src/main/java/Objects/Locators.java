@@ -30,7 +30,7 @@ public class Locators {
     public static By content_card_one = By.xpath("(//div[@class='mt-1 appCardContent'])[1]");
 
     public static By card_two = By.xpath("(//div[@class='mt-3 cardName'])[2]");
-    public static By content_card_two = By.xpath("(//div[@class='mt-1 appCardContent'])[2]");
+    public static By content_card_two = By.xpath("(//div[@class='mt-1 appCardContent'])[6]");
     public static By login_alert = By.xpath("//div[@role='alert']");
     public static By three_lines_button = By.xpath("(//*[local-name()='svg' and @data-icon=\"circle-chevron-left\"]/*[local-name()='path'])");
     public static By signup_button = By.xpath("//span[text()='Sign up']");
@@ -105,7 +105,7 @@ public class Locators {
     public static By reportNameScroll = By.xpath("//*[span='Select Report Name']");
     public static By suiteRunReport = By.xpath("//*[text()='Suite Run Report']");
     public static By projectScroll = By.xpath("//*[@class='p-multiselect-label p-placeholder']");
-    public static By gemEcoApis = By.xpath("//span[text()=\"PROJECT-DEMO\"]");
+    public static By gemEcoApis = By.xpath("//span[text()=\"PERFORMANCE\"]");
     public static By gemEcoApis2 = By.xpath("//span[text()=\"PROJECT-DEMO2\"]");
     public static By enviromentScroll = By.xpath("//*[text()='Select Environment(s)']");
     public static By prod = By.xpath("//*[span='Prod']");
