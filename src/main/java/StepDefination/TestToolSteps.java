@@ -60,18 +60,12 @@ public class TestToolSteps {
     @When("Navigate to {string} Section")
     public void navigateToSection(String section) {
         try {
-            if(GemJarGlobalVar.environment.equals("prod")) {
-                if (section.equalsIgnoreCase("ALab"))
-                    DriverAction.click(ObjTestTool.testTool, "Test tool");
                 if (section.equalsIgnoreCase("Admin"))
                     DriverAction.click(ObjTestTool.admin, "Admin");
-            }
-            else if (GemJarGlobalVar.environment.equals("beta")) {
                 if (section.equalsIgnoreCase("ALab")) {
                     DriverAction.click(Locators.testLab_button, "Test Lab button");
                     DriverAction.click(Locators.Alab_button, "Test tool");
                 }
-            }
         } catch (Exception e) {
             logger.info("Exception occurred", e);
             GemTestReporter.addTestStep("Error!!", "Fail to navigate to " + section +

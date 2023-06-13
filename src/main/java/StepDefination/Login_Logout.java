@@ -76,6 +76,7 @@ public class Login_Logout {
     public void login_success() {
         try {
             DriverAction.waitUntilElementAppear(Locators.Alert_text, 10);
+
             if (DriverAction.getElementText(Locators.Alert_text).equals("Login Successfull !") && DriverAction.getCurrentURL().contains("home") && DriverAction.getElementText(Locators.homepage_username).equals(Script_PreConfig.username)) {
                 GemTestReporter.addTestStep("Validate Login", "Login successful", STATUS.PASS, DriverAction.takeSnapShot());
             } else {

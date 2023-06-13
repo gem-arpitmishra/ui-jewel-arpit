@@ -45,11 +45,11 @@ public class StepDefination extends GemEcoUpload {
             DriverAction.waitSec(2);
             DriverAction.click(Locators.username, "Username");
             DriverAction.waitSec(1);
-            DriverAction.typeText(Locators.username, "arpit.mishra");
+            DriverAction.typeText(Locators.username, "jewelautomation");
             DriverAction.waitSec(1);
             DriverAction.click(Locators.passwordm, "Password");
             DriverAction.waitSec(1);
-            DriverAction.typeText(Locators.passwordm, "arpit1234");
+            DriverAction.typeText(Locators.passwordm, "_test@123dummy");
             DriverAction.waitSec(1);
             DriverAction.click(Locators.LoginButton, "Login Button");
             DriverAction.waitSec(2);
