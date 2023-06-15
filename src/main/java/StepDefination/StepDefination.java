@@ -2,6 +2,7 @@ package StepDefination;
 
 import Functions.Functions_Admin;
 import Objects.Locators;
+import com.gemini.generic.feature.utils.Assert;
 import com.gemini.generic.reporting.GemEcoUpload;
 import com.gemini.generic.reporting.GemTestReporter;
 import com.gemini.generic.reporting.STATUS;
@@ -28,6 +29,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import static Objects.Locators.*;
@@ -916,8 +918,8 @@ public class StepDefination extends GemEcoUpload {
         }
     }
 
-    @Then("Verify the text of the Home screen")
-    public void verify_the_text_of_the_home_screen() {
+    @Then("Verify Home screen loading")
+    public void verify_home_loading() {
         try {
             DriverAction.waitSec(2);
             DriverAction.click(Locators.home_button, "Home Button");
@@ -1203,17 +1205,12 @@ public class StepDefination extends GemEcoUpload {
     @Then("Verify the content of the Home screen")
     public void verify_the_content_of_the_home_screen() {
         DriverAction.waitSec(2);
-        DriverAction.click(Locators.home_button, "Home Button");
-        GemTestReporter.addTestStep("Successfully clicked", "Jewel Window", STATUS.INFO, DriverAction.takeSnapShot());
         try {
-            String text = DriverAction.getElement(Locators.page_title).getText();
-            STATUS s;
-            if (text.equals("Jewel Applications")) {
-                s = STATUS.PASS;
-            } else {
-                s = STATUS.FAIL;
+            if(DriverAction.getElementText(Locators.page_title).equals("Jewel Applications")){
+                GemTestReporter.addTestStep("Homepage Content validation","Validated",STATUS.PASS,DriverAction.takeSnapShot());
+            }else{
+                GemTestReporter.addTestStep("Homepage Content validation","Failed to Validate",STATUS.FAIL,DriverAction.takeSnapShot());
             }
-            GemTestReporter.addTestStep("Title validation", "Expected Title:Jewel Applications", s);
         } catch (Exception e) {
             logger.info("An exception occurred!", e);
             GemTestReporter.addTestStep("Error!!", "Something Wrong happened", STATUS.FAIL);
@@ -1222,20 +1219,40 @@ public class StepDefination extends GemEcoUpload {
 
     @Then("Verify the Cards present on the home screen")
     public void verify_the_cards_present_on_the_home_screen() {
-        DriverAction.waitSec(2);
         DriverAction.click(Locators.home_button, "Home Button");
         try {
-            List num = DriverAction.getElements(Locators.cards);
-            STATUS status;
-            if (num.size() == 2) {
-                status = STATUS.PASS;
-            } else {
-                status = STATUS.FAIL;
+            if(DriverAction.getElements(Locators.cards).size()==6) {
+                GemTestReporter.addTestStep("Card visibility validation", "All cards visible",STATUS.PASS,DriverAction.takeSnapShot());
+            }else{
+                GemTestReporter.addTestStep("Card visibility validation", "Card visibility failed",STATUS.FAIL,DriverAction.takeSnapShot());
             }
-            GemTestReporter.addTestStep("Number of Cards Present ", "Expcted :2", status);
         } catch (Exception e) {
             logger.info("An exception occurred!", e);
             GemTestReporter.addTestStep("Error!!", "Something Wrong happened", STATUS.FAIL);
+        }
+    }
+    @Then("Validate card buttons navigate to corresponding page")
+    public void homepage_cards(){
+        List<String> card_name=DriverAction.getElementsText(cards);
+        List<WebElement> cards=DriverAction.getElements(Locators.cards);
+        int count=0;
+        if(cards.size()==card_name.size() && cards.equals(card_name)) {
+            for (int i = 0; i < cards.size(); i++) {
+                DriverAction.click(cards.get(i));
+                if (DriverManager.getWebDriver().getTitle().contains(card_name.get(i))) {
+                    count++;
+                }
+                DriverAction.navigateBack();
+            }
+            if(count==cards.size()){
+                GemTestReporter.addTestStep("Page navigation validation","Navigation successful",STATUS.PASS,DriverAction.takeSnapShot());
+            }else{
+                GemTestReporter.addTestStep("Page navigation validation","Navigation unsuccessful",STATUS.FAIL,DriverAction.takeSnapShot());
+            }
+          //  DriverAction.getTitle();
+        }
+        else {
+            GemTestReporter.addTestStep("ERROR","SOMETHING WENT WRONG",STATUS.FAIL,DriverAction.takeSnapShot());
         }
     }
 

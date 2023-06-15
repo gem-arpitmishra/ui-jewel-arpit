@@ -846,9 +846,6 @@ public class TestToolSteps {
     @And("Click on delete button to delete the test case")
     public void clickOnDeleteButtonToDeleteTheTestCase() {
         try {
-            if(DriverAction.isExist(Locators.Alert_text)){
-                DriverAction.waitUntilElementDisappear(Locators.Alert_text,10);
-            }
             if (DriverAction.getElement(ObjTestTool.testCasePillTableHeaders).isDisplayed()) {
 
                 int column = 0;
@@ -1022,23 +1019,15 @@ public class TestToolSteps {
         }
     }
 
-    @And("Verify deleted toast alert with message {string}")
-    public void verifyDeletedToastAlertWithMessage(String message) {
+    @And("Verify testcase is deleted")
+    public void verifyTestcasesDeleted() {
         try {
-            WebDriverWait wait = new WebDriverWait(DriverManager.getWebDriver(), Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.visibilityOfElementLocated(ObjTestTool.toastAlertMessage));
-            if (DriverAction.getElement(ObjTestTool.toastAlertMessage).isDisplayed()) {
-                String actualMessage = DriverAction.getElementText(ObjTestTool.toastAlertMessage);
-                if (actualMessage.equalsIgnoreCase(message)) {
-                    GemTestReporter.addTestStep("Verifying Toast Message",
-                            "Alert Message matched successfully", STATUS.PASS, DriverAction.takeSnapShot());
-                } else {
-                    GemTestReporter.addTestStep("Verifying Toast Message",
-                            "Alert Message not matched", STATUS.FAIL, DriverAction.takeSnapShot());
-                }
-            } else {
-                GemTestReporter.addTestStep("Toast Alert Message",
-                        "Toast Alert not displayed", STATUS.FAIL, DriverAction.takeSnapShot());
+            DriverAction.waitSec(10);
+            if(DriverAction.isExist(Locators.noTestCase))
+            {
+                GemTestReporter.addTestStep("Validate testcase is deleted","Testcase deleted successfully",STATUS.PASS,DriverAction.takeSnapShot());
+            }else{
+                GemTestReporter.addTestStep("Validate testcase is deleted","Testcase deletion failed",STATUS.FAIL,DriverAction.takeSnapShot());
             }
         } catch (Exception e) {
             logger.info("Exception occurred", e);
