@@ -29,13 +29,13 @@ Feature: Sign Up
       | abc       | abc      | abc.abc  | abc@abc.com  | Abcd@000 |                 | N      |
 
   Scenario: Username Availability Validation (negative)
-    When Fill fields "jewel","Automation user","","dummy_test54@gemperf.com","dummy_test@123","dummy_test@123","N"
+    When Fill fields "jewel","Automation user","","dummy_test54@gemperf.com","Dummy_test@123","Dummy_test@123","N"
     Then check username availability for user already registered
     Then Click Register
     Then Validate if signUp is unsuccessful
 
   Scenario: Username Availability Validation (positive)
-    When Fill fields "jewel","Automation user","","dummy_test54@gemperf.com","dummy_test@123","dummy_test@123","Y"
+    When Fill fields "jewel","Automation user","","dummy_test54@gemperf.com","Dummy_test@123","Dummy_test@123","Y"
     Then check username availability for user not already registered
     Then Click Register
     Then Validate if signUp is successful
@@ -48,11 +48,11 @@ Feature: Sign Up
     Then Password strength dialog appears on focusing on password field and disappears if it goes out of focus
 
   Scenario: Confirmation password equality check
-    When Fill fields "jewel","Automation user","","dummy_test54@gemperf.com","dummy_test@123","dummy_test@123","Y"
+    When Fill fields "jewel","Automation user","","dummy_test54@gemperf.com","Dummy_test@123","Dummy_test@123","Y"
     When User enters "different" passwords in password and confirmation-password
     Then Click Register
     Then Validate if signUp is unsuccessful
-    When User enters "dummy_test@123" passwords in password and confirmation-password
+    When User enters "Dummy_test@123" passwords in password and confirmation-password
     Then Click Register
     Then Validate if signUp is successful
 

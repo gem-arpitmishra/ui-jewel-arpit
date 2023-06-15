@@ -25,7 +25,7 @@ public class Locators {
     public static By change_token_alert = By.xpath("//div[text()='Bridge Token Changed Successfully.']");
     public static By pelement = By.xpath("//div[@class='d-flex']");
     public static By lelement = By.xpath("//div[@class='dropdown-item mx-auto text-center']");
-    public static By cards = By.xpath("//div[@class='card-body ms-2']");
+    public static By cards = By.xpath("//div[@class='mt-3 cardName']");
     public static By card_one = By.xpath("(//div[@class='mt-3 cardName'])[1]");
     public static By content_card_one = By.xpath("(//div[@class='mt-1 appCardContent'])[1]");
 

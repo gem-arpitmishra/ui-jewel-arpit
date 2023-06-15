@@ -102,7 +102,7 @@ Feature: Test Tool
     And Verify selected options "<suiteName>" and "<projectName>" are visible for header "Suite Name" and"Project Name" inside suite table
 
     Examples:
-      | suiteName | projectName   |
+      | suiteName | projectName  |
       | random    | PROJECT-DEMO |
 
   Scenario Outline: Jewel-TestTool : Create suite with duplicate name validation
@@ -203,11 +203,11 @@ Feature: Test Tool
     And Click on delete button to delete the test case
     And Verify the alert box with message "<message>"
     And Click on "YES" Button for deleting test case
-    And Verify deleted toast alert with message "<toast_message>"
+    And Verify testcase is deleted
 
     Examples:
-      | projectName   | suiteName       | message                                  | toast_message                  |
-      | PROJECT-DEMO | DELETE_TESTING2 | Are you Sure you want to delete Testcase | Test Case deleted Successfully |
+      | projectName  | suiteName       | message                                  |
+      | PROJECT-DEMO | DELETE_TESTING2 | Are you Sure you want to delete Testcase |
 
   Scenario Outline: Jewel-TestTool : Create Suite and validate Suite Creation time
     When Verify user is navigated to TestTool Suite Page
