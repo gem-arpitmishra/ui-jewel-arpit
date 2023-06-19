@@ -24,11 +24,11 @@
   "prod": {
     "browserName": "chrome",
     "launchUrl": "https://jewel.gemecosystem.com/",
-    "browserTimeout": 10
+    "browserTimeout": 120
   },
   "beta": {
     "browserName": "Chrome",
     "launchUrl": "https://jewel-beta.gemecosystem.com/",
-    "browserTimeout": 10
+    "browserTimeout": 120
   }
 }
