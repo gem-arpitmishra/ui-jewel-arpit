@@ -1,6 +1,5 @@
 Feature: Autolytics
 
-  @smoke
   Scenario: Click on the Autolytics button
     Given You are on the login screen
     Then Enter username as "jewelautomation"
@@ -101,7 +100,6 @@ Feature: Autolytics
       | sdr                   |
       | Suite Diagnose Report |
 #
-  @fail
   Scenario Outline: Check for Test Diagnose Report and vaidate a filter of it
     Given user logs in again for Test Diagnose Report
     Then Generates Test Diagnose report <tdr>

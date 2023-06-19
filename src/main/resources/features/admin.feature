@@ -1,6 +1,5 @@
 Feature: Admin Screen
 
-  @smoke
   Scenario: Validate the url of admin screen
     Given click on admin
     Then verify the url of admin screen
@@ -28,7 +27,6 @@ Feature: Admin Screen
       | projectName   |
       | PROJECT-DEMO2 |
 
-  @smoke
   Scenario: Validate create project functionality (when project is new)
     Given click on admin
     Then validate the project has been created on grid
@@ -49,13 +47,11 @@ Feature: Admin Screen
     Given click on admin
     Then validate the description is getting modified
 
-  @smoke
   Scenario: Validate Delete Option under Action for project
     Given click on admin
     Then validate when user clicks on no
     Then validate when user clicks on yes
 
-  @testing
   Scenario Outline: Validate Add user functionality
     Given click on admin
     Then User <username> is added to project
@@ -64,7 +60,6 @@ Feature: Admin Screen
       | username     |
       | aakash gupta |
 
-  @testing
   Scenario Outline: Validate delete option in project user access
     Given click on admin
     Then Validate delete user <username> function

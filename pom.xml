@@ -5,20 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>JewelUi-Automation</artifactId>
+    <artifactId>JewelUI-Automation</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
-
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/com.gemecosystem.gemjar/gemjar-core -->
         <dependency>
             <groupId>com.gemecosystem.gemjar</groupId>
             <artifactId>gemjar-core</artifactId>
-            <version>1.2.5</version>
+            <version>1.2.3</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.automation-remarks</groupId>
@@ -26,12 +24,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.gemecosystem.gemjar/gemjar-core -->
-
-
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -45,11 +38,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M9</version>
-                <configuration>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
-                    </suiteXmlFiles>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
